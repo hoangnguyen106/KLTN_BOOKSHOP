@@ -14,6 +14,39 @@ exports.getTotalPage = (req, res) => {
         res.status(200).json({ data: parseInt((docs.length - 1) / 9) + 1 })
     })
 }
+exports.getAllBooks = async (req,res)=>{
+    if(typeof req.params.page === 'undefined'){
+        res.status(402).json({msg: 'Data invalid'})
+        return;
+    }
+    let count=null;
+    try {
+        count =  await book.count({});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({msg: error});
+        return;
+    }
+    let totalPage =parseInt(((count +-1)/9)+1)  
+    let { page } = req.params;
+    if((parseInt(page) <1) || (parseInt(page) > totalPage)) {
+        res.status(200).json({data:[],msg: 'Invalid page',totalPage})
+        return;
+    }
+
+    book.find({})
+    .skip(9 * (parseInt(page) - 1))
+    .limit(9)
+    .exec((err,docs)=>{
+        if(err){
+            console.log(err);
+            res.status(500).json({msg:err});
+            return
+        }
+        res.status(200).json({ data: docs, totalPage });
+    })
+
+};
 
 exports.getAllBook = async (req, res) => {
     if ((typeof req.body.page === 'undefined')) {
@@ -65,10 +98,10 @@ exports.getAllBook = async (req, res) => {
     try {
         if (range !== null) {
             bookCount = await book
-                .count({ $or: [{ name: new RegExp(searchText, "i") }, { id_nsx: { $in: searchPublisher } }, { id_author: { $in: searchAuthor } }, { id_category: { $in: searchCategory } }], price: { $gte: objRange.low, $lte: objRange.high } });
+                .count({ $or: [{ name: new RegExp(searchText, "i") }, { id_publisher: { $in: searchPublisher } }, { id_author: { $in: searchAuthor } }, { id_category: { $in: searchCategory } }], price: { $gte: objRange.low, $lte: objRange.high } });
         }
         else {
-            bookCount = await book.count({ $or: [{ name: new RegExp(searchText, "i") }, { id_nsx: { $in: searchPublisher } }, { id_author: { $in: searchAuthor } }, { id_category: { $in: searchCategory } }] });
+            bookCount = await book.count({ $or: [{ name: new RegExp(searchText, "i") }, { id_publisher: { $in: searchPublisher } }, { id_author: { $in: searchAuthor } }, { id_category: { $in: searchCategory } }] });
         }
     }
     catch (err) {
@@ -87,7 +120,7 @@ exports.getAllBook = async (req, res) => {
     //Lay du lieu
     if (range !== null) {
         book
-            .find({ $or: [{ name: new RegExp(searchText, "i") }, { id_nsx: { $in: searchPublisher } }, { id_author: { $in: searchAuthor } }, { id_category: { $in: searchCategory } }], price: { $gte: objRange.low, $lte: objRange.high } })
+            .find({ $or: [{ name: new RegExp(searchText, "i") }, { id_publisher: { $in: searchPublisher } }, { id_author: { $in: searchAuthor } }, { id_category: { $in: searchCategory } }], price: { $gte: objRange.low, $lte: objRange.high } })
             .skip(9 * (parseInt(page) - 1))
             .limit(9)
             .sort(sortQuery)
@@ -102,7 +135,7 @@ exports.getAllBook = async (req, res) => {
     }
     else {
         book
-            .find({ $or: [{ name: new RegExp(searchText, "i") }, { id_nsx: { $in: searchPublisher } }, { id_author: { $in: searchAuthor } }, { id_category: { $in: searchCategory } }] })
+            .find({ $or: [{ name: new RegExp(searchText, "i") }, { id_publisher: { $in: searchPublisher } }, { id_author: { $in: searchAuthor } }, { id_category: { $in: searchCategory } }] })
             .skip(9 * (parseInt(page) - 1))
             .limit(9)
             .sort(sortQuery)
@@ -163,10 +196,10 @@ exports.getBookByPublisher = async (req, res) => {
     try {
         if (range !== null) {
             bookCount = await book
-                .count({ name: new RegExp(searchText, "i"), id_nsx: id, price: { $gte: objRange.low, $lte: objRange.high } });
+                .count({ name: new RegExp(searchText, "i"), id_publisher: id, price: { $gte: objRange.low, $lte: objRange.high } });
         }
         else {
-            bookCount = await book.count({ name: new RegExp(searchText, "i"), id_nsx: id });
+            bookCount = await book.count({ name: new RegExp(searchText, "i"), id_publisher: id });
         }
     }
     catch (err) {
@@ -184,7 +217,7 @@ exports.getBookByPublisher = async (req, res) => {
     //Lay du lieu
     if (range !== null) {
         book
-            .find({ name: new RegExp(searchText, "i"), id_nsx: id, price: { $gte: objRange.low, $lte: objRange.high } })
+            .find({ name: new RegExp(searchText, "i"), id_publisher: id, price: { $gte: objRange.low, $lte: objRange.high } })
             .skip(9 * (parseInt(page) - 1))
             .limit(9)
             .sort(sortQuery)
@@ -199,7 +232,7 @@ exports.getBookByPublisher = async (req, res) => {
     }
     else {
         book
-            .find({ name: new RegExp(searchText, "i"), id_nsx: id })
+            .find({ name: new RegExp(searchText, "i"), id_publisher: id })
             .skip(9 * (parseInt(page) - 1))
             .limit(9)
             .sort(sortQuery)

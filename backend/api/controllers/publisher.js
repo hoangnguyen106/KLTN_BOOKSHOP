@@ -11,7 +11,7 @@ exports.getPublisher = (req,res)=>{
     })
 }
 exports.getAll = async (req,res)=>{
-    if(typeof req.parmas.page === 'undefined'){
+    if(typeof req.params.page === 'undefined'){
         res.status(402).json({msg: 'Data invalid'})
         return;
     }
@@ -24,7 +24,7 @@ exports.getAll = async (req,res)=>{
         return;
     }
     let totalPage =parseInt(((count +-1)/9)+1)  
-    let {page}=res.parmas;
+    let { page } = req.params;
     if((parseInt(page) <1) || (parseInt(page) > totalPage)) {
         res.status(200).json({data:[],msg: 'Invalid page',totalPage})
         return;
