@@ -47,7 +47,9 @@ exports.getAllBooks = async (req,res)=>{
     })
 
 };
-
+function getTotalPage(){
+    
+}
 exports.getAllBook = async (req, res) => {
     if ((typeof req.body.page === 'undefined')) {
         res.status(422).json({ msg: 'Invalid data' });

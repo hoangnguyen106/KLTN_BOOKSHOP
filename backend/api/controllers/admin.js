@@ -251,7 +251,24 @@ exports.updatePublisher = async (req, res) => {
     }
   res.status(201).json({ msg: 'success', publisher: { name: name } });
 }
-
+exports.deletePublisher = async (req, res) => {
+    if (typeof req.params.id === 'undefined') {
+        res.status(422).json({ msg: 'Invalid data' });
+        return;
+    }
+    let publisherFind, id_publisher_book;
+    try {
+        id_publisher_book= await book.find()
+        publisherFind = await publisher.findById(req.params.id);
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({ msg: err })
+        return;
+    }
+    publisherFind.remove();
+    res.status(200).json({ msg: 'success', });
+}
 exports.deleteUser = async (req, res) => {
     if (typeof req.body.email === 'undefined') {
         res.status(422).json({ msg: 'Invalid data' });
@@ -330,6 +347,23 @@ exports.updateCategory = async (req, res) => {
     }
     res.status(201).json({ msg: 'success', category: { name: name } });
 }
+exports.deleteCategory = async (req, res) => {
+    if (typeof req.params.id === 'undefined') {
+        res.status(422).json({ msg: 'Invalid data' });
+        return;
+    }
+    let categoryFind;
+    try {
+        categoryFind = await category.findById(req.params.id);
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({ msg: err })
+        return;
+    }
+    categoryFind.remove();
+    res.status(200).json({ msg: 'success', });
+}
 
 exports.addAuthor = async (req, res) => {
     if (typeof req.body.name === 'undefined') {
@@ -392,6 +426,24 @@ exports.updateAuthor = async (req, res) => {
     }
     res.status(201).json({ msg: 'success', author: { name: name } });
 }
+exports.deleteAuthor = async (req, res) => {
+    if (typeof req.params.id === 'undefined') {
+        res.status(422).json({ msg: 'Invalid data' });
+        return;
+    }
+    let authorFind;
+    try {
+        authorFind = await author.findById(req.params.id);
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({ msg: err })
+        return;
+    }
+    authorFind.remove();
+    res.status(200).json({ msg: 'success', });
+}
+
 exports.addUser = async (req, res) => {
     if ((typeof req.body.email === 'undefined')
         || (typeof req.body.password === 'undefined')

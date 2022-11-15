@@ -23,14 +23,20 @@ module.exports = (app) => {
         .post(admin_controller.addCategory);
     app.route('/admin/updatecategory')
         .post(admin_controller.updateCategory);
+    app.route('/admin/deletecategory/:id')
+       .get(admin_controller.deleteCategory);
     app.route('/admin/addauthor')
         .post(admin_controller.addAuthor);
     app.route('/admin/updateauthor')
         .post(admin_controller.updateAuthor);
+    app.route('/admin/deleteauthor/:id')
+       .get(admin_controller.deleteAuthor);
     app.route('/admin/addpublisher')
        .post(admin_controller.addPublisher);
     app.route('/admin/updatepublisher')
        .post(admin_controller.updatePublisher);
+    app.route('/admin/deletepublisher/:id')
+       .get(admin_controller.deletePublisher);
     app.route('/admin/adduser')
        .post(admin_controller.addUser);
     app.route('/admin/getAllUser/:page')
