@@ -23,7 +23,7 @@ class ProductDetailContainer extends Component {
     componentWillReceiveProps(nextProps) {
         if(nextProps.mproductDetail !== null ) {
             this.props.productActions.getNameCategoryByID(nextProps.mproductDetail.id_category)
-            this.props.productActions.getNamePubliserByID(nextProps.mproductDetail.id_nsx)
+            this.props.productActions.getNamePubliserByID(nextProps.mproductDetail.id_publisher)
             this.props.productActions.getNameAuthorByID(nextProps.mproductDetail.id_author)
         }
         if(nextProps.page !== this.props.page) {
