@@ -964,7 +964,6 @@ h2.title {
   font-size: 18px;
   font-weight: 700;
   margin: 0 15px;
-  text-transform: uppercase;
   margin-bottom: 30px;
   position: relative;
 }
@@ -2007,7 +2006,8 @@ hr {
 
 #cart_items .cart_info .cart_price p {
   color: #696763;
-  font-size: 18px
+  font-size: 18px;
+  margin-bottom: 0px;
 }
 
 
@@ -2143,7 +2143,7 @@ hr {
   color: #696763;
   font-weight: normal;
   margin-right: 50px;
-  width: 20px;
+  width: 90px;
 }
 
 .user_option input {
