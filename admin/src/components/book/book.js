@@ -447,13 +447,11 @@ class Book extends Component {
             <ol className="breadcrumb">
               <li>
                 <i className="fa fa-home" />
-                <Link to="/">Home</Link>
+                <Link to="/">Trang Chủ</Link>
               </li>
+             
               <li>
-                <i className="fa fa-table" />Table
-              </li>
-              <li>
-                <i className="fa fa-th-list" />Book Manager
+                <i className="fa fa-th-list" />Quản Lý Sách
               </li>
             </ol>
           </div>
@@ -461,24 +459,23 @@ class Book extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
-              <header className="panel-heading">Advanced Table</header>
               <table className="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
                     <th>
-                      <i className="icon_profile" /> Name
+                      <i className="icon_book_alt" /> Tên Sách
                     </th>
                     <th>
-                      <i className="icon_calendar" /> Date
+                      <i className="icon_calendar" /> Ngày NHập
                     </th>
                     <th>
-                      <i className="icon_mail_alt" /> Price
+                      <i className="icon_percent" /> Giá
                     </th>
                     <th>
-                      <i className="icon_pin_alt" /> describe
+                      <i className="icon_pin_alt" /> Tóm Tắt
                     </th>
                     <th>
-                      <i className="icon_cogs" /> Action
+                      <i className="icon_cogs" /> 
                     </th>
                   </tr>
                   {this.props.book.map((element, index) => {
@@ -486,7 +483,7 @@ class Book extends Component {
                       <tr>
                         <td>{element.name}</td>
                         <td>{element.release_date.slice(0,10)}</td>
-                        <td>{element.price}</td>
+                        <td>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(element.price)}<sup>đ</sup></td>
                         <td style={{ width: "40%" }}>{element.describe}</td>
                         <td>
                           <div className="btn-group">
@@ -541,7 +538,6 @@ class Book extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
-              <header className="panel-heading">Form validations</header>
               <div className="panel-body">
                 <div className="form" id="from-book">
                   <div
@@ -552,7 +548,7 @@ class Book extends Component {
                   >
                     <div className="form-group ">
                       <label for="cname" className="control-label col-lg-2">
-                        Name <span className="required">*</span>
+                        Tên sách <span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -593,7 +589,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="curl" className="control-label col-lg-2">
-                        Price
+                        Giá
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -687,7 +683,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Image upload{" "}
+                        Chọn ảnh{" "}
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -704,7 +700,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Image
+                        Ảnh
                       </label>
                       <div className="col-lg-10">
                         <img

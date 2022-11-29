@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import swal from 'sweetalert';
 class Publisher extends Component {
   constructor() {
     super();
@@ -87,20 +88,31 @@ class Publisher extends Component {
   }
   renderBtn = () => {
     if (this.state.currType === "add") {
+      
       return (
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
             <button
-              onClick={() => this.props.addPublisher(this.state.name)}
+              onClick={() => {this.props.addPublisher(this.state.name)
+                
+                swal({
+                  title: "Thông Báo",
+                  text: "Cập Nhật Tài khoản Thành công!",
+                  icon: "success",
+                })  
+               }
+              }
+              
               className="btn-custom"
             >
               Add
             </button>
             <button
               disabled
-              onClick={() =>
+              onClick={() =>{
                 this.props.updatePublisher(this.state.id, this.state.name)
-              }
+               
+              }}
               className="btn-custom"
             >
               Update
@@ -127,7 +139,17 @@ class Publisher extends Component {
             </button>
             <button
               onClick={() =>
-                this.props.updatePublisher(this.state.id, this.state.name)
+                {
+                  if(true){
+                    this.props.updatePublisher(this.state.id, this.state.name)
+                  swal({
+                    title: "Thông Báo",
+                    text: "Cập Nhật Thành công!",
+                    icon: "success",
+                  })
+                  }
+                  
+                }
               }
               className="btn-custom"
             >
@@ -163,13 +185,11 @@ class Publisher extends Component {
             <ol className="breadcrumb">
               <li>
                 <i className="fa fa-home" />
-                <Link to="/">Home</Link>
+                <Link to="/">Trang Chủ</Link>
               </li>
+              
               <li>
-                <i className="fa fa-table" />Table
-              </li>
-              <li>
-                <i className="fa fa-th-list" />Publisher Manager
+                <i className="fa fa-th-list" />Quản Lý Nhà Xuất Bản
               </li>
             </ol>
           </div>
@@ -177,15 +197,14 @@ class Publisher extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
-              <header className="panel-heading">Advanced Table</header>
               <table className="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
                     <th>
-                      <i className="icon_profile" /> Name
+                      <i className="icon_profile" /> Tên Nhà Xuất Bản
                     </th>
                     <th>
-                      <i className="icon_cogs" /> Action
+                      <i className="icon_cogs" /> 
                     </th>
                   </tr>
                   {this.props.publisher.map((element, index) => {
@@ -208,7 +227,14 @@ class Publisher extends Component {
                               <i className="icon_check_alt2" />
                             </a>
                             <a
-                              onClick={() => this.props.deletePublisher(element._id)}
+                            
+                              onClick={() => {this.props.deletePublisher(element._id)
+
+                                swal({
+                                  title: "Thông Báo",
+                                  text: "Cập Nhật Thành công!",
+                                  icon: "success",
+                                })  }}
                               className="btn btn-danger"
                             >
                               <i className="icon_close_alt2" />
@@ -227,13 +253,12 @@ class Publisher extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
-              <header className="panel-heading">Form validations</header>
               <div className="panel-body">
                 <div className="form">
                   <div className="form-validate form-horizontal">
                     <div className="form-group ">
                       <label for="cname" className="control-label col-lg-2">
-                        Name <span className="required">*</span>
+                        Tên Nhà Xuất Bản <span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input

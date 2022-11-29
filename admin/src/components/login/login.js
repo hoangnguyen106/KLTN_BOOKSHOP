@@ -43,7 +43,6 @@ class Login extends Component {
                 />
               </div>
               <label className="checkbox">
-                <input type="checkbox" value="remember-me" /> Remember me
                 <span className="pull-right">
                   {" "}
                   <a href="#"> Forgot Password?</a>

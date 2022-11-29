@@ -164,13 +164,11 @@ class Category extends Component {
             <ol className="breadcrumb">
               <li>
                 <i className="fa fa-home" />
-                <Link to="/">Home</Link>
+                <Link to="/">Trang Chủ</Link>
               </li>
+              
               <li>
-                <i className="fa fa-table" />Table
-              </li>
-              <li>
-                <i className="fa fa-th-list" />Category Manager
+                <i className="fa fa-th-list" />Quản Lý Loại Sách
               </li>
             </ol>
           </div>
@@ -178,15 +176,14 @@ class Category extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel ">
-              <header className="panel-heading">Advanced Table</header>
               <table className="table table-striped table-advance table-hover ">
                 <tbody>
                   <tr>
                     <th>
-                      <i className="icon_profile" /> Name
+                      <i className="icon_profile" /> Tên Loại Sách
                     </th>
                     <th>
-                      <i className="icon_cogs" /> Action
+                      <i className="icon_cogs" /> 
                     </th>
                   </tr>
                   {this.props.category.map((element, index) => {
@@ -228,13 +225,12 @@ class Category extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
-              <header className="panel-heading">Form validations</header>
               <div className="panel-body">
                 <div className="form">
                   <div className="form-validate form-horizontal">
                     <div className="form-group ">
                       <label for="cname" className="control-label col-lg-2">
-                        Name <span className="required">*</span>
+                        Tên Loại Sách <span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input

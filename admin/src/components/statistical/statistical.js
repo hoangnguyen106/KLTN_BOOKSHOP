@@ -1,5 +1,10 @@
 import React, { Component } from "react";
+
 class Statistical extends Component {
+  flatOptions = {
+    altInput: true,
+    altFormat: 'Y'
+  }
   constructor() {
     super();
     this.state = {
@@ -200,15 +205,15 @@ class Statistical extends Component {
           <div class="row">
             <div class="col-lg-12">
               <h3 class="page-header">
-                <i class="fa fa-table" /> STATISTICAL
+                <i class="fa fa-table" /> Thống Kê
               </h3>
               <ol class="breadcrumb">
                 <li>
                   <i class="fa fa-home" />
-                  <a href="index.html">Home</a>
+                  <a href="index.html">Trang Chủ</a>
                 </li>
                 <li>
-                  <i class="fa fa-table" />Statistical
+                  <i class="fa fa-table" />Thống Kê
                 </li>
               </ol>
             </div>
@@ -217,15 +222,16 @@ class Statistical extends Component {
             <div className="col-lg-12">
               <section className="panel">
                 <header className="panel-heading">
-                  STATISTICS BY DAY
-                  <span style={{ marginLeft: "50px" }}>Select Day</span>
+                  Thống Kê Theo Ngày
                   <input
                     type="date"
                     style={{
                       marginLeft: "10px",
                       height: "30px",
                       backgroundColor: "#F7F7F7",
-                      borderRadius: "5px"
+                      borderRadius: "5px",
+                      outline:"none",
+                      border: "2px solid rgb(142 186 199 / 1)"
                     }}
                     onChange={e =>
                       this.props.getStatisticalByDay(e.target.value)
@@ -248,7 +254,7 @@ class Statistical extends Component {
                         <td>{this.state.billNumberDay}</td>
                         <td>{this.state.productNumberDay}</td>
                         <td>{this.state.UserNumberDay}</td>
-                        <td>{this.state.totalDay}</td>
+                        <td>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(this.state.totalDay)}<sup>đ</sup></td>
                       </tr>
                     </tbody>
                   </table>
@@ -260,15 +266,16 @@ class Statistical extends Component {
             <div className="col-lg-12">
               <section className="panel">
                 <header className="panel-heading">
-                  STATISTICS BY MONTH
-                  <span style={{ marginLeft: "50px" }}>Select Month</span>
+                  THống Kê Theo Tháng
                   <input
                     type="month"
                     style={{
                       marginLeft: "10px",
                       height: "30px",
                       backgroundColor: "#F7F7F7",
-                      borderRadius: "5px"
+                      borderRadius: "5px",
+                      outline:"none",
+                      border: "2px solid rgb(142 186 199 / 1)"
                     }}
                     onChange={e =>
                       this.props.getStatisticalByMonth(e.target.value)
@@ -291,7 +298,7 @@ class Statistical extends Component {
                         <td>{this.state.billNumberMonth}</td>
                         <td>{this.state.productNumberMonth}</td>
                         <td>{this.state.UserNumberMonth}</td>
-                        <td>{this.state.totalMonth}</td>
+                        <td>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(this.state.totalMonth)}<sup>đ</sup></td>
                       </tr>
                     </tbody>
                   </table>
@@ -303,17 +310,18 @@ class Statistical extends Component {
             <div className="col-lg-12">
               <section className="panel">
                 <header className="panel-heading">
-                  STATISTICS BY YEAR
-                  <span style={{ marginLeft: "50px" }}>Select Year</span>
+                  Thống Kê Theo Năm
                   <input
-                    type="text"
+                    type="text" name="datepicker" id="datepicker"
                     style={{
                       marginLeft: "10px",
                       height: "30px",
                       backgroundColor: "#F7F7F7",
-                      borderRadius: "5px"
+                      borderRadius: "5px",
+                      outline:"none",
+                      border: "2px solid rgb(142 186 199 / 1)"
                     }}
-                    min="2000"
+                    min="1600"
                     onKeyDown={e => {
                       if (e.keyCode === 13) {
                         this.handleGetStatisticalByYear();
@@ -341,7 +349,7 @@ class Statistical extends Component {
                         <td>{this.state.billNumberYear}</td>
                         <td>{this.state.productNumberYear}</td>
                         <td>{this.state.UserNumberYear}</td>
-                        <td>{this.state.totalYear}</td>
+                        <td>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(this.state.totalYear)}<sup>đ</sup></td>
                       </tr>
                     </tbody>
                   </table>
@@ -355,4 +363,5 @@ class Statistical extends Component {
     );
   }
 }
+
 export default Statistical;
