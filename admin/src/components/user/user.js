@@ -35,13 +35,21 @@ class User extends Component {
       this.setState({ pagination: tmp });
     }
     if (nextProps.isadd === false) {
-      this.setState({
-        noti: "Email này đã được sử dụng "
-      });
+      swal({
+        title: "Thông Báo",
+        text: "Email này đã được sử dụng!",
+        icon: "warning",
+      })
+      
     } else if (nextProps.isadd === true) {
       this.reset();
     }
     if (nextProps.isupdate === false) {
+      swal({
+        title: "Thông Báo",
+        text: "Cập nhật thất bại",
+        icon: "warning",
+      })
       this.setState({
         noti: "Cập nhật thất bại"
       });
@@ -111,65 +119,50 @@ class User extends Component {
       is_admin
     } = this.state;
     if (!this.isvalidEmail(email)) {
-      this.setState({
-        noti: "Email invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      swal({
+        title: "Thông Báo",
+        text: "Email không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (password.length < 6) {
-      this.setState({
-        noti: "Password invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      swal({
+        title: "Thông Báo",
+        text: "Mật khẩu không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (firstName.length < 3) {
-      this.setState({
-        noti: "First name invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      
+      swal({
+        title: "Thông Báo",
+        text: "Họ không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (lastName.length < 3) {
-      this.setState({
-        noti: "Last name invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      
+      swal({
+        title: "Thông Báo",
+        text: "Tên không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (address.length < 3) {
-      this.setState({
-        noti: "Address invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      swal({
+        title: "Thông Báo",
+        text: "Địa chỉ không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (!this.isvalidPhone(this.state.phone_number)) {
-      this.setState({
-        noti: "Phone invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      swal({
+        title: "Thông Báo",
+        text: "Số điện thoại không hợp lệ!",
+        icon: "warning",
+      })
+    } 
+    
     this.props.addUser(
       email,
       password,
@@ -191,65 +184,50 @@ class User extends Component {
       is_admin
     } = this.state;
     if (!this.isvalidEmail(email)) {
-      this.setState({
-        noti: "Email invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      swal({
+        title: "Thông Báo",
+        text: "Email không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (password.length < 6) {
-      this.setState({
-        noti: "Password invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      swal({
+        title: "Thông Báo",
+        text: "Mật khẩu không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (firstName.length < 3) {
-      this.setState({
-        noti: "First name invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      
+      swal({
+        title: "Thông Báo",
+        text: "Họ không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (lastName.length < 3) {
-      this.setState({
-        noti: "Last name invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      
+      swal({
+        title: "Thông Báo",
+        text: "Tên không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (address.length < 3) {
-      this.setState({
-        noti: "Address invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      swal({
+        title: "Thông Báo",
+        text: "Địa chỉ không hợp lệ!",
+        icon: "warning",
+      })
+    } 
     if (!this.isvalidPhone(this.state.phone_number)) {
-      this.setState({
-        noti: "Phone invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+      swal({
+        title: "Thông Báo",
+        text: "Số điện thoại không hợp lệ!",
+        icon: "warning",
+      })
+    } 
+    
     this.props.updateUser(
       email,
       firstName,
@@ -272,12 +250,14 @@ class User extends Component {
       return (
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
-            <button onClick={() => {this.addUser()
+            <button onClick={() => {
+              if(this.addUser()){
                 swal({
                       title: "Thông Báo",
-                      text: "Thêm mới Tài khoản ngưo Thành công!",
+                      text: "Thêm mới Tài khoản Thành công!",
                       icon: "success",
-                    })}} className="btn-custom"
+                    })}
+                  }} className="btn-custom"
             >
               Add
             </button>
@@ -297,11 +277,6 @@ class User extends Component {
             <button
               disabled
               onClick={() => {this.addUser()
-              swal({
-                title: "Thông Báo",
-                text: "Thêm Mới Tài khoản Thành công!",
-                icon: "success",
-              })
               }}
               className="btn-custom"
             >

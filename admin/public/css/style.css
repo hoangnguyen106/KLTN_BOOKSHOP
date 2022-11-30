@@ -14,7 +14,6 @@
 
     body {
 
-        color: #b3b3b3;
 
         background: #eeeeee;
 
@@ -1599,13 +1598,13 @@
 
     .dropdown-menu.extended.logout > li:last-child > a:hover > i{
 
-        color: #fff;
+        color: rgb(0, 0, 0);
 
     }
 
     .dropdown-menu > li > a{
 
-        color: #fff7f7;
+        color: #000000;
 
     }
 

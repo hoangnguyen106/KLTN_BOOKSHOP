@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import swal from 'sweetalert';
 class Author extends Component {
   constructor() {
     super();
@@ -28,9 +29,11 @@ class Author extends Component {
       this.setState({ pagination: tmp });
     }
     if (nextProps.isadd === false) {
-      this.setState({
-        noti: "Please Change name"
-      });
+      swal({
+        title: "Thông Báo",
+        text: "Vui lòng nhập tên Tác giả!",
+        icon: "warning",
+      })
     } else if (nextProps.isadd === true) {
       this.setState({
         noti: "",
@@ -92,7 +95,15 @@ class Author extends Component {
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
             <button
-              onClick={() => this.props.addAuthor(this.state.name)}
+              onClick={() => {this.props.addAuthor(this.state.name)
+                if(this.state.name !=null){
+                  this.props.addAuthor(this.state.name)
+                  swal({
+                    title: "Thông Báo",
+                    text: "Thêm Mới Thành công!",
+                    icon: "success",
+                  })
+                }}}
               className="btn-custom"
             >
               Add
@@ -128,7 +139,15 @@ class Author extends Component {
             </button>
             <button
               onClick={() =>
-                this.props.updateAuthor(this.state.id, this.state.name)
+               { 
+                if(this.state.name !=null){
+                  this.props.updateAuthor(this.state.id, this.state.name)
+                  swal({
+                    title: "Thông Báo",
+                    text: "Cập Nhật Thành công!",
+                    icon: "success",
+                  })
+                }}
               }
               className="btn-custom"
             >
@@ -206,7 +225,12 @@ class Author extends Component {
                               <i className="icon_check_alt2" />
                             </a>
                             <a
-                              onClick={() => this.props.deleteAuthor(element._id)}
+                              onClick={() => {this.props.deleteAuthor(element._id)
+                                swal({
+                                  title: "Thông Báo",
+                                  text: "Xóa Thành công!",
+                                  icon: "success",
+                                })}}
                               className="btn btn-danger"
                             >
                               <i className="icon_close_alt2" />
@@ -225,6 +249,7 @@ class Author extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
+            <header className="panel-heading"></header>
               <div className="panel-body">
                 <div className="form">
                   <div className="form-validate form-horizontal">
