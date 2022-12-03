@@ -266,7 +266,7 @@ class Statistical extends Component {
             <div className="col-lg-12">
               <section className="panel">
                 <header className="panel-heading">
-                  THống Kê Theo Tháng
+                  Thống Kê Theo Tháng
                   <input
                     type="month"
                     style={{
