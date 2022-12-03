@@ -29,9 +29,11 @@ class Publisher extends Component {
       this.setState({ pagination: tmp });
     }
     if (nextProps.isadd === false) {
-      this.setState({
-        noti: "Please Change name"
-      });
+      swal({
+        title: "Thông Báo",
+        text: "Vui lòng nhập tên Nhà xuất bản!",
+        icon: "warning",
+      })
     } else if (nextProps.isadd === true) {
       this.setState({
         noti: "",
@@ -94,12 +96,14 @@ class Publisher extends Component {
           <div className="col-lg-offset-2 col-lg-10">
             <button
               onClick={() => {this.props.addPublisher(this.state.name)
+                if(this.state.name!=null){
+                  swal({
+                    title: "Thông Báo",
+                    text: "Thêm Mới Thành công!",
+                    icon: "success",
+                  })  
+                }
                 
-                swal({
-                  title: "Thông Báo",
-                  text: "Cập Nhật Tài khoản Thành công!",
-                  icon: "success",
-                })  
                }
               }
               
@@ -140,15 +144,13 @@ class Publisher extends Component {
             <button
               onClick={() =>
                 {
-                  if(true){
-                    this.props.updatePublisher(this.state.id, this.state.name)
+                 
+                  this.props.updatePublisher(this.state.id, this.state.name)
                   swal({
                     title: "Thông Báo",
                     text: "Cập Nhật Thành công!",
                     icon: "success",
                   })
-                  }
-                  
                 }
               }
               className="btn-custom"
@@ -232,7 +234,7 @@ class Publisher extends Component {
 
                                 swal({
                                   title: "Thông Báo",
-                                  text: "Cập Nhật Thành công!",
+                                  text: "Xóa Thành công!",
                                   icon: "success",
                                 })  }}
                               className="btn btn-danger"
@@ -253,6 +255,7 @@ class Publisher extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
+            <header className="panel-heading"></header>
               <div className="panel-body">
                 <div className="form">
                   <div className="form-validate form-horizontal">
