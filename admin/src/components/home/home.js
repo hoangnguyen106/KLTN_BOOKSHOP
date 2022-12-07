@@ -50,7 +50,7 @@ class Home extends Component {
             
 
             <div className="row">
-              <div className="col-lg-9 col-md-12">
+              <div className="col-lg-12 col-md-12">
                 <div className="panel panel-default">
                   
                   <div className="panel-body">

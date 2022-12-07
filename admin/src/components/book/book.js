@@ -574,7 +574,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="curl" className="control-label col-lg-2">
-                        Giá
+                        Giá <span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -614,7 +614,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment " className="control-label col-lg-2">
-                        Thể Loại
+                        Thể Loại<span className="required">*</span>
                       </label>
                       <div className="btn-group col-lg-10">
                         <button
@@ -632,7 +632,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Tác Giả
+                        Tác Giả <span className="required">*</span>
                       </label>
                       <div className="btn-group col-lg-10">
                         <button
@@ -650,7 +650,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Nhà Xuất Bản
+                        Nhà Xuất Bản <span className="required">*</span>
                       </label>
                       <div className="btn-group col-lg-10">
                         <button
@@ -668,7 +668,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Chọn ảnh{" "}
+                        Chọn ảnh{" "} <span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input
