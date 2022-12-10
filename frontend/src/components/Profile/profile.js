@@ -20,9 +20,9 @@ class Profile extends Component {
   }
   componentWillMount() {
     if (this.props.isupdate) {
-      this.setState({ notiUpdateInfor: "UPDATE SUCCESS" });
+      this.setState({ notiUpdateInfor: "Cập nhật thành công" });
     } else if (this.props.isupdate === false) {
-      this.setState({ notiUpdateInfor: "UPDATE FAIL" });
+      this.setState({ notiUpdateInfor: "Cập nhật thất bại" });
     } else {
       this.setState({ notiUpdateInfor: "" });
     }
@@ -37,17 +37,22 @@ class Profile extends Component {
       profile: true
     })
   }
+  handeSearch = (e) => {
+    if(e === 13) {
+        this.props.handleUpdatePassword()
+    }
+}
   componentWillReceiveProps(nextProps) {
     if (nextProps.isupdate === true) {
-       this.setState({ notiUpdateInfor: "UPDATE SUCCESS" });
+       this.setState({ notiUpdateInfor: "Cập nhật thành công" });
     } else if (nextProps.isupdate === false) {
-       this.setState({ notiUpdateInfor: "UPDATE FAIL" });
+       this.setState({ notiUpdateInfor: "Cập nhật thất bại" });
     } else {
        this.setState({ notiUpdateInfor: "" });
     }
     if(nextProps.notiupdatePassword !== this.props.notiupdatePassword && nextProps.notiupdatePassword === true) {
       this.setState({
-        notiUpdatePassword: "Update password success"
+        notiUpdatePassword: "Cập nhật mật khẩu mới thành công"
       })
       this.setState({
         oldPassword: '',
@@ -58,23 +63,31 @@ class Profile extends Component {
     } 
     if(nextProps.notiupdatePassword !== this.props.notiupdatePassword && nextProps.notiupdatePassword === false) {
       this.setState({
-        notiUpdatePassword: "Update password fail"
+        notiUpdatePassword: "Cập nhật mật khẩu mới thất bại"
       })
       this.props.resetUpdatePassword()
     } 
   }
   handleUpdatePassword() {
+    if(this.state.newPassword.length === 0 && this.state.oldPassword.length === 0 && this.state.confirm.length === 0){
+      this.setState({notiUpdatePassword: 'Không được để trống các trường trên'})
+      return
+    }
     if(this.state.newPassword.length < 6) {
-      this.setState({notiUpdatePassword: 'New Password invalid'})
+      this.setState({notiUpdatePassword: 'Mật khẩu mới phải lớn hơn 6 ký tự'})
       return
     } else {
       this.setState({notiUpdatePassword: ''})
     }
     if(this.state.confirm.length < 6) {
-      this.setState({notiUpdatePassword: 'Confirm Password invalid'})
+      this.setState({notiUpdatePassword: 'Nhập lại mật khẩu không đúng'})
       return
     } else {
       this.setState({notiUpdatePassword: ''})
+    }
+    if(this.state.newPassword === this.state.oldPassword) {
+      this.setState({notiUpdatePassword: 'Mật khẩu mới không được trùng với mật khẩu cũ'})
+      return
     }
     this.props.updatePassword(this.state.oldPassword, this.state.newPassword)
   }
@@ -83,7 +96,7 @@ class Profile extends Component {
     let xhtml = <div className='login-form'>
      <div className = 'login-content col-sm-6'>
     <div className="shopper-info">
-      <p>USER INFORMATIONS</p>
+      <p>Thông tin tài khoản</p>
       <p className="error">{this.state.notiUpdateInfor}</p>
       <input
         type="text"
@@ -93,25 +106,25 @@ class Profile extends Component {
       />
       <input
         type="text"
-        placeholder="First name"
+        placeholder="Họ"
         value={this.props.firstName}
         onChange={e => this.props.setFirstName(e.target.value)}
       />
       <input
         type="text"
-        placeholder="Last name"
+        placeholder="Tên"
         value={this.props.lastName}
         onChange={e => this.props.setLastName(e.target.value)}
       />
       <input
         type="text"
-        placeholder="Address"
+        placeholder="Địa chỉ"
         value={this.props.address}
         onChange={e => this.props.setAddress(e.target.value)}
       />
       <input
         type="tell"
-        placeholder="Phone number"
+        placeholder="Số điện thoại"
         value={this.props.phone_number}
         onChange={e => this.props.setPhoneNumber(e.target.value)}
       />
@@ -119,7 +132,7 @@ class Profile extends Component {
         onClick={() => this.props.updateInfor()}
         className="btn btn-default"
       >
-        update
+       Cập nhật
       </button>
     </div>
   </div>
@@ -129,15 +142,15 @@ if(this.state.profile){
   <div className = 'login-content col-sm-6'>
   <div className="shopper-info">
   
-    <p>UPDATE PASSWORD</p>
+    <p>Thay đổi mật khẩu</p>
     <p className="error">{this.state.notiUpdatePassword}</p>
     <input
-    value={this.state.oldPassword}
+      value={this.state.oldPassword}
       onChange={e =>
         this.setState({ oldPassword: e.target.value })
       }
       type="password"
-      placeholder="Old password"
+      placeholder="Nhập vào mật khâu cũ"
     />
     <input
     value={this.state.newPassword}
@@ -145,17 +158,17 @@ if(this.state.profile){
         this.setState({ newPassword: e.target.value })
       }
       type="password"
-      placeholder="New Password"
+      placeholder="Nhập vào mật khẩu mới"
     />
     <input
 
     value={this.state.confirm}
       onChange={e => this.setState({ confirm: e.target.value })}
       type="password"
-      placeholder="Confirm"
+      placeholder="Nhập lại mật khẩu mới"
     />
     <button onClick={() => this.handleUpdatePassword()}
-    className="btn btn-default">update</button>
+    className="btn btn-default">Cập nhật mật khẩu</button>
   </div>
   </div>
 </div>

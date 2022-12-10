@@ -56,6 +56,12 @@ class ContentCart extends Component {
     })
   }
   handlePayment = () => {
+    console.log("================>",this.props.cart)
+    if(!this.props.cart) {
+      this.setState({
+        notiName: "Vui lòng chọn sản phẩm để thanh toán"
+      });
+    }
     if (!this.props.islogin) {
       this.setState({ show: true });
       return;
@@ -63,9 +69,9 @@ class ContentCart extends Component {
       this.setState({ show: false });
     }
     let check = true;
-    if (this.state.name.length < 3) {
+    if (this.state.name.length < 1) {
       this.setState({
-        notiName: "Name invalid"
+        notiName: "Vui lòng nhập vào tên của bạn"
       });
       check = false;
     } else {
@@ -75,7 +81,7 @@ class ContentCart extends Component {
     }
     if (!this.isvaidPhone(this.state.phone)) {
       this.setState({
-        notiPhone: "Phone invalid"
+        notiPhone: "Vui lòng nhập đúng định dạng số điện thoại"
       });
       check = false;
     } else {
@@ -83,7 +89,7 @@ class ContentCart extends Component {
     }
 
     if (this.state.address === "") {
-      this.setState({ notiDetailAddress: "Address invalid" });
+      this.setState({ notiDetailAddress: "Không được để trống địa chỉ" });
       check = false;
     } else {
       this.setState({ notiDetailAddress: "" });
@@ -114,11 +120,11 @@ class ContentCart extends Component {
               <table className="table table-condensed">
                 <thead>
                   <tr className="cart_menu">
-                    <td className="image">Itemm</td>
+                    <td className="image">Sản phẩm</td>
                     <td className="description" />
-                    <td className="price">Price</td>
-                    <td className="quantity">Quantity</td>
-                    <td className="total">Total</td>
+                    <td className="price">Giá</td>
+                    <td className="quantity">Số lượng</td>
+                    <td className="total">Tổng tiền</td>
                     <td />
                   </tr>
                 </thead>
@@ -129,11 +135,11 @@ class ContentCart extends Component {
                         <td className="cart_product">
                           <a href="">
                             <img src={element.img} alt="" />
-                          </a>
+                          </a>  
                         </td>
                         <td className="cart_description">
                           <h4>
-                            <a href="">{element.name}</a>
+                            <p href="">{element.name}</p>
                           </h4>
 
                         </td>
@@ -222,16 +228,16 @@ class ContentCart extends Component {
                   >
                     <Modal.Header closeButton>
                       <Modal.Title id="contained-modal-title">
-                        Notification
+                        Thông báo
                       </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>Vui Lòng Đăng Nhập Để Thanh Toán</Modal.Body>
                     <Modal.Footer>
                       <Button onClick={() => this.setState({ show: false })}>
-                        <a>Cancel</a>
+                        <a>Hủy</a>
                       </Button>
                       <Button onClick={this.handleHide}>
-                        <Link to="/login_register">Login</Link>
+                        <Link to="/login_register">Đăng nhập</Link>
                       </Button>
                     </Modal.Footer>
                   </Modal>
@@ -242,7 +248,7 @@ class ContentCart extends Component {
                 <div className="chose_area">
                   <ul class="user_option">
                     <li>
-                      <label>Name</label>
+                      <label>Họ và tên</label>
                       <input
                         type="text"
                         value={this.state.name}
@@ -251,7 +257,7 @@ class ContentCart extends Component {
                       <span>{this.state.notiName}</span>
                     </li>
                     <li>
-                      <label>Phone</label>
+                      <label>Số điện thoại</label>
                       <input
                         type="text"
                         value={this.state.phone}
@@ -263,7 +269,7 @@ class ContentCart extends Component {
 
                   <ul className="user_option">
                     <li>
-                      <label>Address</label>
+                      <label>Địa chỉ</label>
                       <input
                         type="text"
                         value={this.state.address}
@@ -282,7 +288,7 @@ class ContentCart extends Component {
                   >
                     <Modal.Header closeButton>
                       <Modal.Title id="contained-modal-title">
-                        Notification
+                        Thông báo
                       </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>Đặt Hàng Thành Công, Vui Lòng Vào Đơn Hàng Để Xem Chi Tiết</Modal.Body>
@@ -291,7 +297,7 @@ class ContentCart extends Component {
                         this.reset()
                         window.location.reload()
                       }}>
-                        <a>OK</a>
+                        <a>Đồng ý</a>
                       </Button>
                     </Modal.Footer>
                   </Modal>
@@ -304,13 +310,13 @@ class ContentCart extends Component {
                   >
                     <Modal.Header closeButton>
                       <Modal.Title id="contained-modal-title">
-                        Notification
+                        Thông báo
                       </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Đặt hàng thất bại</Modal.Body>
+                    <Modal.Body>Vui lòng chọn sản phẩm để thanh toán</Modal.Body>
                     <Modal.Footer>
                       <Button onClick={() => this.setState({ showpaymentfail: false })}>
-                        <a>Cancel</a>
+                        <a>Đồng ý</a>
                       </Button>
                     </Modal.Footer>
                   </Modal>
@@ -321,10 +327,10 @@ class ContentCart extends Component {
                       className="btn btn-default update"
                       onClick={() => this.handlePayment()}
                     >
-                      Payment
+                      Đặt hàng
                     </button>
                     <Link class="btn btn-default check_out" to={"/"}>
-                      Continue shopping
+                      Tiếp tục mua hàng
                     </Link>
                   </div>
 
