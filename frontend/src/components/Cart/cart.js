@@ -12,7 +12,6 @@ class Cart extends Component {
     return (
       <div>
         <header id="header">
-        
           <HeaderMiddle
             islogin={this.props.islogin}
             logout={() => this.props.logout()}

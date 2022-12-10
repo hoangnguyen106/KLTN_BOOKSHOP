@@ -10,7 +10,7 @@ const ForgotPassword = ({ setEmail, submit, notification }) => (
 			
 		</div>
 		<div className="content-404 forgotpass">
-			<h1><b>Quên mật khẩu
+			<h1><b> Quên mật khẩu
 			</b></h1>
 			<span>{notification}</span>
 			<input

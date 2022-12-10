@@ -9,8 +9,8 @@ const VerifyPayment = () => (
           </div>
 		</div>
 		<div className="content-404">
-			<h1><b>Congratulations!!!
-			</b> You have verified payment</h1>
+			<h1><b>Chúc mừng !!!
+			</b> Bạn đã xác minh thanh toán</h1>
 			<h2><Link to="/">Trở Về Trang Chủ</Link></h2>
 		</div>
 	</div>
