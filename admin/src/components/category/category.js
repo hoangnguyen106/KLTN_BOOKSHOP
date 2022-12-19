@@ -31,7 +31,7 @@ class Category extends Component {
     if (nextProps.isadd === false) {
       swal({
         title: "Thông Báo",
-        text: "Vui lòng nhập số và không để trống!",
+        text: "Vui lòng kiểm tra thông tin!",
         icon: "warning",
       })
     } else if (nextProps.isadd === true) {

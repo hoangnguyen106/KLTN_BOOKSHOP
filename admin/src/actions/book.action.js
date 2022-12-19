@@ -107,7 +107,6 @@ export const deletePublisher = (id) => async(dispatch, getState) => {
         console.log(err)
         return
     }
-    console.log(res)
     dispatch(getPublisher())
 }
 export const getAuthor = () => async (dispatch, getState) => {

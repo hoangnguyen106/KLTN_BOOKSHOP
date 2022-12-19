@@ -31,7 +31,7 @@ class Author extends Component {
     if (nextProps.isadd === false) {
       swal({
         title: "Thông Báo",
-        text: "Vui lòng nhập tên Tác giả!",
+        text: "Vui lòng kiểm tra thông tin!",
         icon: "warning",
       })
     } else if (nextProps.isadd === true) {
@@ -95,7 +95,7 @@ class Author extends Component {
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
             <button
-              onClick={() => {this.props.addAuthor(this.state.name)
+              onClick={() => {
                 if(this.state.name !=null){
                   this.props.addAuthor(this.state.name)
                   swal({
