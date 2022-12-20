@@ -50,7 +50,7 @@ class Home extends Component {
             
 
             <div className="row">
-              <div className="col-lg-9 col-md-12">
+              <div className="col-lg-12 col-md-12">
                 <div className="panel panel-default">
                   
                   <div className="panel-body">
@@ -77,7 +77,7 @@ class Home extends Component {
                               </div>
                               
                             </td>
-                            <td>{element.name}</td>
+                            <td className="book_name">{element.name}</td>
                             <td>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(element.price)}<sup>đ</sup></td>
                             <td>{element.count}</td>
                             <td>

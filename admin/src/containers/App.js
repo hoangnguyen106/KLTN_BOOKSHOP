@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route ,Routes} from "react-router-dom";
 import HomeContainer from "./home.container";
 import BookContainer from "./book.container";
 import CategoryContainer from "./category.container";
@@ -9,6 +9,7 @@ import UserContainer from "./user.container";
 import LoginContainer from "./login.container";
 import StatisticalContainer from './statistical.container'
 import BillContainer from './bill.container'
+import ChatContainer from './chat.container';
 class App extends Component {
   render() {
     return (
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/bookmanager" component={BookContainer} />
           <Route exact path="/categorymanager" component={CategoryContainer} />
           <Route exact path="/authormanager" component={AuthorContainer} />
+          <Route exact path="/chat" component={ChatContainer} />
           <Route
             exact
             path="/publishermanager"

@@ -45,15 +45,15 @@ class Book extends Component {
         imagePreviewUrl: nextProps.book.img
       });
     }
-    if (nextProps.isadd === true) {
+    if (nextProps.isadd == true) {
       this.reset()
     } 
-    if(nextProps.isupdate === true) {
+    if(nextProps.isupdate == true) {
       this.reset()
     }
   }
   renderPagination() {
-    if (this.state.pagination.length === 0) {
+    if (this.state.pagination.length == 0) {
       return null;
     } else {
       return (
@@ -62,7 +62,7 @@ class Book extends Component {
             <a>&laquo;</a>
           </li>
           {this.state.pagination.map((element, index) => {
-            if (this.props.page === element) {
+            if (this.props.page == element) {
               return (
                 <li
                   className="active"
@@ -87,7 +87,7 @@ class Book extends Component {
     }
   }
   handleChangeImg = img => {
-    if(img === undefined)
+    if(img == undefined)
       return
     let reader = new FileReader();
     reader.onloadend = () => {
@@ -116,7 +116,7 @@ class Book extends Component {
     if (count > 1) return false;
     return !isNaN(Number.parseFloat(str));
   };
-  submitAddBook = () => {
+  submitAddBook = (e) => {
     const {
       id_category,
       name,
@@ -134,7 +134,7 @@ class Book extends Component {
         icon: "warning",
       })
     }
-    if (release_date === null) {
+    if (release_date == null) {
       swal({
         title: "Thông Báo",
         text: "Vui lòng chọn Ngày!",
@@ -148,7 +148,7 @@ class Book extends Component {
         icon: "warning",
       })
     } 
-    if (id_category === "") {
+    if (id_category == "") {
       swal({
         title: "Thông Báo",
         text: "Vui lòng chọn Thể loại!",
@@ -157,7 +157,7 @@ class Book extends Component {
      
     } 
     
-    if (id_author === "") {
+    if (id_author == "") {
       swal({
         title: "Thông Báo",
         text: "Vui lòng chọn Tác giả!",
@@ -165,7 +165,7 @@ class Book extends Component {
       })
     } 
 
-    if (id_publisher === "") {
+    if (id_publisher == "") {
       swal({
         title: "Thông Báo",
         text: "Vui lòng chọn Nhà xuất bản!",
@@ -173,7 +173,7 @@ class Book extends Component {
       })
       
     } 
-    if (file ===null ) {
+    if (file ==null ) {
       swal({
         title: "Thông Báo",
         text: "Vui lòng chọn ảnh!",
@@ -211,7 +211,7 @@ class Book extends Component {
         icon: "warning",
       })
     }
-    if (release_date === null) {
+    if (release_date == null) {
       swal({
         title: "Thông Báo",
         text: "Vui lòng chọn Ngày!",
@@ -270,18 +270,31 @@ class Book extends Component {
     );
   };
   renderBtnSubmit = () => {
-    if (this.state.curr === "add") {
+    if (this.state.curr == "add") {
       return (
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
             <button
               onClick={() => {
-                if(this.submitAddBook()){
-
+            if(this.state.name !=null && this.state.id_category !=null &&
+              this.state.price !=null &&this.state.release_date !=null &&
+              this.state.describe !=null &&this.state.id_publisher !=null &&
+              this.state.id_author !=null &&this.state.file !=null)
+              {
+                this.submitAddBook()
                   swal({
                     title: "Thông Báo",
                     text: "Thêm Mới Thành công!",
                     icon: "success",
+                  })
+                
+  
+               
+                }else{
+                  swal({
+                    title: "Thông Báo",
+                    text: "Vui lòng kiểm tra lại thông tin!",
+                    icon: "warning",
                   })
                 }
               }}
@@ -306,12 +319,27 @@ class Book extends Component {
             </button>
             <button
               className="btn-custom"
-              onClick={() => {this.submitUpdateBook()
-                swal({
-                  title: "Thông Báo",
-                  text: "Cập nhật Thành công!",
-                  icon: "success",
-                })}}
+              onClick={() => {
+                // if(this.state.name !=null && this.state.id_category !=null &&
+                //   this.state.price !=null &&this.state.release_date !=null &&
+                //   this.state.describe !=null &&this.state.id_publisher !=null &&
+                //   this.state.id_author !=null)
+                //   {
+                    this.submitUpdateBook()
+                    swal({
+                      title: "Thông Báo",
+                      text: "Cập nhật Thành công!",
+                      icon: "success",
+                    })
+                  // }else{
+                  //   swal({
+                  //     title: "Thông Báo",
+                  //     text: "Vui lòng kiểm tra lại thông tin!",
+                  //     icon: "warning",
+                  //   })
+                  // }
+                
+                }}
               type="button"
             >
               Update
@@ -329,9 +357,9 @@ class Book extends Component {
         file: null,
         imagePreviewUrl: null,
         curr: "add",
-        category: "category",
-        publisher: "publisher",
-        author: "author",
+        category: "Thể Loại",
+        publisher: "Nhà Xuất Bản",
+        author: "Tác Giả",
         name: "",
         release_date: null,
         price: "",
@@ -400,18 +428,18 @@ class Book extends Component {
   };
   getNameCategoryByID = id => {
     for (let i = 0; i < this.props.category.length; i++) {
-      if (id === this.props.category[i]._id) return this.props.category[i].name;
+      if (id == this.props.category[i]._id) return this.props.category[i].name;
     }
   };
   getNameAuthorByID = id => {
     for (let i = 0; i < this.props.author.length; i++) {
-      if (id === this.props.author[i]._id) return this.props.author[i].name;
+      if (id == this.props.author[i]._id) return this.props.author[i].name;
     }
   };
   getNamePublisherByID = id => {
     for (let i = 0; i < this.props.publisher.length; i++) {
-      console.log(id + " === " + this.props.publisher[i]._id);
-      if (id === this.props.publisher[i]._id)
+      console.log(id + " == " + this.props.publisher[i]._id);
+      if (id == this.props.publisher[i]._id)
         return this.props.publisher[i].name;
     }
   };
@@ -460,7 +488,7 @@ class Book extends Component {
                   {this.props.book.map((element, index) => {
                     return (
                       <tr>
-                        <td>{element.name}</td>
+                        <td className="book_name">{element.name}</td>
                         <td>{element.release_date.slice(0,10)}</td>
                         <td>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(element.price)}<sup>đ</sup></td>
                         <td style={{ width: "40%"}}>{element.describe}</td>
@@ -554,7 +582,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="cemail" className="control-label col-lg-2">
-                        Date<span className="required">*</span>
+                        Ngày Nhập<span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -574,7 +602,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="curl" className="control-label col-lg-2">
-                        Giá
+                        Giá <span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -614,7 +642,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment " className="control-label col-lg-2">
-                        Thể Loại
+                        Thể Loại<span className="required">*</span>
                       </label>
                       <div className="btn-group col-lg-10">
                         <button
@@ -632,7 +660,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Tác Giả
+                        Tác Giả <span className="required">*</span>
                       </label>
                       <div className="btn-group col-lg-10">
                         <button
@@ -650,14 +678,14 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Nhà Xuất Bản
+                        Nhà Xuất Bản <span className="required">*</span>
                       </label>
                       <div className="btn-group col-lg-10">
                         <button
                           type="button"
                           className="btn btn-default dropdown-toggle"
                           data-toggle="dropdown"
-                          style={{ width: "200px" }}
+                          style={{ width: "320px" }}
                         >
                           {this.state.publisher} <span className="caret" />
                         </button>
@@ -668,7 +696,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Chọn ảnh{" "}
+                        Chọn ảnh{" "} <span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input

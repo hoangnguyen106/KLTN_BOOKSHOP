@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const socket = require("socket.io");
 require('dotenv').config();
 const port = process.env.PORT || 8080;
 const cors = require('cors');
@@ -14,6 +15,7 @@ const cartRouter = require('./api/routers/cart');
 const adminRouter = require('./api/routers/admin');
 const billRouter = require('./api/routers/bill');
 const commentRouter = require('./api/routers/comment');
+const messageRoutes = require('./api/routers/message');
 // Connect to MongoDB:
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.URL_MONGODB).then(
@@ -37,6 +39,30 @@ billRouter(app)
 commentRouter(app)
 app.get('/', (req, res) => {res.send('welcome to bookshop')})
 
-app.listen(port, () => {
+const server=app.listen(port, () => {
   console.log('Web server is listening on port : '+port)
 })
+// app.listen(port, () => {
+//   console.log('Web server is listening on port : '+port)
+// })
+const io = socket(server, {
+  cors: {
+    origin: "http://localhost:3030",
+    credentials: true,
+  },
+});
+
+global.onlineUsers = new Map();
+io.on("connection", (socket) => {
+  global.chatSocket = socket;
+  socket.on("add-user", (userId) => {
+    onlineUsers.set(userId, socket.id);
+  });
+
+  socket.on("send-msg", (data) => {
+    const sendUserSocket = onlineUsers.get(data.to);
+    if (sendUserSocket) {
+      socket.to(sendUserSocket).emit("msg-recieve", data.msg);
+    }
+  });
+});

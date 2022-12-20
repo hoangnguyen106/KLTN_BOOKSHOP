@@ -31,7 +31,7 @@ class Publisher extends Component {
     if (nextProps.isadd === false) {
       swal({
         title: "Thông Báo",
-        text: "Vui lòng nhập tên Nhà xuất bản!",
+        text: "Vui lòng kiểm tra thông tin!",
         icon: "warning",
       })
     } else if (nextProps.isadd === true) {

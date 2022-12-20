@@ -59,19 +59,13 @@ exports.sendMailConfirmPayment = async (email, token,username, address, phone,to
         subject: 'Payment Verification Token ShopBook', // Subject line
         text: 'Hello my friend',
         html: '<b>verify your account</b>'
-            + ' <br/>'
-            + '<p>Name:'+ username+'</p>'
-            + ' <br/>'
-            + '<p>address:'+ address+'</p>'
-            + ' <br/>'
-            + '<p>phone:'+ phone+'</p>'
-            + ' <br/>'
-            + '<p>products:'+ products+'</p>'
-            + ' <br/>'
-            + '<p>Total:'+ total+'</p>'
-            + ' <br/>'
-            + '<span>Please verify your account by clicking the link</span>'
-            + '<br/>'
+            + '<p>Tên khách hàng:'+ username+'</p>'
+            + '<p>Địa chỉ:'+ address+'</p>'
+            + '<p>Số điện thoại:'+ phone+'</p>'
+            + '<p>Tên sách:'+ products.name+'</p>'
+            + '<p>Số lượng:'+ products.name+'</p>'
+            + '<p>Tổng tiền:'+ total+'</p>'
+            
             + '<span>http://localhost:3000/payment/' + token +  '</span>'
     };
     try{

@@ -112,6 +112,7 @@ export const updateUser = (email, firstName, lastName, address, phone_number, is
 }
 export const loginSuccess = (token, user) => async (dispatch, getState) => {
     storeConfig.setUser(user)
+    console.log("qqqq",user);
     storeConfig.setToken(token)
     dispatch(setLoginSuccess())
 }
