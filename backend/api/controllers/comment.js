@@ -13,7 +13,7 @@ exports.mycomment = async (req, res) => {
     return;
   }
 
-  let { id_user, id_book, name, comment } = req.body;
+  let { id_user, id_book, name, comment, date } = req.body;
   let bookFind;
   try {
     bookFind = await book.findById(id_book);
@@ -25,7 +25,8 @@ exports.mycomment = async (req, res) => {
     id_user: id_user,
     id_book: id_book,
     name: name,
-    comment: comment
+    comment: comment,
+    date: date,
   });
   try {
     new_comment.save();
