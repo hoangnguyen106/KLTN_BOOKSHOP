@@ -215,7 +215,7 @@ class ContentProductDetail extends Component {
                       <b>Danh mục:</b> {this.props.nameCategory}
                     </p>
                     <p>
-                      <b>Ngày phát hành</b>{" "}
+                      <b>Ngày phát hành:</b>{" "}
                       {new Date(
                         this.props.mproductDetail.release_date
                       ).toDateString("yyyy-MM-dd")}
@@ -244,7 +244,6 @@ class ContentProductDetail extends Component {
                       <Button onClick={() => this.setState({ show: false })}>
                         <a>Hủy</a>
                       </Button>
-
                     </Modal.Footer>
                   </Modal>
                 </div>
@@ -264,6 +263,7 @@ class ContentProductDetail extends Component {
                           return (
                             <p>
                               <span>{element.name}:</span> {element.comment}
+                              <span className="date_comment" style={{ color: "gray" }}>{element.date}</span>
                             </p>
                           );
                         })}

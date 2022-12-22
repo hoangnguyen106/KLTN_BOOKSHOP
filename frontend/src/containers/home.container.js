@@ -27,7 +27,6 @@ class HomeContainer extends React.Component {
         }
     }
     render() {
-        console.log(this.props.totalpage)
         const { category, publisher, book, totalpage } = this.props
         if (category !== null && publisher !== null && book !== null && totalpage !== null) {
             return (

@@ -87,6 +87,7 @@ class HeaderMiddle extends Component {
                   <img src="/assets/images/home/logo1.gif" alt="" />
                 </a>
               </div>
+              <div class="rightCSS li" style={{ top: "10px" }}><div>★ Chào mừng bạn đến với MY VIBE ★</div></div>
 
             </div>
             <div className="col-sm-8">

@@ -214,10 +214,10 @@ class ContentCart extends Component {
                   <ul>
 
                     <li>
-                      Phí Vận Chuyển<span>0<sup>đ</sup> </span>
+                      Phí vận chuyển<span>0<sup>đ</sup> </span>
                     </li>
                     <li>
-                      Tổng Tiền <span>  {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.state.total)}<sup>đ</sup></span>
+                      Tổng tiền <span>  {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.state.total)}<sup>đ</sup></span>
                     </li>
                   </ul>
                   <Modal

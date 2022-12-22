@@ -9,20 +9,18 @@ function ContentLoginRegister({ setEmailogin, setPasswordlogin, setEmail,
     function handleLogin() {
         setLogin(true);
         setRegister(false);
-        // const handeSearch = (e) => {
-        //     if(e === 13) {
-        //         this.props.searchTextSubmit()
-        //     }
-        // }
     }
     function handleRegister() {
         setRegister(true)
         setLogin(false);
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+      };
     let xhtmlLogin = '';
     let xhtmlRegister = '';
     if (Login) {
-        xhtmlLogin = <div className="login-form">
+        xhtmlLogin = <form className="login-form" onSubmit={handleSubmit}>
             <div className='login-content col-sm-6'>
                 <h2>Đăng nhập tài khoản của bạn</h2>
                 <div className="noti">{notificationLogin}</div>
@@ -40,7 +38,6 @@ function ContentLoginRegister({ setEmailogin, setPasswordlogin, setEmail,
                 <button
                     className="btn btn-default"
                     onClick={() => loginSubmit()}
-                    // onKeyUp={(e) => this.handeSearch(e.keyCode)}
                 >Đăng nhập</button>
                 <div className='forgotpassword'>
                     <Link to='/forgotpass/' >Quên mật khẩu ?</Link>
@@ -48,7 +45,7 @@ function ContentLoginRegister({ setEmailogin, setPasswordlogin, setEmail,
 
             </div>
 
-        </div>
+        </form>
     }
 
     if (Register) {
@@ -109,11 +106,6 @@ function ContentLoginRegister({ setEmailogin, setPasswordlogin, setEmail,
                     {xhtmlRegister}
                     {xhtmlLogin}
                 </div>
-
-
-
-
-
             </div>
         </section>
     );

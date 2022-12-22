@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ProductItem from "./product.item";
+import NoProduct from "./noProduct";
 import { Link } from "react-router-dom";
 class ContentHome extends Component {
     constructor(props) {
@@ -74,6 +75,8 @@ class ContentHome extends Component {
         });
     };
     render() {
+        console.log('========================>',this.props.book)
+        console.log('========================> length',this.props.book.length)
         return (
             <section>
                 <div className="container">
@@ -194,18 +197,27 @@ class ContentHome extends Component {
                                 <h2 className="title text-center">
                                     {this.props.title}
                                 </h2>
-                                {this.props.book.map((element, index) => {
+                                
+                                {
+                                    this.props.book.map((element, index) => {
+                                    if(element.length === 0){
+                                       return (
+                                          <NoProduct />
+                                       )
+                                    }
+                                    else {
                                     return (
                                         <ProductItem
                                             book={element}
                                             urlImg={element.img}
                                             price={element.price}
-                                            describe={element.describe}
+                                            describe={element.describe} 
                                             id={element._id}
                                             name={element.name}
                                             addToCart={product => this.props.addToCart(product)}
                                         />
                                     );
+                                    }
                                 })}
                             </div>
                             <div className='Pagination-flex'>{this.renderPagination()}</div>

@@ -18,11 +18,7 @@ class EnterNewPassword extends Component {
     }
     if(this.state.confirm !== this.state.newpassword) {
         this.setState({
-<<<<<<< HEAD
-            noti: 'Confirm invalid'
-=======
             noti: 'Không trùng với mật khẩu mới'
->>>>>>> 977f5920fb1bf6ae285e97ed3d67734dfaf89af3
         })
         return
     } else {
