@@ -74,9 +74,8 @@ class ContentHome extends Component {
             check_5: false
         });
     };
+
     render() {
-        console.log('========================>',this.props.book)
-        console.log('========================> length',this.props.book.length)
         return (
             <section>
                 <div className="container">

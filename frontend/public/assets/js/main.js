@@ -86,3 +86,9 @@ var rightJS = {
 	rightJQ.init();
   });
   
+  $(function() {
+	$("menu-custom btn").click(function() {
+	  $("menu-custom btn").removeClass("active");
+	  $("menu-custom btn").addClass("active");
+	});
+	});

@@ -8,6 +8,7 @@ class HistoryPurchase extends Component {
       issend:'99'
     }
   }
+  
   caculatorTotalBill = (products) => {
     let total = 0;
     products.map((element, index) => {
@@ -24,7 +25,7 @@ class HistoryPurchase extends Component {
           return (
             <div className="table-responsive cart_info" style={{marginBottom: "50px"}}>
               
-              <span>Ngày: {new Date(element.date).toDateString("dd--mm-yyyy")}</span>
+              <span>Ngày: {new Date(element.date).toLocaleDateString('vi')}</span>
               <p className='cart_total_price'>Tổng tiền: {this.caculatorTotalBill(element.products)}<sup>đ</sup></p>
               
               <table className="table table-condensed">
@@ -111,17 +112,17 @@ class HistoryPurchase extends Component {
           return (
             <div className="table-responsive cart_info" style={{marginBottom: "50px"}}>
               
-              <span>Date: {new Date(element.date).toDateString("yyyy-MM-dd")}</span>
-              <p className='cart_total_price'>Total: {this.caculatorTotalBill(element.products)}<sup>đ</sup></p>
+              <span>Ngày: {new Date(element.date).toLocaleDateString('vi')}</span>
+              <p className='cart_total_price'>Tổng tiền: {this.caculatorTotalBill(element.products)}<sup>đ</sup></p>
               
               <table className="table table-condensed">
                 <thead>
-                  <tr className="cart_menu">
-                    <td className="image">Item</td>
+                <tr className="cart_menu">
+                    <td className="image">Sản phẩm</td>
                     <td className="description" />
-                    <td className="price">Price</td>
-                    <td className="quantity">Quantity</td>
-                    <td className="total">Total</td>
+                    <td className="price">Giá</td>
+                    <td className="quantity">Số lượng</td>
+                    <td className="total">Tổng tiền</td>
                     <td />
                   </tr>
                 </thead>
@@ -192,17 +193,17 @@ class HistoryPurchase extends Component {
           return (
             <div className="table-responsive cart_info" style={{marginBottom: "50px"}}>
               
-              <span>Date: {new Date(element.date).toDateString("yyyy-MM-dd")}</span>
-              <p className='cart_total_price'>Total: {this.caculatorTotalBill(element.products)}<sup>đ</sup> </p>
+              <span>Ngày: {new Date(element.date).toLocaleDateString('vi')}</span>
+              <p className='cart_total_price'>Tổng tiền: {this.caculatorTotalBill(element.products)}<sup>đ</sup> </p>
               
               <table className="table table-condensed">
                 <thead>
-                  <tr className="cart_menu">
-                    <td className="image">Item</td>
+                <tr className="cart_menu">
+                    <td className="image">Sản phẩm</td>
                     <td className="description" />
-                    <td className="price">Price</td>
-                    <td className="quantity">Quantity</td>
-                    <td className="total">Total</td>
+                    <td className="price">Giá</td>
+                    <td className="quantity">Số lượng</td>
+                    <td className="total">Tổng tiền</td>
                     <td />
                   </tr>
                 </thead>
@@ -282,6 +283,7 @@ class HistoryPurchase extends Component {
       issend:'1'
     })
   }
+
   render() {
     console.log(this.state.issend)
     return (
@@ -301,9 +303,9 @@ class HistoryPurchase extends Component {
               </div>
               <div className='menu-profile container'>
             <ul>
-              <li><button onClick={() => this.handleClick99()} className='menu-custom btn'>Đang Chờ Xử Lý</button></li>
-              <li> <button onClick={() => this.handleClick0()}  className='menu-custom btn'>Đang Giao Hàng</button></li>
-              <li> <button onClick={() => this.handleClick1()}  className='menu-custom btn'>Đã Giao Hàng</button></li>
+              <li><button onClick={() => this.handleClick99()} className='menu-custom btn'>Đang chờ xử lý</button></li>
+              <li> <button onClick={() => this.handleClick0()}  className='menu-custom btn'>Đang giao hàng</button></li>
+              <li> <button onClick={() => this.handleClick1()}  className='menu-custom btn'>Đã giao hàng</button></li>
 
             </ul>
               <hr></hr>

@@ -181,7 +181,7 @@ class ContentProductDetail extends Component {
                     <span>
                       <div>
                         <span>Giá:</span>
-                        <span>{this.props.mproductDetail.price}</span>
+                        <span>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(this.props.mproductDetail.price)}<sup>đ</sup></span>
 
                       </div>
                       <div className='count-product' >
@@ -218,7 +218,7 @@ class ContentProductDetail extends Component {
                       <b>Ngày phát hành:</b>{" "}
                       {new Date(
                         this.props.mproductDetail.release_date
-                      ).toDateString("yyyy-MM-dd")}
+                      ).toLocaleDateString('vi')}
                     </p>
                     <p>
                       <b>Nhà xuất bản:</b> {this.props.namePublicsher}
@@ -263,7 +263,7 @@ class ContentProductDetail extends Component {
                           return (
                             <p>
                               <span>{element.name}:</span> {element.comment}
-                              <span className="date_comment" style={{ color: "gray" }}>{element.date}</span>
+                              <span className="date_comment" style={{ color: "gray" }}> {new Date(element.date).toLocaleDateString('vi')}</span>
                             </p>
                           );
                         })}
@@ -329,8 +329,7 @@ class ContentProductDetail extends Component {
                                       type="button"
                                       className="btn btn-default add-to-cart"
                                     >
-                                      <i className="fa fa-shopping-cart" />Add
-                                      to cart
+                                      <i className="fa fa-shopping-cart" />Thêm vào giỏ hàng
                                     </button>
                                   </div>
                                 </div>
