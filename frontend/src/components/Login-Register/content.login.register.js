@@ -9,6 +9,11 @@ function ContentLoginRegister({ setEmailogin, setPasswordlogin, setEmail,
     function handleLogin() {
         setLogin(true);
         setRegister(false);
+        // const handeSearch = (e) => {
+        //     if(e === 13) {
+        //         this.props.searchTextSubmit()
+        //     }
+        // }
     }
     function handleRegister() {
         setRegister(true)
@@ -38,6 +43,7 @@ function ContentLoginRegister({ setEmailogin, setPasswordlogin, setEmail,
                 <button
                     className="btn btn-default"
                     onClick={() => loginSubmit()}
+                    // onKeyUp={(e) => this.handeSearch(e.keyCode)}
                 >Đăng nhập</button>
                 <div className='forgotpassword'>
                     <Link to='/forgotpass/' >Quên mật khẩu ?</Link>
@@ -106,6 +112,11 @@ function ContentLoginRegister({ setEmailogin, setPasswordlogin, setEmail,
                     {xhtmlRegister}
                     {xhtmlLogin}
                 </div>
+
+
+
+
+
             </div>
         </section>
     );
