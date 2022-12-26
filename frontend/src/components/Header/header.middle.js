@@ -70,7 +70,7 @@ class HeaderMiddle extends Component {
             <Link to={"/"}  >Hồ Sơ</Link>
           </li>
 
-          <li><Link to='/purchase_history' >Đơn Hàng</Link></li>
+          <li><Link to='/purchase_history'>Đơn Hàng</Link></li>
 
         </ul>
       );
@@ -87,7 +87,7 @@ class HeaderMiddle extends Component {
                   <img src="/assets/images/home/myvibe.gif" alt="" />
                 </a>
               </div>
-              <div class="rightCSS li" style={{ top: "10px" }}><div>★ Chào mừng bạn đến với MY VIBE ★</div></div>
+              <div class="rightCSS li" style={{ top: "10px" }}><div>★ Chào mừng khách hàng đến với MY VIBE ★</div></div>
 
             </div>
             <div className="col-sm-8">

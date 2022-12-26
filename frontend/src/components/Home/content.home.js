@@ -197,28 +197,31 @@ class ContentHome extends Component {
                                 <h2 className="title text-center">
                                     {this.props.title}
                                 </h2>
-                                
+
                                 {
                                     this.props.book.map((element, index) => {
-                                    if(element.length === 0){
-                                       return (
-                                          <NoProduct />
-                                       )
-                                    }
-                                    else {
-                                    return (
-                                        <ProductItem
-                                            book={element}
-                                            urlImg={element.img}
-                                            price={element.price}
-                                            describe={element.describe} 
-                                            id={element._id}
-                                            name={element.name}
-                                            addToCart={product => this.props.addToCart(product)}
-                                        />
-                                    );
-                                    }
-                                })}
+                                        if (element) {
+
+                                            return (
+                                                <ProductItem
+                                                    book={element}
+                                                    urlImg={element.img}
+                                                    price={element.price}
+                                                    describe={element.describe}
+                                                    id={element._id}
+                                                    name={element.name}
+                                                    addToCart={product => this.props.addToCart(product)}
+                                                />
+                                            );
+                                        }
+                                        else {
+                                            return (
+                                                <NoProduct />
+                                            )
+                                        }
+
+                                    })
+                                }
                             </div>
                             <div className='Pagination-flex'>{this.renderPagination()}</div>
                         </div>

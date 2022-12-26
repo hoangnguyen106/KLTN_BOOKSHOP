@@ -2,7 +2,7 @@ import React from 'react'
 
 function NoProduct() {
   return (
-    <div>adsadasdasdsadasssssssssssssssssssssss</div>
+    <div>Không có kết quả nào được tìm thấy !!!</div>
   )
 }
 

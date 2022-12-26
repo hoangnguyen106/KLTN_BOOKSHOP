@@ -40,6 +40,7 @@ class ContentCart extends Component {
     if (nextProps.ispay !== this.props.ispay && nextProps.ispay === false) {
       this.setState({ showpaymentfail: true })
     }
+
   }
   reset = () => {
     this.setState({
@@ -109,13 +110,11 @@ class ContentCart extends Component {
     }
     return true;
   };
-
   render() {
     return (
       <div>
         <section id="cart_items">
           <div className="container">
-
             <div className="table-responsive cart_info">
               <table className="table table-condensed">
                 <thead>
@@ -272,6 +271,7 @@ class ContentCart extends Component {
                       <label>Địa chỉ</label>
                       <input
                         type="text"
+                        defaultValue={this.props}
                         value={this.state.address}
                         onChange={e =>
                           this.setState({ address: e.target.value })
@@ -321,8 +321,6 @@ class ContentCart extends Component {
                     </Modal.Footer>
                   </Modal>
                   <div className='cart-option'>
-
-
                     <button
                       className="btn btn-default update"
                       onClick={() => this.handlePayment()}

@@ -771,7 +771,7 @@ ul.sub-menu {
   margin-bottom: 35px;
   padding-bottom: 20px;
   padding-top: 15px;
-  max-height: 500px;
+  max-height: 250px;
   overflow-y: scroll;
 }
 
@@ -3050,7 +3050,7 @@ textarea {
 .rightCSS div {
   position: relative;
   animation: CSSright linear 18s infinite;
-  font-size: 16px;
+  font-size: 13px;
   color: #a64c26;
 }
 
