@@ -131,7 +131,6 @@ class ContentProductDetail extends Component {
         <div className='btn-close ' onClick={() => this.setState({ noti: false })}>
           X
         </div>
-
         <div className='aler-title'>
           <h3 className='title'>Thêm vào giỏ hàng thành công</h3>
           <img className="aler-body" alt="" src="https://plus24h.com/upload/editor/images/icon-dat-hang-thanh-cong-09.jpg" />
@@ -196,7 +195,7 @@ class ContentProductDetail extends Component {
                       <div>
                         <span>Giá:</span>
                         <span>{new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.props.mproductDetail.price)}<sup>đ</sup></span>
-
+                        
                       </div>
                       <div className='count-product' >
                         <p className='count' style={{ paddingRight: '10px', display: 'flex', alignItems: 'center' }}>Số Lượng:</p>
