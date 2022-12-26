@@ -227,6 +227,12 @@ class ContentHome extends Component {
                         </div>
                     </div>
                 </div>
+                <div class="float-icon-hotline">			
+                        <ul class ="left-icon hotline">
+                            <li class="hotline_float_icon"><a target="_blank" rel="nofollow" id="messengerButton" href="https://zalo.me/0327722937"><i class="fa fa-zalo animated infinite tada"></i><span>Zalo</span></a></li>
+                            <li class="hotline_float_icon"><a target="_blank" rel="nofollow" id="messengerButton" href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.messenger.com%2Fdesktop%2Flaunch%2F%3Ffunnel_session_id%3D1897cb23-7688-496c-95be-be683bd005f5%26id%3D100016798569242%26origin%3DFB%26fbclid%3DIwAR1qlWqF1BMOqCWk1YMgQ2OTdUIA_V4d-TnlhQ9GYFDPEryO742-gXtuqVI&h=AT1ZQc1BLJwgYvJ9TBIKZD6G13N3zPyTV76f5RloDaWrQO6qx8dkjjIFGh9W7ZjCoXjbiHqdFYB92pLpRGzmIhYhN3OL_BpppgevL9jVR_NDHuQzbj6PXPnMtq5LzpJbDwmVNA"><i class="fa fa-messenger animated infinite tada"></i><span>Facebook</span></a></li>
+                        </ul>		
+                    </div>
             </section>
         );
     }
