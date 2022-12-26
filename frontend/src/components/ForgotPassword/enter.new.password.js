@@ -11,14 +11,14 @@ class EnterNewPassword extends Component {
   }
   handleSubmit() {
     if(this.state.newpassword.length < 6) {
-        this.setState({noti:'Mật khẩu phải nhập từ 6 ký tự trở lên'})
+        this.setState({noti:'Password must contain at least 6 characters'})
         return
     } else {
         this.setState({noti: ''})
     }
     if(this.state.confirm !== this.state.newpassword) {
         this.setState({
-            noti: 'Không trùng với mật khẩu mới'
+            noti: 'Confirm invalid'
         })
         return
     } else {

@@ -120,7 +120,6 @@ class ContentProductDetail extends Component {
     product.count = this.state.quantity;
     this.props.addToCart(product);
   };
-
   render() {
     let xhtml = '';
     console.log(this.state.noti);
@@ -129,10 +128,15 @@ class ContentProductDetail extends Component {
         <div className='btn-close ' onClick={() => this.setState({ noti: false })}>
           X
         </div>
-
         <div className='aler-title'>
-          <h3 className='title'>Thêm vào giỏ hàng thành công</h3>
-          <img className="aler-body" alt="" src="https://plus24h.com/upload/editor/images/icon-dat-hang-thanh-cong-09.jpg" />
+          <h3 className='title'>Thông Tin Đơn Hàng</h3>
+        </div>
+        <div className='aler-body'>Đặt Hàng thành công</div>
+        <div className='alert-footer'>
+          <button className="roduct-variation" onClick={() => this.setState({ noti: false })}>
+            Cancel
+
+          </button>
         </div>
       </div>
     }
@@ -142,7 +146,7 @@ class ContentProductDetail extends Component {
           <div className="row">
             <div className="col-sm-3">
               <div className="left-sidebar">
-                <h2>Danh mục</h2>
+                <h2>Category</h2>
                 <div className="panel-group category-products" id="accordian">
                   {this.props.category.map((element, index) => {
                     return (
@@ -212,19 +216,19 @@ class ContentProductDetail extends Component {
                     </span>
                     <p>{this.state.noti}</p>
                     <p>
-                      <b>Danh mục:</b> {this.props.nameCategory}
+                      <b>Category:</b> {this.props.nameCategory}
                     </p>
                     <p>
-                      <b>Ngày phát hành</b>{" "}
+                      <b>Release date </b>{" "}
                       {new Date(
                         this.props.mproductDetail.release_date
                       ).toDateString("yyyy-MM-dd")}
                     </p>
                     <p>
-                      <b>Nhà xuất bản:</b> {this.props.namePublicsher}
+                      <b>Publisher:</b> {this.props.namePublicsher}
                     </p>
                     <p>
-                      <b>Tác giả:</b> {this.props.nameAuthor}
+                      <b>Author:</b> {this.props.nameAuthor}
                     </p>
 
                   </div>
@@ -236,7 +240,7 @@ class ContentProductDetail extends Component {
                   >
                     <Modal.Header closeButton>
                       <Modal.Title id="contained-modal-title">
-                        Thông báo
+                        showfication
                       </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>Đặt hàng thành công</Modal.Body>
@@ -252,7 +256,7 @@ class ContentProductDetail extends Component {
 
                 <div className="col-sm-12 review-product">
                   <div>
-                    <h3>Đánh giá sách</h3>
+                    <h3>Review Sách</h3>
                   </div>
 
                 </div>

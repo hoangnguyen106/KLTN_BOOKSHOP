@@ -56,12 +56,6 @@ class ContentCart extends Component {
     })
   }
   handlePayment = () => {
-    console.log("================>",this.props.cart)
-    if(!this.props.cart) {
-      this.setState({
-        notiName: "Vui lòng chọn sản phẩm để thanh toán"
-      });
-    }
     if (!this.props.islogin) {
       this.setState({ show: true });
       return;
@@ -69,9 +63,9 @@ class ContentCart extends Component {
       this.setState({ show: false });
     }
     let check = true;
-    if (this.state.name.length < 1) {
+    if (this.state.name.length < 3) {
       this.setState({
-        notiName: "Vui lòng nhập vào tên của bạn"
+        notiName: "Name invalid"
       });
       check = false;
     } else {
@@ -81,7 +75,7 @@ class ContentCart extends Component {
     }
     if (!this.isvaidPhone(this.state.phone)) {
       this.setState({
-        notiPhone: "Vui lòng nhập đúng định dạng số điện thoại"
+        notiPhone: "Phone invalid"
       });
       check = false;
     } else {
@@ -89,7 +83,7 @@ class ContentCart extends Component {
     }
 
     if (this.state.address === "") {
-      this.setState({ notiDetailAddress: "Không được để trống địa chỉ" });
+      this.setState({ notiDetailAddress: "Address invalid" });
       check = false;
     } else {
       this.setState({ notiDetailAddress: "" });
@@ -135,7 +129,7 @@ class ContentCart extends Component {
                         <td className="cart_product">
                           <a href="">
                             <img src={element.img} alt="" />
-                          </a>  
+                          </a>
                         </td>
                         <td className="cart_description">
                           <h4>
@@ -313,10 +307,10 @@ class ContentCart extends Component {
                         Thông báo
                       </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Vui lòng chọn sản phẩm để thanh toán</Modal.Body>
+                    <Modal.Body>Đặt hàng thất bại</Modal.Body>
                     <Modal.Footer>
                       <Button onClick={() => this.setState({ showpaymentfail: false })}>
-                        <a>Đồng ý</a>
+                        <a>Hủy</a>
                       </Button>
                     </Modal.Footer>
                   </Modal>

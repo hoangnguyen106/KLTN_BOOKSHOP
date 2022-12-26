@@ -39,7 +39,7 @@ class HeaderMiddle extends Component {
           }}
         >
           <a>
-            <i className="fa fa-lock" />Đăng xuất
+            <i className="fa fa-lock" />Logout
           </a>
         </li>
       );
@@ -47,7 +47,7 @@ class HeaderMiddle extends Component {
       return (
         <li>
           <Link to="/login_register">
-            <i className="fa fa-lock" />Đăng nhập
+            <i className="fa fa-lock" />Login
           </Link>
         </li>
       );
@@ -67,10 +67,10 @@ class HeaderMiddle extends Component {
         <ul className='sub-menu'>
 
           <li onClick={() => this.handleProfile()}>
-            <Link to={"/"}  >Hồ Sơ</Link>
+            <Link to={"/"}  >Hồ Sơ </Link>
           </li>
 
-          <li><Link to='/purchase_history' >Đơn Hàng</Link></li>
+          <li><Link to='/purchase_history' >Đơn Hàng </Link></li>
 
         </ul>
       );
@@ -98,6 +98,8 @@ class HeaderMiddle extends Component {
                     </a>
                     {this.hoverlogin()}
                   </li>
+
+
                   <li>
                     <Link to={"/cart"}>
                       <i className="fa fa-shopping-cart" />

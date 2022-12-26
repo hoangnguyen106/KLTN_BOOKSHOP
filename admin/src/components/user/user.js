@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import swal from 'sweetalert';
 class User extends Component {
   constructor() {
     super();
@@ -35,23 +34,15 @@ class User extends Component {
       this.setState({ pagination: tmp });
     }
     if (nextProps.isadd === false) {
-      swal({
-        title: "Thông Báo",
-        text: "Email này đã được sử dụng!",
-        icon: "warning",
-      })
-      
+      this.setState({
+        noti: "Email already exist "
+      });
     } else if (nextProps.isadd === true) {
       this.reset();
     }
     if (nextProps.isupdate === false) {
-      swal({
-        title: "Thông Báo",
-        text: "Cập nhật thất bại",
-        icon: "warning",
-      })
       this.setState({
-        noti: "Cập nhật thất bại"
+        noti: "Update fail"
       });
     } else if (nextProps.isupdate === true) {
       this.reset();
@@ -119,50 +110,65 @@ class User extends Component {
       is_admin
     } = this.state;
     if (!this.isvalidEmail(email)) {
-      swal({
-        title: "Thông Báo",
-        text: "Email không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Email invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (password.length < 6) {
-      swal({
-        title: "Thông Báo",
-        text: "Mật khẩu không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Password invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (firstName.length < 3) {
-      
-      swal({
-        title: "Thông Báo",
-        text: "Họ không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "First name invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (lastName.length < 3) {
-      
-      swal({
-        title: "Thông Báo",
-        text: "Tên không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Last name invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (address.length < 3) {
-      swal({
-        title: "Thông Báo",
-        text: "Địa chỉ không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Address invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (!this.isvalidPhone(this.state.phone_number)) {
-      swal({
-        title: "Thông Báo",
-        text: "Số điện thoại không hợp lệ!",
-        icon: "warning",
-      })
-    } 
-    
+      this.setState({
+        noti: "Phone invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     this.props.addUser(
       email,
       password,
@@ -184,50 +190,65 @@ class User extends Component {
       is_admin
     } = this.state;
     if (!this.isvalidEmail(email)) {
-      swal({
-        title: "Thông Báo",
-        text: "Email không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Email invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (password.length < 6) {
-      swal({
-        title: "Thông Báo",
-        text: "Mật khẩu không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Password invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (firstName.length < 3) {
-      
-      swal({
-        title: "Thông Báo",
-        text: "Họ không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "First name invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (lastName.length < 3) {
-      
-      swal({
-        title: "Thông Báo",
-        text: "Tên không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Last name invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (address.length < 3) {
-      swal({
-        title: "Thông Báo",
-        text: "Địa chỉ không hợp lệ!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Address invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (!this.isvalidPhone(this.state.phone_number)) {
-      swal({
-        title: "Thông Báo",
-        text: "Số điện thoại không hợp lệ!",
-        icon: "warning",
-      })
-    } 
-    
+      this.setState({
+        noti: "Phone invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     this.props.updateUser(
       email,
       firstName,
@@ -250,15 +271,7 @@ class User extends Component {
       return (
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
-            <button onClick={() => {
-              if(this.addUser()){
-                swal({
-                      title: "Thông Báo",
-                      text: "Thêm mới Tài khoản Thành công!",
-                      icon: "success",
-                    })}
-                  }} className="btn-custom"
-            >
+            <button onClick={() => this.addUser()} className="btn-custom">
               Add
             </button>
             <button disabled className="btn-custom">
@@ -276,19 +289,12 @@ class User extends Component {
           <div className="col-lg-offset-2 col-lg-10">
             <button
               disabled
-              onClick={() => {this.addUser()
-              }}
+              onClick={() => this.addUser()}
               className="btn-custom"
             >
               Add
             </button>
-            <button onClick={() => {this.updateUser()
-              swal({
-                title: "Thông Báo",
-                text: "Cập Nhật Tài khoản Thành công!",
-                icon: "success",
-              })
-            }} className="btn-custom">
+            <button onClick={() => this.updateUser()} className="btn-custom">
               Update
             </button>
             <button onClick={() => this.reset()} className="btn-custom">
@@ -429,11 +435,13 @@ class User extends Component {
             <ol className="breadcrumb">
               <li>
                 <i className="fa fa-home" />
-                <Link to="/">Trang Chủ</Link>
+                <Link to="/">Home</Link>
               </li>
-              
               <li>
-                <i className="fa fa-th-list" />Quản Lý Tài Khoản
+                <i className="fa fa-table" />Table
+              </li>
+              <li>
+                <i className="fa fa-th-list" />User Manager
               </li>
             </ol>
           </div>
@@ -441,6 +449,7 @@ class User extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
+              <header className="panel-heading">Advanced Table</header>
               <table className="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
@@ -451,19 +460,19 @@ class User extends Component {
                       <i className="icon_profile" />Admin
                     </th>
                     <th>
-                      <i className="icon_profile" />Họ
+                      <i className="icon_profile" />First name
                     </th>
                     <th>
-                      <i className="icon_profile" />Tên
+                      <i className="icon_profile" />Last name
                     </th>
                     <th>
-                      <i className="icon_profile" />Địa chỉ
+                      <i className="icon_profile" />Address
                     </th>
                     <th>
-                      <i className="icon_profile" />Số Điện Thoại
+                      <i className="icon_profile" />PhoneNumber
                     </th>
                     <th>
-                      <i className="icon_cogs" />
+                      <i className="icon_cogs" />Action
                     </th>
                   </tr>
                   {this.props.user.map((element, index) => {
@@ -496,19 +505,8 @@ class User extends Component {
                                 <i className="icon_check_alt2" />
                               </a>
                               <a
-                                onClick={() => {
-                                  if(element.email != 'admin@gmail.com'){
-                                    this.props.deleteUser(element.email)
-                                }else{
-                                  swal({
-                                    title: "Đây Là Tài Khoản Admin",
-                                    text: "Vui lòng không xóa tài khoản này!",
-                                    icon: "warning",
-                                    // dangerMode: true,
-                                  })
-                                }
-                                 
-                                }
+                                onClick={() =>
+                                  this.props.deleteUser(element.email)
                                 }
                                 className="btn btn-danger"
                               >
@@ -569,6 +567,7 @@ class User extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
+              <header className="panel-heading">Form validations</header>
               <div className="panel-body">
                 <div className="form">
                   <div className="form-validate form-horizontal">
@@ -576,7 +575,7 @@ class User extends Component {
                     {this.renderPassword()}
                     <div className="form-group ">
                       <label for="cname" className="control-label col-lg-2">
-                        Họ <span className="required" />
+                        First Name <span className="required" />
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -597,7 +596,7 @@ class User extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="cname" className="control-label col-lg-2">
-                        Tên<span className="required" />
+                        Last Name<span className="required" />
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -618,7 +617,7 @@ class User extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="cname" className="control-label col-lg-2">
-                        Địa chỉ<span className="required" />
+                        Address<span className="required" />
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -639,7 +638,7 @@ class User extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="cname" className="control-label col-lg-2">
-                        Số điện thoại<span className="required" />
+                        Phone number<span className="required" />
                       </label>
                       <div className="col-lg-10">
                         <input

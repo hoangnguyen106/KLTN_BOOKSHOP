@@ -52,31 +52,31 @@ class LoginRegisterContainer extends Component {
     }
     registerSubmit = async () => {
         if (!this.isvalidEmail(this.state.email)) {
-            this.setState({ notificationRegister: "Email không hợp lệ" })
+            this.setState({ notificationRegister: "Email invalid" })
             return
         } else {
             this.setState({ notificationRegister: '' })
         }
         if (!this.isvalidPassword(this.state.password)) {
-            this.setState({ notificationRegister: 'Mật khẩu khẩu phải dài hơn 6 ký tự trở lên' })
+            this.setState({ notificationRegister: 'Password invalid' })
             return
         } else {
             this.setState({ notificationRegister: '' })
         }
         if (!this.isvalidConfirm(this.state.password, this.state.confirm)) {
-            this.setState({ notificationRegister: 'Xác nhận mật khẩu không trùng' })
+            this.setState({ notificationRegister: 'Confirm invalid' })
             return
         } else {
             this.setState({ notificationRegister: '' })
         }
         if (!this.isvalidFirstName(this.state.firstname)) {
-            this.setState({ notificationRegister: 'Vui lòng nhập vào họ của bạn' })
+            this.setState({ notificationRegister: 'Firstname invalid' })
             return
         } else {
             this.setState({ notificationRegister: '' })
         }
         if (!this.isvalidLastName(this.state.lastname)) {
-            this.setState({ notificationRegister: 'Vui lòng nhập vào tên của bạn' })
+            this.setState({ notificationRegister: 'Lastname invalid' })
             return
         } else {
             this.setState({ notificationRegister: '' })
@@ -93,7 +93,7 @@ class LoginRegisterContainer extends Component {
         }
         catch (err) {
             if (err.response.data.msg === "Email already exist")
-                this.setState({ notificationRegister: 'Email đã tồn tại' })
+                this.setState({ notificationRegister: 'Email already exist' })
             else
                 this.setState({ notificationRegister: 'Đăng Ký Thất Bại' })
             return
@@ -102,8 +102,8 @@ class LoginRegisterContainer extends Component {
     }
 
     loginSubmit = async () => {
-        if (!this.isvalidEmail(this.state.emailLogin) || !this.isvalidPassword(this.state.passwordLogin)) {
-            this.setState({ notificationLogin: "Vui lòng nhập email và mật khẩu" })
+        if (!this.isvalidEmail(this.state.emailLogin)) {
+            this.setState({ notificationLogin: "Email invalid" })
             return
         } else {
             this.setState({ notificationLogin: '' })
@@ -120,11 +120,11 @@ class LoginRegisterContainer extends Component {
                 if (err.response.data.msg === "no_registration_confirmation")
                     this.setState({ notificationLogin: 'Tài Khoản Chưa Được Kích Hoạt, Vui Lòng Vào mail Để Kích Hoạt' })
                 else {
-                    this.setState({ notificationLogin: 'Email hoặc mật khẩu không hợp lệ' })
+                    this.setState({ notificationLogin: 'Email or password invalid' })
                 }
             }
             else {
-                this.setState({ notificationLogin: 'Đã xảy ra sự cố' })
+                this.setState({ notificationLogin: 'Some thing went wrong' })
             }
             return
         }

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import moment from 'moment';
 class Bill extends Component {
   constructor() {
     super();
@@ -9,7 +8,6 @@ class Bill extends Component {
       status: '99'
     };
   }
-
   componentWillMount() {
     let tmp = [];
     for (let i = 1; i <= this.props.totalpage; i++) {
@@ -75,11 +73,13 @@ class Bill extends Component {
             <ol className="breadcrumb">
               <li>
                 <i className="fa fa-home" />
-                <Link to="/">Trang Chủ</Link>
+                <Link to="/">Home</Link>
               </li>
-              
               <li>
-                <i className="fa fa-th-list" />Quản lý đơn hàng
+                <i className="fa fa-table" />Table
+              </li>
+              <li>
+                <i className="fa fa-th-list" />Bill Manager
               </li>
             </ol>
           </div>
@@ -88,11 +88,19 @@ class Bill extends Component {
           <div className="col-lg-12">
             <section className="panel">
               <header className="panel-heading">
+                Advanced Table
                 <span style={{ marginLeft: "50px", marginRight: "30px" }}>
-                  Tình Trạng
+                  Select Day
                 </span>
                 <select onChange={e => this.props.getBill(e.target.value)}>
-                  
+                  <option
+                    value=""
+                    disabled
+                    selected
+                    style={{ display: "none" }}
+                  >
+                    Status
+                  </option>
                   <option value="99">Đang Chờ Xử Lý</option>
                   <option value="0">Đang Giao Hàng</option>
                   <option value="1">Đã Giao Hàng</option>
@@ -102,13 +110,11 @@ class Bill extends Component {
               <table className="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
-                    <th>Họ Tên</th>
-                    <th>Địa Chỉ</th>
-                    <th>Số Điện Thoại</th>
-                    <th>Ngày Mua</th>
-                    <th>Sản Phẩm</th>
-                    <th>Tổng Tiền</th>
-                    <th>Tình Trạng</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Date</th>
+                    <th>Products</th>
                   </tr>
                   {this.props.bill.map((element, index) => {
                     return (
@@ -118,7 +124,6 @@ class Bill extends Component {
                           {element.address}
                         </td>
                         <td>{element.phone}</td>
-                        <td>{moment(element.date).format("DD-MM-YYYY")}</td>
                    
                         <td>
                           
@@ -142,12 +147,7 @@ class Bill extends Component {
                         </td>
                        
                         <td className='product-price'><p><span>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(element.total)}<sup>đ</sup></span> </p></td>
-                        <td>
-                          <select 
-                          onChange={e => {this.props.updateIssend(e.target.value,element._id)
-                            this.props.getBill(e.target.value)}
-                          }
-                          >
+                        <td><select onChange={e => this.props.updateIssend(e.target.value,element._id)}>
                                   
                           <option
                             value=""

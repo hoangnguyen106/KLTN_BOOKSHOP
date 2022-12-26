@@ -2,25 +2,6 @@
 const { response } = require('express');
 const publisher =require('../models/publisher')
 
-exports.getPublisherById= async (req,res)=>{
-    if(req.params.id === 'undefined') {
-        res.status(422).json({ msg: 'Invalid data' });
-        return;
-    }
-    let result
-    try {
-        result = await publisher.findById(req.params.id);
-    }
-    catch(err) {
-        console.log(err)
-        res.status(500).json({msg: err})
-        return;
-    }
-    if(result === null){
-        res.status(404).json({msg: "not found"})
-        return;
-    }
-}
 exports.getPublisher = (req,res)=>{
     publisher.findOne({},(err, docs)=>{
         if(err){

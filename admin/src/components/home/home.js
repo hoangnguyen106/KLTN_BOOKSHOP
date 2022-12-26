@@ -3,27 +3,12 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      sum: 1000,
-      productNumber:null,
+      sum: 1000
     };
   }
   tinh(count) {
     return (count / this.state.sum) * 100 + "%";
   }
-  // componentWillReceiveProps(nextProps) {    
-  //   this.setState({
-  //       toatalProduct: this.toatalProducts(nextProps.dataByTotal),
-  //   });   
-  // }
-  // toatalProducts = bills => {
-  //   let total = 0;
-  //   for (let i = 0; i < bills.length; i++) {
-  //     for (let k = 0; k < bills[i].products.length; k++) {
-  //       total += parseInt(bills[i].products[k].count);
-  //     }
-  //   }
-  //   return total;
-  // };
   render() {
     return (
       <div>
@@ -32,27 +17,77 @@ class Home extends Component {
             <div className="row">
               <div className="col-lg-12">
                 <h3 className="page-header">
-                  <i className="fa fa-laptop" /> Tổng Quan
+                  <i className="fa fa-laptop" /> Dashboard
                 </h3>
                 <ol className="breadcrumb">
                   <li>
                     <i className="fa fa-home" />
-                    <a href="index.html">Trang Chủ</a>
+                    <a href="index.html">Home</a>
                   </li>
                   <li>
-                    <i className="fa fa-laptop" />Tổng Quan
+                    <i className="fa fa-laptop" />Dashboard
                   </li>
                 </ol>
               </div>
             </div>
-            
-            
+
+            <div className="row">
+              <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div className="info-box blue-bg">
+                  <i className="fa fa-cloud-download" />
+                  <div className="count">6.674</div>
+                  <div className="title">Download</div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div className="info-box brown-bg">
+                  <i className="fa fa-shopping-cart" />
+                  <div className="count">7.538</div>
+                  <div className="title">Purchased</div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div className="info-box dark-bg">
+                  <i className="fa fa-thumbs-o-up" />
+                  <div className="count">4.362</div>
+                  <div className="title">Order</div>
+                </div>
+              </div>
+
+              <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div className="info-box green-bg">
+                  <i className="fa fa-cubes" />
+                  <div className="count">1.426</div>
+                  <div className="title">Stock</div>
+                </div>
+              </div>
+            </div>
+
             
 
             <div className="row">
               <div className="col-lg-9 col-md-12">
                 <div className="panel panel-default">
-                  
+                  <div className="panel-heading">
+                    <h2>
+                      <i className="fa fa-flag-o red" />
+                      <strong>
+                        Digital sales number(percent percentage of 1000
+                        products)
+                      </strong>
+                    </h2>
+                    <div className="panel-actions">
+                      <a href="index.html#" className="btn-setting">
+                        <i className="fa fa-rotate-right" />
+                      </a>
+                      <a href="index.html#" className="btn-minimize">
+                        <i className="fa fa-chevron-up" />
+                      </a>
+                      <a href="index.html#" className="btn-close">
+                        <i className="fa fa-times" />
+                      </a>
+                    </div>
+                  </div>
                   <div className="panel-body">
                     <table className="table bootstrap-datatable countries">
                       <thead>
@@ -78,20 +113,20 @@ class Home extends Component {
                               
                             </td>
                             <td>{element.name}</td>
-                            <td>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(element.price)}<sup>đ</sup></td>
+                            <td>{element.price}</td>
                             <td>{element.count}</td>
                             <td>
                               <div className="progress thin">
                                 <div
-                                  className="progress-bar progress-bar-info progress-bar-striped"
+                                  className="progress-bar progress-bar-danger"
                                   role="progressbar"
-                                  aria-valuenow="0"
+                                  aria-valuenow="80"
                                   aria-valuemin="0"
                                   aria-valuemax="100"
                                   style={{ width: this.tinh(element.count) }}
                                 />
                               </div>
-                              <span className="sr-only"></span>
+                              <span className="sr-only">73%</span>
                             </td>
                           </tr>
                           ) 

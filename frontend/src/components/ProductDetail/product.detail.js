@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-import HeaderMiddle from "../Header/header.middle";
-import HeaderBottom from "../Header/header.bottom";
+import HeaderTop from "../Header/header.top";
+import HeaderMiddle from "../Header/header.bottom";
+import HeaderBottom from "../Header/header.middle";
 import ContentProductDetail from "./content.product.detail";
 import Footer from "../Footer/footer";
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
-    console.log("props=======================>",props);
   }
   render() {
     return (
       <div>
         <header id="header">
-        <HeaderMiddle
+      
+          <HeaderMiddle
             islogin={this.props.islogin}
             logout={() => this.props.logout()}
             history={this.props.history}
@@ -23,8 +24,6 @@ class ProductDetail extends Component {
             setSearchText={value => this.props.setSearchText(value)}
             searchTextSubmit={() => this.props.searchTextSubmit()}
           />
-          
-          
         </header>
         <ContentProductDetail
           category={this.props.category}

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import swal from 'sweetalert';
 class Book extends Component {
   constructor() {
     super();
@@ -128,58 +127,76 @@ class Book extends Component {
       file
     } = this.state;
     if (name.length <= 0) {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng nhập tên sách !",
-        icon: "warning",
-      })
+      this.setState({
+        noti: "Name invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
     }
     if (release_date === null) {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn Ngày!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Day invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (!this.invalidPrice(price)) {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng nhập giá!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Price invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (id_category === "") {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn Thể loại!",
-        icon: "warning",
-      })
-     
-    } 
-    
+      this.setState({
+        noti: "Category invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (id_author === "") {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn Tác giả!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Author invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
 
     if (id_publisher === "") {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn Nhà xuất bản!",
-        icon: "warning",
-      })
-      
-    } 
-    if (file ===null ) {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn ảnh!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Publisher invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
+    if (file === null) {
+      this.setState({
+        noti: "File invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     this.props.addBook(
       id_category,
       name,
@@ -205,58 +222,76 @@ class Book extends Component {
       img
     } = this.state;
     if (name.length <= 0) {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng nhập tên sách !",
-        icon: "warning",
-      })
+      this.setState({
+        noti: "Name invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
     }
     if (release_date === null) {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn Ngày!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Day invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     if (!this.invalidPrice(price)) {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng nhập giá!",
-        icon: "warning",
-      })
-    } 
-    if (id_category == "") {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn Thể loại!",
-        icon: "warning",
-      })
-     
-    } 
-    
-    if (id_author == "") {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn Tác giả!",
-        icon: "warning",
-      })
-    } 
+      this.setState({
+        noti: "Price invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
+    if (id_category === "") {
+      this.setState({
+        noti: "Category invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
+    if (id_author === "") {
+      this.setState({
+        noti: "Author invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
 
-    if (id_publisher == "") {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn Nhà xuất bản!",
-        icon: "warning",
-      })
-      
-    } 
-    if (file == null && img == '' ) {
-      swal({
-        title: "Thông Báo",
-        text: "Vui lòng chọn ảnh!",
-        icon: "warning",
-      })
-    } 
+    if (id_publisher === "") {
+      this.setState({
+        noti: "Publisher invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
+    if (file === null && img === '' ) {
+      this.setState({
+        noti: "File invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
     this.props.updateBook(
       id,
       name,
@@ -275,16 +310,7 @@ class Book extends Component {
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
             <button
-              onClick={() => {
-                if(this.submitAddBook()){
-
-                  swal({
-                    title: "Thông Báo",
-                    text: "Thêm Mới Thành công!",
-                    icon: "success",
-                  })
-                }
-              }}
+              onClick={() => this.submitAddBook()}
               className="btn-custom"
               type="submit"
             >
@@ -306,12 +332,7 @@ class Book extends Component {
             </button>
             <button
               className="btn-custom"
-              onClick={() => {this.submitUpdateBook()
-                swal({
-                  title: "Thông Báo",
-                  text: "Cập nhật Thành công!",
-                  icon: "success",
-                })}}
+              onClick={() => this.submitUpdateBook()}
               type="button"
             >
               Update
@@ -426,11 +447,13 @@ class Book extends Component {
             <ol className="breadcrumb">
               <li>
                 <i className="fa fa-home" />
-                <Link to="/">Trang Chủ</Link>
+                <Link to="/">Home</Link>
               </li>
-             
               <li>
-                <i className="fa fa-th-list" />Quản Lý Sách
+                <i className="fa fa-table" />Table
+              </li>
+              <li>
+                <i className="fa fa-th-list" />Book Manager
               </li>
             </ol>
           </div>
@@ -438,23 +461,24 @@ class Book extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
+              <header className="panel-heading">Advanced Table</header>
               <table className="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
                     <th>
-                      <i className="icon_book_alt" /> Tên Sách
+                      <i className="icon_profile" /> Name
                     </th>
                     <th>
-                      <i className="icon_calendar" /> Ngày NHập
+                      <i className="icon_calendar" /> Date
                     </th>
                     <th>
-                      <i className="icon_percent" /> Giá
+                      <i className="icon_mail_alt" /> Price
                     </th>
                     <th>
-                      <i className="icon_pin_alt" /> Tóm Tắt
+                      <i className="icon_pin_alt" /> describe
                     </th>
                     <th>
-                      <i className="icon_cogs" /> 
+                      <i className="icon_cogs" /> Action
                     </th>
                   </tr>
                   {this.props.book.map((element, index) => {
@@ -462,8 +486,8 @@ class Book extends Component {
                       <tr>
                         <td>{element.name}</td>
                         <td>{element.release_date.slice(0,10)}</td>
-                        <td>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(element.price)}<sup>đ</sup></td>
-                        <td style={{ width: "40%"}}>{element.describe}</td>
+                        <td>{element.price}</td>
+                        <td style={{ width: "40%" }}>{element.describe}</td>
                         <td>
                           <div className="btn-group">
                             <a
@@ -498,12 +522,7 @@ class Book extends Component {
                               <i className="icon_check_alt2" />
                             </a>
                             <a
-                              onClick={() => {this.props.deleteBook(element._id)
-                                swal({
-                                  title: "Thông Báo",
-                                  text: "Xóa Thành công!",
-                                  icon: "success",
-                                })}}
+                              onClick={() => this.props.deleteBook(element._id)}
                               className="btn btn-danger"
                             >
                               <i className="icon_close_alt2" />
@@ -522,7 +541,7 @@ class Book extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
-            <header className="panel-heading"></header>
+              <header className="panel-heading">Form validations</header>
               <div className="panel-body">
                 <div className="form" id="from-book">
                   <div
@@ -533,7 +552,7 @@ class Book extends Component {
                   >
                     <div className="form-group ">
                       <label for="cname" className="control-label col-lg-2">
-                        Tên sách <span className="required">*</span>
+                        Name <span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -574,7 +593,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="curl" className="control-label col-lg-2">
-                        Giá
+                        Price
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -668,7 +687,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Chọn ảnh{" "}
+                        Image upload{" "}
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -685,7 +704,7 @@ class Book extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
-                        Ảnh
+                        Image
                       </label>
                       <div className="col-lg-10">
                         <img
