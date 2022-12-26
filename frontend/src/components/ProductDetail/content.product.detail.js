@@ -139,7 +139,16 @@ class ContentProductDetail extends Component {
       </div>
     }
     else if(this.state.notiQuality) {
-      xhtml = <div style={{ position: 'absolute', right: '135px', top: '246px', color: 'red' }}>Vui lòng chọn số lượng lớn hơn 0 và nhỏ hơn 500</div>
+      xhtml = <div className='aler-box'>
+      <div className='btn-close ' onClick={() => this.setState({ notiQuality: false })}>
+        X
+      </div>
+
+      <div className='aler-title'>
+        <h3 className='title'>Vui lòng chọn số lượng nhỏ hơn 500 và lớn hơn 1</h3>
+        <img className="aler-body" alt="" src="https://plus24h.com/upload/editor/images/icon-dat-hang-thanh-cong-09.jpg" />
+      </div>
+    </div>
     }
     return (
       <section>

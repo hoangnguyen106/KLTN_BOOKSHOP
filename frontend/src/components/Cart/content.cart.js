@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 class ContentCart extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       total: 0,
       show: false,
@@ -115,8 +115,8 @@ class ContentCart extends Component {
       <div>
         <section id="cart_items">
           <div className="container">
-            <div className="table-responsive cart_info">
-              <table className="table table-condensed">
+            <div className="table-responsive cart_info" style={{ maxHeight: "433px", overflowY: "scroll" }}>
+              <table className="table table-condensed" >
                 <thead>
                   <tr className="cart_menu">
                     <td className="image">Sản phẩm</td>
@@ -143,7 +143,7 @@ class ContentCart extends Component {
 
                         </td>
                         <td className="cart_price">
-                          <p>{element.price}</p>
+                          <p>{new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(element.price)}<sup>đ</sup></p>
                         </td>
                         <td className="cart_quantity">
                           <div className="cart_quantity_button">
@@ -184,7 +184,6 @@ class ContentCart extends Component {
                         <td className="cart_total">
                           <p className="cart_total_price">
                             {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(element.price * element.count)}<sup>đ</sup>
-
                           </p>
                         </td>
                         <td className="cart_delete">
@@ -321,6 +320,8 @@ class ContentCart extends Component {
                     </Modal.Footer>
                   </Modal>
                   <div className='cart-option'>
+
+
                     <button
                       className="btn btn-default update"
                       onClick={() => this.handlePayment()}

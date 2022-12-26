@@ -26,7 +26,7 @@ class HistoryPurchase extends Component {
             <div className="table-responsive cart_info" style={{marginBottom: "50px"}}>
               
               <span>Ngày: {new Date(element.date).toLocaleDateString('vi')}</span>
-              <p className='cart_total_price'>Tổng tiền: {this.caculatorTotalBill(element.products)}<sup>đ</sup></p>
+              <p className='cart_total_price'>Tổng tiền: {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.caculatorTotalBill(element.products))}<sup>đ</sup></p>
               
               <table className="table table-condensed">
                 <thead>
@@ -53,7 +53,7 @@ class HistoryPurchase extends Component {
               
                     </td>
                     <td className="cart_price">
-                      <p>{item.price}</p>
+                    {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(item.price)}<sup>đ</sup>
                     </td>
                     <td className="cart_quantity">
                       <div className="cart_quantity_button">
@@ -68,7 +68,7 @@ class HistoryPurchase extends Component {
                       </div>
                     </td>
                     <td className="cart_total">
-                      <p className="cart_total_price">{item.count * item.price}</p>
+                    <p className="cart_total_price">{new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(item.count * item.price)}<sup>đ</sup></p>
                     </td>
                   </tr>
                   )
@@ -113,7 +113,7 @@ class HistoryPurchase extends Component {
             <div className="table-responsive cart_info" style={{marginBottom: "50px"}}>
               
               <span>Ngày: {new Date(element.date).toLocaleDateString('vi')}</span>
-              <p className='cart_total_price'>Tổng tiền: {this.caculatorTotalBill(element.products)}<sup>đ</sup></p>
+              <p className='cart_total_price'>Tổng tiền: {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.caculatorTotalBill(element.products))}<sup>đ</sup></p>
               
               <table className="table table-condensed">
                 <thead>
@@ -140,7 +140,7 @@ class HistoryPurchase extends Component {
               
                     </td>
                     <td className="cart_price">
-                      <p>{item.price}</p>
+                    {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(item.price)}<sup>đ</sup>
                     </td>
                     <td className="cart_quantity">
                       <div className="cart_quantity_button">
@@ -155,7 +155,7 @@ class HistoryPurchase extends Component {
                       </div>
                     </td>
                     <td className="cart_total">
-                      <p className="cart_total_price">{item.count * item.price}</p>
+                    <p className="cart_total_price">{new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(item.count * item.price)}<sup>đ</sup></p>
                     </td>
                   </tr>
                   )
@@ -194,8 +194,7 @@ class HistoryPurchase extends Component {
             <div className="table-responsive cart_info" style={{marginBottom: "50px"}}>
               
               <span>Ngày: {new Date(element.date).toLocaleDateString('vi')}</span>
-              <p className='cart_total_price'>Tổng tiền: {this.caculatorTotalBill(element.products)}<sup>đ</sup> </p>
-              
+              <p className='cart_total_price'>Tổng tiền: {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.caculatorTotalBill(element.products))}<sup>đ</sup></p>
               <table className="table table-condensed">
                 <thead>
                 <tr className="cart_menu">
@@ -221,7 +220,7 @@ class HistoryPurchase extends Component {
               
                     </td>
                     <td className="cart_price">
-                      <p>{item.price}</p>
+                    {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(item.price)}<sup>đ</sup>
                     </td>
                     <td className="cart_quantity">
                       <div className="cart_quantity_button">
@@ -236,7 +235,7 @@ class HistoryPurchase extends Component {
                       </div>
                     </td>
                     <td className="cart_total">
-                      <p className="cart_total_price">{item.count * item.price}</p>
+                      <p className="cart_total_price">{new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(item.count * item.price)}<sup>đ</sup></p>
                     </td>
                   </tr>
                   )
