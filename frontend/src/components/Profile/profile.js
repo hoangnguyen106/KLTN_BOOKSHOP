@@ -16,8 +16,9 @@ class Profile extends Component {
     };
     this.handleClickprofile = this.handleClickprofile.bind(this);
     this.handleClickpassword = this.handleClickpassword.bind(this);
-
   }
+
+  
   componentWillMount() {
     if (this.props.isupdate) {
       this.setState({ notiUpdateInfor: "Cập nhật thành công" });
@@ -27,6 +28,7 @@ class Profile extends Component {
       this.setState({ notiUpdateInfor: "" });
     }
   }
+  
   handleClickprofile(){
     this.setState({
       profile: false

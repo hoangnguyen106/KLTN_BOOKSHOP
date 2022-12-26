@@ -11,6 +11,7 @@ class ContentProductDetail extends Component {
       notificationComment: "",
       comment: "",
       quantity: 1,
+      notiQuality: false,
       noti: false,
       show: false,
       pagination: []
@@ -110,11 +111,11 @@ class ContentProductDetail extends Component {
     this.setState({ comment: "" });
   };
   submitOrder = () => {
-    if (this.state.quantity < 0) {
-      this.setState({ noti: false });
+    if (this.state.quantity <= 0 || this.state.quantity > 500) {
+      this.setState({ noti: false, notiQuality: true});
       return;
     } else {
-      this.setState({ noti: true });
+      this.setState({ noti: true, notiQuality: "" });
     }
     let product = this.props.mproductDetail;
     product.count = this.state.quantity;
@@ -122,6 +123,7 @@ class ContentProductDetail extends Component {
   };
 
   render() {
+    console.log("=======================================",this.state)
     let xhtml = '';
     console.log(this.state.noti);
     if (this.state.noti) {
@@ -135,6 +137,18 @@ class ContentProductDetail extends Component {
           <img className="aler-body" alt="" src="https://plus24h.com/upload/editor/images/icon-dat-hang-thanh-cong-09.jpg" />
         </div>
       </div>
+    }
+    else if(this.state.notiQuality) {
+      xhtml = <div className='aler-box'>
+      <div className='btn-close ' onClick={() => this.setState({ notiQuality: false })}>
+        X
+      </div>
+
+      <div className='aler-title'>
+        <h3 className='title'>Số lượng nhỏ hơn 500 và lớn hơn 1</h3>
+        <img className="aler-body" alt="" src="https://cdn-icons-png.flaticon.com/512/564/564619.png" />
+      </div>
+    </div>
     }
     return (
       <section>
@@ -181,7 +195,7 @@ class ContentProductDetail extends Component {
                     <span>
                       <div>
                         <span>Giá:</span>
-                        <span>{this.props.mproductDetail.price}</span>
+                        <span>{new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.props.mproductDetail.price)}<sup>đ</sup></span>
 
                       </div>
                       <div className='count-product' >
@@ -193,8 +207,9 @@ class ContentProductDetail extends Component {
                               event.preventDefault();
                             }
                           }}
-                          min="0"
+                          min="1"
                           max="500"
+                          required="true"
                           onChange={e =>
                             this.setState({ quantity: e.target.value })
                           }
@@ -215,10 +230,10 @@ class ContentProductDetail extends Component {
                       <b>Danh mục:</b> {this.props.nameCategory}
                     </p>
                     <p>
-                      <b>Ngày phát hành</b>{" "}
+                      <b>Ngày phát hành:</b>{" "}
                       {new Date(
                         this.props.mproductDetail.release_date
-                      ).toDateString("yyyy-MM-dd")}
+                      ).toLocaleDateString('vi')}
                     </p>
                     <p>
                       <b>Nhà xuất bản:</b> {this.props.namePublicsher}
@@ -244,7 +259,6 @@ class ContentProductDetail extends Component {
                       <Button onClick={() => this.setState({ show: false })}>
                         <a>Hủy</a>
                       </Button>
-
                     </Modal.Footer>
                   </Modal>
                 </div>
@@ -264,6 +278,7 @@ class ContentProductDetail extends Component {
                           return (
                             <p>
                               <span>{element.name}:</span> {element.comment}
+                              <span className="date_comment" style={{ color: "gray" }}> {new Date(element.date).toLocaleDateString('vi')}</span>
                             </p>
                           );
                         })}
@@ -329,8 +344,7 @@ class ContentProductDetail extends Component {
                                       type="button"
                                       className="btn btn-default add-to-cart"
                                     >
-                                      <i className="fa fa-shopping-cart" />Add
-                                      to cart
+                                      <i className="fa fa-shopping-cart" />Thêm vào giỏ hàng
                                     </button>
                                   </div>
                                 </div>

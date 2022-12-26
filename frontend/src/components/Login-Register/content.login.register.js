@@ -19,10 +19,13 @@ function ContentLoginRegister({ setEmailogin, setPasswordlogin, setEmail,
         setRegister(true)
         setLogin(false);
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+      };
     let xhtmlLogin = '';
     let xhtmlRegister = '';
     if (Login) {
-        xhtmlLogin = <div className="login-form">
+        xhtmlLogin = <form className="login-form" onSubmit={handleSubmit}>
             <div className='login-content col-sm-6'>
                 <h2>Đăng nhập tài khoản của bạn</h2>
                 <div className="noti">{notificationLogin}</div>
@@ -48,7 +51,7 @@ function ContentLoginRegister({ setEmailogin, setPasswordlogin, setEmail,
 
             </div>
 
-        </div>
+        </form>
     }
 
     if (Register) {

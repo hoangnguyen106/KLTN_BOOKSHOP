@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 class ContentCart extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       total: 0,
       show: false,
@@ -40,6 +40,7 @@ class ContentCart extends Component {
     if (nextProps.ispay !== this.props.ispay && nextProps.ispay === false) {
       this.setState({ showpaymentfail: true })
     }
+
   }
   reset = () => {
     this.setState({
@@ -109,15 +110,13 @@ class ContentCart extends Component {
     }
     return true;
   };
-
   render() {
     return (
       <div>
         <section id="cart_items">
           <div className="container">
-
-            <div className="table-responsive cart_info">
-              <table className="table table-condensed">
+            <div className="table-responsive cart_info" style={{ maxHeight: "433px", overflowY: "scroll" }}>
+              <table className="table table-condensed" >
                 <thead>
                   <tr className="cart_menu">
                     <td className="image">Sản phẩm</td>
@@ -144,7 +143,7 @@ class ContentCart extends Component {
 
                         </td>
                         <td className="cart_price">
-                          <p>{element.price}</p>
+                          <p>{new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(element.price)}<sup>đ</sup></p>
                         </td>
                         <td className="cart_quantity">
                           <div className="cart_quantity_button">
@@ -185,7 +184,6 @@ class ContentCart extends Component {
                         <td className="cart_total">
                           <p className="cart_total_price">
                             {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(element.price * element.count)}<sup>đ</sup>
-
                           </p>
                         </td>
                         <td className="cart_delete">
@@ -214,10 +212,10 @@ class ContentCart extends Component {
                   <ul>
 
                     <li>
-                      Phí Vận Chuyển<span>0<sup>đ</sup> </span>
+                      Phí vận chuyển<span>0<sup>đ</sup> </span>
                     </li>
                     <li>
-                      Tổng Tiền <span>  {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.state.total)}<sup>đ</sup></span>
+                      Tổng tiền <span>  {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.state.total)}<sup>đ</sup></span>
                     </li>
                   </ul>
                   <Modal
@@ -272,6 +270,7 @@ class ContentCart extends Component {
                       <label>Địa chỉ</label>
                       <input
                         type="text"
+                        defaultValue={this.props}
                         value={this.state.address}
                         onChange={e =>
                           this.setState({ address: e.target.value })

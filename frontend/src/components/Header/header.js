@@ -56,7 +56,7 @@ function Header() {
               <div className="search_box pull-right">
                 <input
                   type="text"
-                  placeholder="Search"
+                  placeholder="TÌm kiếm sản phẩm..."
                   onChange={(e) => this.props.setSearchText(e.target.value)}
                   onKeyUp={(e) => this.handeSearch(e.keyCode)} />
               </div>

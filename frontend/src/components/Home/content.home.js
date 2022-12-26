@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ProductItem from "./product.item";
+import NoProduct from "./noProduct";
 import { Link } from "react-router-dom";
 class ContentHome extends Component {
     constructor(props) {
@@ -73,7 +74,9 @@ class ContentHome extends Component {
             check_5: false
         });
     };
+
     render() {
+        console.log("boookkkkkkkkkkkkkkkkkkkk", this.props.book)
         return (
             <section>
                 <div className="container">
@@ -194,19 +197,31 @@ class ContentHome extends Component {
                                 <h2 className="title text-center">
                                     {this.props.title}
                                 </h2>
-                                {this.props.book.map((element, index) => {
-                                    return (
-                                        <ProductItem
-                                            book={element}
-                                            urlImg={element.img}
-                                            price={element.price}
-                                            describe={element.describe}
-                                            id={element._id}
-                                            name={element.name}
-                                            addToCart={product => this.props.addToCart(product)}
-                                        />
-                                    );
-                                })}
+
+                                {
+                                    this.props.book.map((element, index) => {
+                                        if (element) {
+
+                                            return (
+                                                <ProductItem
+                                                    book={element}
+                                                    urlImg={element.img}
+                                                    price={element.price}
+                                                    describe={element.describe}
+                                                    id={element._id}
+                                                    name={element.name}
+                                                    addToCart={product => this.props.addToCart(product)}
+                                                />
+                                            );
+                                        }
+                                        else {
+                                            return (
+                                                <NoProduct />
+                                            )
+                                        }
+
+                                    })
+                                }
                             </div>
                             <div className='Pagination-flex'>{this.renderPagination()}</div>
                         </div>

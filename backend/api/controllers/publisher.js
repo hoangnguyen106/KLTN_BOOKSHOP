@@ -87,7 +87,7 @@ exports.getNameByID = async (req, res) => {
 exports.getIDBySearchText = async (searchText) => {
     let arr = [];
     try {
-        arr = await publisher.find({name: new RegExp(searchText, "i")},{name: 0})
+        arr = await publisher.find({name: new RegExp(searchText, "i")})
     }
     catch (err) {
         res.status(500).json({ msg: err });
