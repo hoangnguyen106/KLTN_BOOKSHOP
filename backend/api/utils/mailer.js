@@ -62,8 +62,8 @@ exports.sendMailConfirmPayment = async (email, token,username, address, phone,to
             + '<p>Tên khách hàng:'+ username+'</p>'
             + '<p>Địa chỉ:'+ address+'</p>'
             + '<p>Số điện thoại:'+ phone+'</p>'
-            + '<p>Tên sách:'+ products.name+'</p>'
-            + '<p>Số lượng:'+ products.count+'</p>'
+            + '<p>Tên sách:'+ products[0].name+'</p>'
+            + '<p>Số lượng:'+ products[0].count+'</p>'
             + '<p>Tổng tiền:'+ total+'</p>'
             
             + '<span>http://localhost:3000/payment/' + token +  '</span>'
