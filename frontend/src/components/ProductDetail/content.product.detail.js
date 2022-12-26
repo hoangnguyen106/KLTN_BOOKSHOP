@@ -145,8 +145,8 @@ class ContentProductDetail extends Component {
       </div>
 
       <div className='aler-title'>
-        <h3 className='title'>Vui lòng chọn số lượng nhỏ hơn 500 và lớn hơn 1</h3>
-        <img className="aler-body" alt="" src="https://plus24h.com/upload/editor/images/icon-dat-hang-thanh-cong-09.jpg" />
+        <h3 className='title'>Số lượng nhỏ hơn 500 và lớn hơn 1</h3>
+        <img className="aler-body" alt="" src="https://cdn-icons-png.flaticon.com/512/564/564619.png" />
       </div>
     </div>
     }
