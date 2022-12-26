@@ -14,18 +14,18 @@ export default function ChatContent({ currentChat, socket }) {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   
 
-  useEffect(async () => {
-    console.log("currentChat", currentChat._id);
-    const data = await (
+  console.log("currentChat", currentChat);
+  useEffect( async () => {
+     const data = await (
       storeConfig.getUser()
     );
-    console.log("test",storeConfig.getUser().id);
+    // console.log("test12",data._id);
     const response = await axios.post(recieveMessageRoute, {
-      from: data.id,
-      to: currentChat.id,
+      from: data._id,
+      to: currentChat._id,
     });
-    console.log("1212",currentChat.id);
-    console.log("data",data.id);
+    console.log("1212",currentChat._id);
+    console.log("data",data._id);
     setMessages(response.data);
   }, [currentChat]);
 

@@ -26,7 +26,7 @@ mongoose.connect(process.env.URL_MONGODB).then(
   });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+app.use(bodyParser.urlencoded());
 app.use(cors())
 bookRouter(app)
 categoryRouter(app)
@@ -47,7 +47,7 @@ const server=app.listen(port, () => {
 // })
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3030",
+  
     credentials: true,
   },
 });

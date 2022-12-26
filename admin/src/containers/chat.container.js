@@ -1,69 +1,66 @@
 import React, { useState, useEffect, useRef, Component, Link } from "react";
 import styled from "styled-components";
+import { Redirect  } from "react-router-dom";
 import { io } from "socket.io-client";
-import Contacts  from "../components/chat/Contact";
+import Contacts  from "../components/chat/Contacts";
 import ChatContent  from "../components/chat/ChatContent";
-import Welcome from "../components/chat/welcom";
+import Welcome from "../components/chat/Welcom";
 import axios from "axios";
 import { allUsersRoute, host } from "../utils/APIChart";
-import storeConfig from '../config/store.config'
+import * as storeConfig from '../config/store.config';
 import * as userActions from "../actions/user.action";
 
 class Chat extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.socket=React.createRef();
     this.state={
-      currentChat: '',
-      currentUser: '',
+      currentChat: undefined,
+      currentUser: undefined,
       
     }
+    this.handleChatChange=this.handleChatChange.bind(this);
   }
 
   async componentWillMount() {
-    let res = userActions.auth();
-    if (res === false) this.props.history.push("/login");
-  }
-
-  async componentDidMount(){
-    let currentUser = storeConfig.getUser()
     if (!storeConfig.getUser()) {
-      this.props.history.push("/login");
-    } else {
-       this.setState(
-        { currentUser}
-      );
-      console.log("current",currentUser.id);
+      console.log("check");
+    return  this.props.history.replace("/login");
+    } else {    
+      this.currentUser= storeConfig.getUser()  
     }
-    if(currentUser){
+    
+    if(this.currentUser){
       this.socket.current = io(host);
-      this.socket.current.emit("add-user",currentUser._id);
+      this.socket.current.emit("add-user",this.currentUser.id);
       console.log("pass");
 
-      // if (this.currentUser.isAvatarImageSet) {
-      //   const data = await axios.get(`${allUsersRoute}/${this.state.currentUser._id}`);
-      //   this.setState(data.data);
-      // } else {
-      //   this.props.history.push("/setAvatar");
-      // }
+     
     }
   }
-render(){
-  return (
-    <div>
-      <Container>
-        <div className="container">
-          <Contacts contacts={this.state.contacts} changeChat={this.handleChatChange} />
-          {this.state.currentChat === undefined ? (
-            <Welcome />
-          ) : (
-            <ChatContent currentChat={this.currentChat} socket={this.socket} />
-          )}
-        </div>
-      </Container>
-    </div>
-  );
-}
+  componentDidMount() {
+    
+  }
+   handleChatChange = (chat) => {
+    this.setState(this.state.chat);
+  };
+
+  render(){
+    return (
+      <div>
+        <Container>
+          <div className="container">
+            <Contacts contacts={this.state.contacts} changeChat={this.handleChatChange} />
+            {this.state.currentChat === undefined ? (
+              <Welcome />
+            ) : (
+              <ChatContent currentChat={this.state.currentChat} socket={this.socket} />
+            )}
+          </div>
+        </Container>
+      </div>
+    );
+  }
   
 
 }
@@ -90,14 +87,14 @@ export default (Chat);
 //   useEffect(() => {
 //     if (currentUser) {
 //       socket.current = io(host);
-//       socket.current.emit("add-user", currentUser._id);
+//       socket.current.emit("add-user", currentUser.id);
 //     }
 //   }, [currentUser]);
 
 //   useEffect(async () => {
 //     if (currentUser) {
 //       if (currentUser.isAvatarImageSet) {
-//         const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
+//         const data = await axios.get(`${allUsersRoute}/${currentUser.id}`);
 //         setContacts(data.data);
 //       } else {
 //         // navigate("/setAvatar");
