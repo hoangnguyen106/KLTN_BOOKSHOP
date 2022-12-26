@@ -11,6 +11,7 @@ class ContentProductDetail extends Component {
       notificationComment: "",
       comment: "",
       quantity: 1,
+      notiQuality: false,
       noti: false,
       show: false,
       pagination: []
@@ -110,11 +111,11 @@ class ContentProductDetail extends Component {
     this.setState({ comment: "" });
   };
   submitOrder = () => {
-    if (this.state.quantity < 0) {
-      this.setState({ noti: false });
+    if (this.state.quantity <= 0 || this.state.quantity > 500) {
+      this.setState({ noti: false, notiQuality: true});
       return;
     } else {
-      this.setState({ noti: true });
+      this.setState({ noti: true, notiQuality: "" });
     }
     let product = this.props.mproductDetail;
     product.count = this.state.quantity;
@@ -122,6 +123,7 @@ class ContentProductDetail extends Component {
   };
 
   render() {
+    console.log("=======================================",this.state)
     let xhtml = '';
     console.log(this.state.noti);
     if (this.state.noti) {
@@ -135,6 +137,9 @@ class ContentProductDetail extends Component {
           <img className="aler-body" alt="" src="https://plus24h.com/upload/editor/images/icon-dat-hang-thanh-cong-09.jpg" />
         </div>
       </div>
+    }
+    else if(this.state.notiQuality) {
+      xhtml = <div style={{ position: 'absolute', right: '135px', top: '246px', color: 'red' }}>Vui lòng chọn số lượng lớn hơn 0 và nhỏ hơn 500</div>
     }
     return (
       <section>
@@ -181,7 +186,7 @@ class ContentProductDetail extends Component {
                     <span>
                       <div>
                         <span>Giá:</span>
-                        <span>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(this.props.mproductDetail.price)}<sup>đ</sup></span>
+                        <span>{new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.props.mproductDetail.price)}<sup>đ</sup></span>
 
                       </div>
                       <div className='count-product' >
@@ -193,8 +198,9 @@ class ContentProductDetail extends Component {
                               event.preventDefault();
                             }
                           }}
-                          min="0"
+                          min="1"
                           max="500"
+                          required="true"
                           onChange={e =>
                             this.setState({ quantity: e.target.value })
                           }

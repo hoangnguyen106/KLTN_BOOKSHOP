@@ -57,74 +57,77 @@ class HeaderBottom extends Component {
     if (e === 13) {
       this.props.searchTextSubmit();
     }
-        handleOnChange = (e) => {
-           this.props.setSearchText(e.target.value)
-        }
+  }
+  handleOnChange = (e) => {
+    this.props.setSearchText(e.target.value)
+  }
+  render() {
+    return (
+      <div className="header-bottom">
+        <div className="container">
+          <div className="row header-bot">
+            <div className="col-sm-8">
+              <div className="navbar-header">
+                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+              </div>
 
-    handeSearch = (e) => {
-        if(e === 13) {
-            this.props.searchTextSubmit()
-        }
-    }}
-    render() {
-        return (
-            <div className="header-bottom">
-                <div className="container">
-                    <div className="row header-bot">
-                        <div className="col-sm-8">
-                            <div className="navbar-header">
-                                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span className="sr-only">Toggle navigation</span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                </button>
-                            </div>
-                           
-                        </div>
-                        <div className="col-sm-4">
-                            <div className="search_box pull-right">
-                                <input
-                                    type="text"
-                                    placeholder="Tìm kiếm sản phẩm..."
-                                    onChange={this.handleOnChange}
-                                    onKeyUp={(e) => this.handeSearch(e.keyCode)}
-                                />
-                            </div>
-                        </div>
-                       
-
-                    </div>
-                </div>
-                <div className="col-sm-4">
-                <div
-                    className="search_box pull-right"
-                    style={{
-                        position: "relative",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    }}
-                >
-                    <BsSearch style={{
-                        position:"absolute",
-                        right:"10",
-                        height:"20px",
-                    }}
-                    onClick={()=>this.handeSearchs()}
-                    />
-                    <input
-                    
-                    type="text"
-                    placeholder="Search"
-                    onChange={(e) => this.props.setSearchText(e.target.value)}
-                    onKeyUp={(e) => this.handeSearch(e.keyCode)}
-                    />
-                </div>
-                </div>
             </div>
-            
-         
+            {/* <div className="col-sm-4">
+              <div className="search_box pull-right">
+                <BsSearch style={{
+                  position: "absolute",
+                  right: "10",
+                  height: "20px",
+                }}
+                  onClick={() => this.handeSearchs()}
+                />
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm sản phẩm..."
+                  onChange={this.handleOnChange}
+                  onKeyUp={(e) => this.handeSearch(e.keyCode)}
+                />
+              </div>
+            </div> */}
+            <div className="col-sm-4">
+          <div
+            className="search_box pull-right"
+            style={{
+              position: "relative",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <BsSearch style={{
+              position: "absolute",
+              right: "10",
+              height: "20px",
+              cursor: "pointer"
+            }}
+              onClick={() => this.props.searchTextSubmit()}
+            />
+            <input
+
+              type="text"
+              placeholder="Tìm kiếm sản phẩm ...."
+              onChange={(e) => this.props.setSearchText(e.target.value)}
+              onKeyUp={(e) => this.handeSearch(e.keyCode)}
+            />
+          </div>
+        </div>
+
+          </div>
+        </div>
+     
+      </div>
+
+
     );
   }
 }

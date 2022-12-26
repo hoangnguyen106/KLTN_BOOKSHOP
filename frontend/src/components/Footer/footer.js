@@ -8,9 +8,9 @@ function Footer() {
                 <div className="row">
                     <div className="col-sm-12">
                         <div className="companyinfo">
-                            <h2><span>BookShop</span></h2>
-                            <p>Bookshop là một website chuyên bán sách, bao gồm nhiều thể loại đa dạng và phong phú
-                                , chúng tôi muốn cung cấp các trải nhiệm tuyệt vời nhất đên khách hàng
+                            <h2><span>MY VIBE</span></h2>
+                            <p>MY VIBE là một website chuyên bán sách, bao gồm nhiều thể loại đa dạng và phong phú
+                                , chúng tôi muốn cung cấp các trải nhiệm tuyệt vời nhất đến với khách hàng.
                             </p>
                         </div>
                     </div>
@@ -24,7 +24,7 @@ function Footer() {
                     <div className="row">
                         <div className="col-sm-3">
                             <div className="single-widget">
-                                <h2>Thông Tin Về Chúng Tôi</h2>
+                                <h2>Thông tin về chúng tôi</h2>
                                 <ul className="nav nav-pills nav-stacked ">
                                     <li><i className='fas fa-map-marker-alt'></i><a href="https://www.google.com/maps/place/29+%C4%90%C3%A1+M%E1%BB%8Dc+5,+Ho%C3%A0+Minh,+Li%C3%AAn+Chi%E1%BB%83u,+%C4%90%C3%A0+N%E1%BA%B5ng+550000/@16.0516559,108.1667824,17z/data=!3m1!4b1!4m5!3m4!1s0x31421915fefecc53:0xe3f47adcd45bf8df!8m2!3d16.0516559!4d108.1667824">Đà Nẵng</a></li>
                                     <li><i className='far fa-envelope'></i><a href="#">nguyenhoangnhom4@gmail.com</a></li>

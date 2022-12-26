@@ -76,6 +76,7 @@ class ContentHome extends Component {
     };
 
     render() {
+        console.log("boookkkkkkkkkkkkkkkkkkkk", this.props.book)
         return (
             <section>
                 <div className="container">
