@@ -8,7 +8,7 @@ function Content() {
         <div className="row content-home">
           <div className="col-sm-3">
             <div className="left-sidebar">
-              <h2>Thể Loại</h2>
+              <h2>Thể Loai</h2>
               <div className="panel-group category-products" id="accordian">
                 {this.props.category.map((element, index) => {
                   return (
@@ -24,7 +24,7 @@ function Content() {
                       className="panel panel-default"
                     >
                       <div className="panel-heading">
-                        <h4 className="panel-title item-custom">
+                       <h4 className="panel-title item-custom">
                           <a key={index}>{element.name}</a>
                         </h4>
                       </div>

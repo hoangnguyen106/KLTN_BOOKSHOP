@@ -15,6 +15,7 @@ const ForgotPassword = ({ setEmail, submit, notification }) => (
 			<span>{notification}</span>
 			<input
 			type="email"
+			
 				placeholder="Nhập vào email bạn muốn thay đổi mật khẩu..."
 				onChange={e => setEmail(e.target.value)}
 			/>
