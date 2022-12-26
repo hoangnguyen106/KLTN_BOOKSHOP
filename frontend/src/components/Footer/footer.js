@@ -3,23 +3,31 @@ import React, { Fragment } from 'react'
 
 function Footer() {
     return (
-        <Fragment><div className="footer-top">
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-12">
-                        <div className="companyinfo">
-                            <h2><span>MY VIBE</span></h2>
-                            <p>MY VIBE là một website chuyên bán sách, bao gồm nhiều thể loại đa dạng và phong phú
-                                , chúng tôi muốn cung cấp các trải nhiệm tuyệt vời nhất đến với khách hàng.
-                            </p>
+
+        <Fragment>
+            <div class="float-icon-hotline">
+                <ul class="left-icon hotline">
+                    <li class="hotline_float_icon"><a target="_blank" rel="nofollow" id="messengerButton" href="https://zalo.me/0345632574"><i class="fa fa-zalo animated infinite tada"></i><span>Zalo</span></a></li>
+                    <li class="hotline_float_icon"><a target="_blank" rel="nofollow" id="messengerButton" href="https://www.facebook.com/messages/t/114395728179934"><i class="fa fa-messenger animated infinite tada"></i><span>Facebook</span></a></li>
+                </ul>
+            </div>
+            <div className="footer-top">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <div className="companyinfo">
+                                <h2><span>MY VIBE</span></h2>
+                                <p>MY VIBE là một website chuyên bán sách, bao gồm nhiều thể loại đa dạng và phong phú
+                                    , chúng tôi muốn cung cấp các trải nhiệm tuyệt vời nhất đến với khách hàng.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="col-sm-6"></div>
+                        <div className="col-sm-3">
                         </div>
                     </div>
-                    <div className="col-sm-6"></div>
-                    <div className="col-sm-3">
-                    </div>
                 </div>
-            </div>
-        </div><div className="footer-widget">
+            </div><div className="footer-widget">
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-3">
@@ -29,7 +37,7 @@ function Footer() {
                                     <li><i className='fas fa-map-marker-alt'></i><a href="https://www.google.com/maps/place/29+%C4%90%C3%A1+M%E1%BB%8Dc+5,+Ho%C3%A0+Minh,+Li%C3%AAn+Chi%E1%BB%83u,+%C4%90%C3%A0+N%E1%BA%B5ng+550000/@16.0516559,108.1667824,17z/data=!3m1!4b1!4m5!3m4!1s0x31421915fefecc53:0xe3f47adcd45bf8df!8m2!3d16.0516559!4d108.1667824">Đà Nẵng</a></li>
                                     <li><i className='far fa-envelope'></i><a href="#">nguyenhoangnhom4@gmail.com</a></li>
                                     <li><i className='fas fa-phone-volume'></i><a href="#">0935053171</a></li>
-                                    <li><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/profile.php?id=100088596912732">BookShop</a></li>
+                                    <li><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/profile.php?id=100088596912732">MY VIBE</a></li>
 
                                 </ul>
                             </div>

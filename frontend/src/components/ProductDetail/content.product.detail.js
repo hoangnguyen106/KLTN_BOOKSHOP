@@ -123,6 +123,7 @@ class ContentProductDetail extends Component {
   };
 
   render() {
+
     console.log("=======================================",this.state)
     let xhtml = '';
     console.log(this.state.noti);
@@ -263,7 +264,7 @@ class ContentProductDetail extends Component {
                 </div>
                 {xhtml}
 
-                <div className="col-sm-12 review-product">
+                <div className="col-sm-6 review-product">
                   <div>
                     <h3>Đánh giá sách</h3>
                   </div>
@@ -314,7 +315,7 @@ class ContentProductDetail extends Component {
                   </div>
                 </div>
 
-                <div className="recommended_items">
+                {/* <div className="recommended_items">
                   <h2 className="title text-center">recommended items</h2>
 
                   <div
@@ -368,7 +369,7 @@ class ContentProductDetail extends Component {
                       <i className="fa fa-angle-right" />
                     </a>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

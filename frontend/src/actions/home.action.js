@@ -305,6 +305,8 @@ export const setRange = (range) => ({
     dispatch(setSearchText(''))
     dispatch(setBook(res.data.data))
     dispatch(setTotalPage(res.data.totalPage))
+    dispatch(setBranch(res.data.branch))
+    dispatch(setPage(res.data.page))
  }
 
  export const searchTextSubmit = () => async(dispatch, getState) => {
