@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import swal from 'sweetalert';
 class Category extends Component {
   constructor() {
     super();
@@ -28,9 +29,11 @@ class Category extends Component {
       this.setState({ pagination: tmp });
     }
     if (nextProps.isadd === false) {
-      this.setState({
-        noti: "Please Change name"
-      });
+      swal({
+        title: "Thông Báo",
+        text: "Vui lòng nhập số và không để trống!",
+        icon: "warning",
+      })
     } else if (nextProps.isadd === true) {
       this.setState({
         noti: "",
@@ -94,7 +97,18 @@ class Category extends Component {
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
             <button
-              onClick={() => this.add()}
+              onClick={() => {
+              if(this.state.name != null){
+                swal({
+                  title: "Thông Báo",
+                  text: "Thêm Mới Thành công!",
+                  icon: "success",
+                })
+                
+              }
+              this.add()
+              }
+              }
               style={{}}
               className="btn-custom"
             >
@@ -127,7 +141,12 @@ class Category extends Component {
             </button>
             <button
               onClick={() =>
-                this.props.updateCategory(this.state.id, this.state.name)
+                {this.props.updateCategory(this.state.id, this.state.name)
+                swal({
+                  title: "Thông Báo",
+                  text: "Cập Nhật Thành công!",
+                  icon: "success",
+                })}
               }
               className="btn-custom"
             >
@@ -164,13 +183,11 @@ class Category extends Component {
             <ol className="breadcrumb">
               <li>
                 <i className="fa fa-home" />
-                <Link to="/">Home</Link>
+                <Link to="/">Trang Chủ</Link>
               </li>
+              
               <li>
-                <i className="fa fa-table" />Table
-              </li>
-              <li>
-                <i className="fa fa-th-list" />Category Manager
+                <i className="fa fa-th-list" />Quản Lý Loại Sách
               </li>
             </ol>
           </div>
@@ -178,15 +195,14 @@ class Category extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel ">
-              <header className="panel-heading">Advanced Table</header>
               <table className="table table-striped table-advance table-hover ">
                 <tbody>
                   <tr>
                     <th>
-                      <i className="icon_profile" /> Name
+                      <i className="icon_profile" /> Tên Loại Sách
                     </th>
                     <th>
-                      <i className="icon_cogs" /> Action
+                      <i className="icon_cogs" /> 
                     </th>
                   </tr>
                   {this.props.category.map((element, index) => {
@@ -209,7 +225,14 @@ class Category extends Component {
                               <i className="icon_check_alt2" />
                             </a>
                             <a
-                              onClick={() => this.props.deleteCategory(element._id)}
+                              onClick={() => {this.props.deleteCategory(element._id)
+                                swal({
+                                  title: "Thông Báo",
+                                  text: "Xóa Thành công!",
+                                  icon: "success",
+                                })
+                              }
+                              }
                               className="btn btn-danger"
                             >
                               <i className="icon_close_alt2" />
@@ -228,13 +251,12 @@ class Category extends Component {
         <div className="row">
           <div className="col-lg-12">
             <section className="panel">
-              <header className="panel-heading">Form validations</header>
               <div className="panel-body">
                 <div className="form">
                   <div className="form-validate form-horizontal">
                     <div className="form-group ">
                       <label for="cname" className="control-label col-lg-2">
-                        Name <span className="required">*</span>
+                        Tên Loại Sách <span className="required">*</span>
                       </label>
                       <div className="col-lg-10">
                         <input
@@ -246,9 +268,10 @@ class Category extends Component {
                           value={this.state.name}
                           className="form-control"
                           id="cname"
-                          name="fullname"
+                          name="name"
                           minlength="5"
                           type="text"
+                          pattern="[a-zA-Z]"
                           required
                         />
                       </div>

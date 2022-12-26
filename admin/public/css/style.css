@@ -14,11 +14,10 @@
 
     body {
 
-        color: #b3b3b3;
 
         background: #eeeeee;
 
-        font-family: 'Lato', sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
 
         padding: 0px !important;
 
@@ -348,10 +347,46 @@
 
         font-size: 16px;
 
-        border-radius: 0;
-
+        border-radius: 10px;
+        color: black;
     }
-
+    
+    .input {
+        position: relative;
+        font-size: 1.5em;
+        padding: 3px;
+        display: inline-block;
+        border-radius: 9999em;
+   }
+    .input *:not(span) {
+        position: relative;
+        display: inherit;
+        border-radius: inherit;
+        margin: 0;
+        border: none;
+        outline: none;
+        padding: 0 0.325em;
+        z-index: 1;
+   }
+    .input *:not(span):focus + span {
+        opacity: 1;
+        transform: scale(1);
+   }
+    .input span {
+        transform: scale(0.993, 0.94);
+        transition: transform 0.5s, opacity 0.25s;
+        opacity: 0;
+        position: absolute;
+        z-index: 0;
+        margin: 4px;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #fff, 3px -3px 30px #1beabd, -3px 3px 30px #10abff;
+   }
     .login-form .btn{
 
         border-radius: 0;
@@ -368,7 +403,7 @@
 
         font-weight: 300;
 
-        font-family: 'Lato', sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
 
         box-shadow: 0 4px #e56b60;
 
@@ -398,7 +433,7 @@
 
     .login-form a {
 
-        color: #b6b6b6;
+        color: #fff7f7;
 
     }
 
@@ -526,7 +561,7 @@
 
         position: fixed;
 
-        background: #4e73df;
+        background: #f8f8f8;
 
     }
 
@@ -569,7 +604,7 @@
     #sidebar > ul > li.active > ul.sub, #sidebar > ul > li > ul.sub > li > a {
 
         display: block;
-        color: #414141;
+        color: #65c0ee;
 
 
     }
@@ -578,7 +613,7 @@
 
     ul.sidebar-menu li ul.sub li{
 
-        background: #eaecf4;
+        background: #ffffff;
 
         margin-bottom: 0;
 
@@ -629,7 +664,7 @@
 
     ul.sidebar-menu li ul.sub li a:hover, ul.sidebar-menu li ul.sub li.active a {
 
-        color: #fff;
+        color: #fff !important;
 
         -webkit-transition: all 0.3s ease;
 
@@ -687,7 +722,7 @@
 
     ul.sidebar-menu li a{
 
-        color: #d0d8df;
+        color: #023af3;
 
         text-decoration: none;
 
@@ -725,13 +760,14 @@
 
     }*/
 
-    ul.sidebar-menu li.active a, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+    ul.sidebar-menu li.active a, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus ,#sidebar > ul > li.active > ul.sub:hover a{
 
-        background: #4e73df;
+        background: #5bc1f0;
 
-        color: #fff;
+        color: rgb(250, 250, 250)!important;
 
         display: block;
+        font-weight: bold;
 
         /*border-radius: 4px;
 
@@ -777,7 +813,8 @@
 
     ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
 
-        color: #fff;
+        color: rgb(255, 255, 255);
+        box-shadow: #e67a3c;
 
     }
 
@@ -862,7 +899,7 @@
         border-top: 4px solid transparent;
 
         border-bottom: 4px solid transparent;
-
+        color: #fff;
     }
 
 
@@ -1575,7 +1612,7 @@
 
         width: 100%;
 
-        background: #688a7e;
+        background: #f4f4f4;
 
     }
 
@@ -1583,13 +1620,13 @@
 
     .dropdown-menu.extended.logout > li:last-child > a, .dropdown-menu.extended.logout > li:last-child > a:hover {
 
-        color: #fff;
+        color: rgb(87, 191, 210);
 
         border-bottom: none !important;
 
         text-transform: uppercase;
 
-        background-color:#688a7e !important;
+        background-color:#f6f6f6 !important;
 
     }
 
@@ -1597,13 +1634,13 @@
 
     .dropdown-menu.extended.logout > li:last-child > a:hover > i{
 
-        color: #fff;
+        color: rgb(0, 0, 0);
 
     }
 
     .dropdown-menu > li > a{
 
-        color: #797979;
+        color: #000000;
 
     }
 
@@ -1703,7 +1740,7 @@
 
     .top-nav .dropdown-menu.extended.logout {
 
-        top: 50px;
+        top: 55px;
 
     }
 
@@ -1729,17 +1766,21 @@
 
     .log-arrow-up {
 
-        background: url("../img/arrow-up.png") no-repeat;
+        /* background: url("../img/arrow-up.png") no-repeat; */
 
-        width: 20px;
+        width: 10px;
 
-        height: 11px;
-
+        height: 10px;
+        /* width: 0; */
+        /* height: 0; */
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 13px solid #FFFFFF;
         position: absolute;
 
-        right: 20px;
+        right: 13px;
 
-        top: -10px;
+        top: -13px;
 
     }
 

@@ -9,7 +9,7 @@ const Success = () => (
           </div>
 		</div>
 		<div className="content-404">
-			<h1><b>CONGRATULATIONS!</b></h1>
+			<h1><b>Chúc mừng !!!</b></h1>
 			<p></p>
 			<h2><Link to="/">Trở Về Trang Chủ</Link></h2>
 		</div>

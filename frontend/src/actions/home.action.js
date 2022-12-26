@@ -89,11 +89,12 @@ export const getBook = () => async (dispatch, getState) => {
         console.log(err.response)
         return
     }
+    
     dispatch(setBook(res.data.data))
     console.log("book =>>>>>",res.data.data);
     dispatch(setTotalPage(res.data.totalPage))
     console.log("totalpage =>>>>>",res.data.totalPage);
-
+    
 }
 
 export const setBook = (data) => ({
@@ -303,6 +304,8 @@ export const setRange = (range) => ({
         return
     }
     dispatch(setSearchText(''))
+    dispatch(setBranch(res.data.branch))
+    dispatch(setPage(res.data.page))
     dispatch(setBook(res.data.data))
     dispatch(setTotalPage(res.data.totalPage))
  }
