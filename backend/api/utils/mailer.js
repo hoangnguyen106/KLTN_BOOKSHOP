@@ -56,14 +56,14 @@ exports.sendMailConfirmPayment = async (email, token,username, address, phone,to
     let mailOptions = {
         from: '"SHOPBOOK 👻"', // sender address
         to: email, // list of receivers
-        subject: 'Payment Verification Token ShopBook', // Subject line
+        subject: 'Hóa đơn', // Subject line
         text: 'Hello my friend',
-        html: '<b>verify your account</b>'
+        html: '<b>Thông tin hóa đơn</b>'
             + '<p>Tên khách hàng:'+ username+'</p>'
             + '<p>Địa chỉ:'+ address+'</p>'
             + '<p>Số điện thoại:'+ phone+'</p>'
             + '<p>Tên sách:'+ products.name+'</p>'
-            + '<p>Số lượng:'+ products.name+'</p>'
+            + '<p>Số lượng:'+ products.count+'</p>'
             + '<p>Tổng tiền:'+ total+'</p>'
             
             + '<span>http://localhost:3000/payment/' + token +  '</span>'

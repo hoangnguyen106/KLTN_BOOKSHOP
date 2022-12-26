@@ -54,9 +54,9 @@ class User extends Component {
         noti: "Cập nhật thất bại"
       });
     } 
-    // else if (nextProps.isupdate === true) {
-    //   this.reset();
-    // }
+    else if (nextProps.isupdate === true) {
+      this.reset();
+    }
   }
   renderPagination() {
     if (this.state.pagination.length === 0) {

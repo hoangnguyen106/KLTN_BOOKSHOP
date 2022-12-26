@@ -9,6 +9,7 @@ export const getUser = () => async (dispatch, getState) => {
     let res
     try {
         res = await axios.get('http://localhost:3030/admin/getAllUser/' + getState().userReducers.user.page)
+    console.log(res)
     }
     catch (err) {
         console.log(err)
@@ -110,8 +111,9 @@ export const updateUser = (email, firstName, lastName, address, phone_number, is
     dispatch(updateUserSuccess())
     dispatch(getUser())
 }
-export const loginSuccess = (token, user) => async (dispatch, getState) => {
+export const loginSuccess = (token, user,avatar) => async (dispatch, getState) => {
     storeConfig.setUser(user)
+    storeConfig.setAvatar(avatar)
     console.log("qqqq",user);
     storeConfig.setToken(token)
     dispatch(setLoginSuccess())

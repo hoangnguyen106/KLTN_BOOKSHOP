@@ -268,7 +268,7 @@ class Author extends Component {
                           className="form-control"
                           id="cname"
                           name="fullname"
-                          minlength="5"
+                          minLength="5"
                           type="text"
                           required
                         />
