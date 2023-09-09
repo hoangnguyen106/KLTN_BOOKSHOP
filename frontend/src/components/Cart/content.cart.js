@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, ModalTitle } from "react-bootstrap";
 class ContentCart extends Component {
   constructor() {
     super();
@@ -15,7 +15,7 @@ class ContentCart extends Component {
       notiAddress: "",
       notiDetailAddress: "",
       ispay: false,
-      showpaymentfail: false
+      showpaymentfail: false,
     };
   }
   componentWillMount() {
@@ -35,10 +35,10 @@ class ContentCart extends Component {
       this.setState({ total: total });
     }
     if (nextProps.ispay !== this.props.ispay && nextProps.ispay === true) {
-      this.setState({ ispay: true })
+      this.setState({ ispay: true });
     }
     if (nextProps.ispay !== this.props.ispay && nextProps.ispay === false) {
-      this.setState({ showpaymentfail: true })
+      this.setState({ showpaymentfail: true });
     }
   }
   reset = () => {
@@ -52,14 +52,14 @@ class ContentCart extends Component {
       notiAddress: "",
       notiDetailAddress: "",
       ispay: false,
-      showpaymentfail: false
-    })
-  }
+      showpaymentfail: false,
+    });
+  };
   handlePayment = () => {
-    console.log("================>",this.props.cart)
-    if(!this.props.cart) {
+    console.log("================>", this.props.cart);
+    if (this.props.cart) {
       this.setState({
-        notiName: "Vui lòng chọn sản phẩm để thanh toán"
+        notiName: "Vui lòng chọn sản phẩm để thanh toán",
       });
     }
     if (!this.props.islogin) {
@@ -71,17 +71,17 @@ class ContentCart extends Component {
     let check = true;
     if (this.state.name.length < 1) {
       this.setState({
-        notiName: "Vui lòng nhập vào tên của bạn"
+        notiName: "Vui lòng nhập vào tên của bạn",
       });
       check = false;
     } else {
       this.setState({
-        notiName: ""
+        notiName: "",
       });
     }
     if (!this.isvaidPhone(this.state.phone)) {
       this.setState({
-        notiPhone: "Vui lòng nhập đúng định dạng số điện thoại"
+        notiPhone: "Vui lòng nhập đúng định dạng số điện thoại",
       });
       check = false;
     } else {
@@ -102,7 +102,7 @@ class ContentCart extends Component {
       this.state.total
     );
   };
-  isvaidPhone = phone => {
+  isvaidPhone = (phone) => {
     if (phone.length < 10 || phone.length > 11) return false;
     for (let i = 0; i < phone.length; i++) {
       if (phone.charAt(i) < "0" || phone.charAt(i) > "9") return false;
@@ -115,7 +115,6 @@ class ContentCart extends Component {
       <div>
         <section id="cart_items">
           <div className="container">
-
             <div className="table-responsive cart_info">
               <table className="table table-condensed">
                 <thead>
@@ -135,13 +134,12 @@ class ContentCart extends Component {
                         <td className="cart_product">
                           <a href="">
                             <img src={element.img} alt="" />
-                          </a>  
+                          </a>
                         </td>
                         <td className="cart_description">
                           <h4>
                             <p href="">{element.name}</p>
                           </h4>
-
                         </td>
                         <td className="cart_price">
                           <p>{element.price}</p>
@@ -156,9 +154,7 @@ class ContentCart extends Component {
                                 }
                                 element.count -= 1;
                                 this.props.updateProductInCart(element);
-                              }}
-
-                            >
+                              }}>
                               {" "}
                               -{" "}
                             </span>
@@ -175,8 +171,7 @@ class ContentCart extends Component {
                               onClick={() => {
                                 element.count += 1;
                                 this.props.updateProductInCart(element);
-                              }}
-                            >
+                              }}>
                               {" "}
                               +{" "}
                             </span>
@@ -184,8 +179,10 @@ class ContentCart extends Component {
                         </td>
                         <td className="cart_total">
                           <p className="cart_total_price">
-                            {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(element.price * element.count)}<sup>đ</sup>
-
+                            {new Intl.NumberFormat("de-DE", {
+                              currency: "EUR",
+                            }).format(element.price * element.count)}
+                            <sup>đ</sup>
                           </p>
                         </td>
                         <td className="cart_delete">
@@ -193,8 +190,7 @@ class ContentCart extends Component {
                             className="cart_quantity_delete"
                             onClick={() =>
                               this.props.deteleProductInCart(element._id)
-                            }
-                          >
+                            }>
                             <i className="fa fa-times" />
                           </a>
                         </td>
@@ -212,20 +208,28 @@ class ContentCart extends Component {
               <div className="col-md-12">
                 <div class="total_area">
                   <ul>
-
                     <li>
-                      Phí Vận Chuyển<span>0<sup>đ</sup> </span>
+                      Phí Vận Chuyển
+                      <span>
+                        0<sup>đ</sup>{" "}
+                      </span>
                     </li>
                     <li>
-                      Tổng Tiền <span>  {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(this.state.total)}<sup>đ</sup></span>
+                      Tổng Tiền{" "}
+                      <span>
+                        {" "}
+                        {new Intl.NumberFormat("de-DE", {
+                          currency: "EUR",
+                        }).format(this.state.total)}
+                        <sup>đ</sup>
+                      </span>
                     </li>
                   </ul>
                   <Modal
                     show={this.state.show}
                     onHide={() => this.setState({ show: false })}
                     container={this}
-                    aria-labelledby="contained-modal-title"
-                  >
+                    aria-labelledby="contained-modal-title">
                     <Modal.Header closeButton>
                       <Modal.Title id="contained-modal-title">
                         Thông báo
@@ -241,7 +245,6 @@ class ContentCart extends Component {
                       </Button>
                     </Modal.Footer>
                   </Modal>
-
                 </div>
               </div>
               <div className="col-md-12">
@@ -252,7 +255,9 @@ class ContentCart extends Component {
                       <input
                         type="text"
                         value={this.state.name}
-                        onChange={e => this.setState({ name: e.target.value })}
+                        onChange={(e) =>
+                          this.setState({ name: e.target.value })
+                        }
                       />
                       <span>{this.state.notiName}</span>
                     </li>
@@ -261,7 +266,9 @@ class ContentCart extends Component {
                       <input
                         type="text"
                         value={this.state.phone}
-                        onChange={e => this.setState({ phone: e.target.value })}
+                        onChange={(e) =>
+                          this.setState({ phone: e.target.value })
+                        }
                       />
                       <span>{this.state.notiPhone}</span>
                     </li>
@@ -273,7 +280,7 @@ class ContentCart extends Component {
                       <input
                         type="text"
                         value={this.state.address}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ address: e.target.value })
                         }
                       />
@@ -284,19 +291,21 @@ class ContentCart extends Component {
                     show={this.state.ispay}
                     onHide={() => this.setState({ ispay: false })}
                     container={this}
-                    aria-labelledby="contained-modal-title"
-                  >
+                    aria-labelledby="contained-modal-title">
                     <Modal.Header closeButton>
                       <Modal.Title id="contained-modal-title">
                         Thông báo
                       </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Đặt Hàng Thành Công, Vui Lòng Vào Đơn Hàng Để Xem Chi Tiết</Modal.Body>
+                    <Modal.Body>
+                      Đặt Hàng Thành Công, Vui Lòng Vào Đơn Hàng Để Xem Chi Tiết
+                    </Modal.Body>
                     <Modal.Footer>
-                      <Button onClick={() => {
-                        this.reset()
-                        window.location.reload()
-                      }}>
+                      <Button
+                        onClick={() => {
+                          this.reset();
+                          window.location.reload();
+                        }}>
                         <a>Đồng ý</a>
                       </Button>
                     </Modal.Footer>
@@ -306,34 +315,34 @@ class ContentCart extends Component {
                     show={this.state.showpaymentfail}
                     onHide={() => this.setState({ showpaymentfail: false })}
                     container={this}
-                    aria-labelledby="contained-modal-title"
-                  >
+                    aria-labelledby="contained-modal-title">
                     <Modal.Header closeButton>
                       <Modal.Title id="contained-modal-title">
                         Thông báo
                       </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Vui lòng chọn sản phẩm để thanh toán</Modal.Body>
+                    <Modal.Body>
+                      Vui lòng chọn sản phẩm để thanh toán
+                    </Modal.Body>
                     <Modal.Footer>
-                      <Button onClick={() => this.setState({ showpaymentfail: false })}>
+                      <Button
+                        onClick={() =>
+                          this.setState({ showpaymentfail: false })
+                        }>
                         <a>Đồng ý</a>
                       </Button>
                     </Modal.Footer>
                   </Modal>
-                  <div className='cart-option'>
-
-
+                  <div className="cart-option">
                     <button
                       className="btn btn-default update"
-                      onClick={() => this.handlePayment()}
-                    >
+                      onClick={() => this.handlePayment()}>
                       Đặt hàng
                     </button>
                     <Link class="btn btn-default check_out" to={"/"}>
                       Tiếp tục mua hàng
                     </Link>
                   </div>
-
                 </div>
               </div>
             </div>

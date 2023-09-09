@@ -18,7 +18,7 @@ const commentRouter = require('./api/routers/comment');
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.URL_MONGODB).then(
   ()=> {
-    console.log("connect DB sucessfully");
+    console.log("Connect DB sucessfully");
   }).catch((error)=> {
     console.log('Error connecting to database');
   });

@@ -4,6 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 class ContentProductDetail extends Component {
   constructor(props) {
+    console.log("===============>>", props);
     super(props);
     this.state = {
       name: "",
@@ -13,7 +14,7 @@ class ContentProductDetail extends Component {
       quantity: 1,
       noti: false,
       show: false,
-      pagination: []
+      pagination: [],
     };
   }
   componentWillMount() {
@@ -25,12 +26,12 @@ class ContentProductDetail extends Component {
     if (storeConfig.getUser() !== null) {
       this.setState({
         name: storeConfig.getUser().firstName,
-        email: storeConfig.getUser().email
+        email: storeConfig.getUser().email,
       });
     } else {
       this.setState({
         name: "",
-        email: ""
+        email: "",
       });
     }
   }
@@ -45,7 +46,7 @@ class ContentProductDetail extends Component {
     if (nextProps.islogin === false) {
       this.setState({
         name: "",
-        email: ""
+        email: "",
       });
     }
   }
@@ -63,8 +64,7 @@ class ContentProductDetail extends Component {
               return (
                 <li
                   className="active"
-                  onClick={() => this.props.setPage(element)}
-                >
+                  onClick={() => this.props.setPage(element)}>
                   <a>{element}</a>
                 </li>
               );
@@ -83,7 +83,7 @@ class ContentProductDetail extends Component {
       );
     }
   }
-  handlename = name => {
+  handlename = (name) => {
     if (this.state.name === "") {
       this.setState({ name: name });
     }
@@ -96,7 +96,9 @@ class ContentProductDetail extends Component {
       this.setState({ notificationComment: "" });
     }
     if (this.state.comment === "") {
-      this.setState({ notificationComment: "Vui lòng nhập nội dung bình luận" });
+      this.setState({
+        notificationComment: "Vui lòng nhập nội dung bình luận",
+      });
       return;
     } else {
       this.setState({ notificationComment: "" });
@@ -122,246 +124,162 @@ class ContentProductDetail extends Component {
   };
 
   render() {
-    let xhtml = '';
+    let xhtml = "";
     console.log(this.state.noti);
     if (this.state.noti) {
-      xhtml = <div className='aler-box'>
-        <div className='btn-close ' onClick={() => this.setState({ noti: false })}>
-          X
-        </div>
+      xhtml = (
+        <div className="aler-box">
+          <div
+            className="btn-close "
+            onClick={() => this.setState({ noti: false })}></div>
 
-        <div className='aler-title'>
-          <h3 className='title'>Thêm vào giỏ hàng thành công</h3>
-          <img className="aler-body" alt="" src="https://plus24h.com/upload/editor/images/icon-dat-hang-thanh-cong-09.jpg" />
+          <div className="aler-title">
+            <h3 className="title">Thêm vào giỏ hàng thành công</h3>
+            <img
+              className="aler-body"
+              alt=""
+              src="https://plus24h.com/upload/editor/images/icon-dat-hang-thanh-cong-09.jpg"
+            />
+          </div>
         </div>
-      </div>
+      );
     }
     return (
-      <section>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-3">
-              <div className="left-sidebar">
-                <h2>Danh mục</h2>
-                <div className="panel-group category-products" id="accordian">
-                  {this.props.category.map((element, index) => {
-                    return (
-                      <div key={index} className="panel panel-default">
-                        <div className="panel-heading">
-                          <h4 className="panel-title">
-                            <a key={index}>{element.name}</a>
-                          </h4>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-              </div>
-            </div>
-            <div className="col-sm-9 padding-right">
-              <div className="product-details">
-                <div className="col-sm-5">
-                  <div className="view-product">
-                    <img src={this.props.mproductDetail.img} alt="" />
+      <div className="container">
+        <div className="card">
+          <div className="container-fliud">
+            <div className="wrapper row">
+              <div className="preview col-md-6">
+                <div className="preview-pic tab-content">
+                  <div className="tab-pane active" id="pic-1">
+                    <img src={this.props.mproductDetail.img} />
                   </div>
-
-                </div>
-                <div className="col-sm-7">
-                  <div className="product-information">
-                    <img
-                      src="/assets/images/product-details/new.jpg"
-                      className="newarrival"
-                      alt=""
-                    />
-                    <h2>{this.props.mproductDetail.name}</h2>
-
-                    <img src="images/product-details/rating.png" alt="" />
-
-                    <span>
-                      <div>
-                        <span>Giá:</span>
-                        <span>{this.props.mproductDetail.price}</span>
-
-                      </div>
-                      <div className='count-product' >
-                        <p className='count' style={{ paddingRight: '10px', display: 'flex', alignItems: 'center' }}>Số Lượng:</p>
-                        <input
-                          type="number"
-                          onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)) {
-                              event.preventDefault();
-                            }
-                          }}
-                          min="0"
-                          max="500"
-                          onChange={e =>
-                            this.setState({ quantity: e.target.value })
-                          }
-                          value={this.state.quantity}
-                        />
-                      </div>
-                      <button
-                        onClick={() => this.submitOrder()}
-                        type="button"
-                        className="btn btn-default cart"
-                      >
-                        <i className="fa fa-shopping-cart" />
-                        Thêm vào giỏ hàng
-                      </button>
-                    </span>
-                    <p>{this.state.noti}</p>
-                    <p>
-                      <b>Danh mục:</b> {this.props.nameCategory}
-                    </p>
-                    <p>
-                      <b>Ngày phát hành</b>{" "}
-                      {new Date(
-                        this.props.mproductDetail.release_date
-                      ).toDateString("yyyy-MM-dd")}
-                    </p>
-                    <p>
-                      <b>Nhà xuất bản:</b> {this.props.namePublicsher}
-                    </p>
-                    <p>
-                      <b>Tác giả:</b> {this.props.nameAuthor}
-                    </p>
-
+                  <div className="tab-pane" id="pic-2">
+                    <img src={this.props.mproductDetail.img} />
                   </div>
-                  <Modal
-                    show={this.state.show}
-                    onHide={() => this.setState({ show: false })}
-                    container={this}
-                    aria-labelledby="contained-modal-title"
-                  >
-                    <Modal.Header closeButton>
-                      <Modal.Title id="contained-modal-title">
-                        Thông báo
-                      </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Đặt hàng thành công</Modal.Body>
-                    <Modal.Footer>
-                      <Button onClick={() => this.setState({ show: false })}>
-                        <a>Hủy</a>
-                      </Button>
-
-                    </Modal.Footer>
-                  </Modal>
-                </div>
-                {xhtml}
-
-                <div className="col-sm-12 review-product">
-                  <div>
-                    <h3>Đánh giá sách</h3>
+                  <div className="tab-pane" id="pic-3">
+                    <img src={this.props.mproductDetail.img} />
                   </div>
-
-                </div>
-                <div className="tab-content">
-                  <div className="tab-pane fade active in" id="reviews">
-                    <div className="col-sm-12">
-                      <div className="content-conment">
-                        {this.props.comment.map((element, index) => {
-                          return (
-                            <p>
-                              <span>{element.name}:</span> {element.comment}
-                            </p>
-                          );
-                        })}
-                        <div className='Pagination-flex'>
-                          {this.renderPagination()}
-                        </div>
-
-                      </div>
-                      <hr />
-                      <p style={{ color: "#5BBCEC" }}>
-                        {this.state.notificationComment}
-                      </p>
-                      <p>
-                        <h4><b>Bình Luận</b></h4>
-                      </p>
-
-                      <form action="#">
-
-                        <textarea
-                          value={this.state.comment}
-                          onChange={e =>
-                            this.setState({ comment: e.target.value })
-                          }
-                        />
-                        <button
-                          type="button"
-                          className="btn btn-default pull-right"
-                          onClick={() => this.submitComment()}
-                        >
-                          Bình Luận
-                        </button>
-                      </form>
-                    </div>
+                  <div className="tab-pane" id="pic-4">
+                    <img src={this.props.mproductDetail.img} />
+                  </div>
+                  <div className="tab-pane" id="pic-5">
+                    <img src={this.props.mproductDetail.img} />
                   </div>
                 </div>
-
-                <div className="recommended_items">
-                  <h2 className="title text-center">recommended items</h2>
-
-                  <div
-                    id="recommended-item-carousel"
-                    className="carousel slide"
-                    data-ride="carousel"
-                  >
-                    <div className="carousel-inner">
-                      <div className="item active">
-                        {this.props.bookrelated.map((element, index) => {
-                          return (
-                            <div className="col-sm-4">
-                              <div className="product-image-wrapper">
-                                <div className="single-products">
-                                  <div className="productinfo text-center">
-                                    <a href={"/product/" + element._id}>
-                                      <img src={element.img} alt="" />
-                                      <h2>  {new Intl.NumberFormat('de-DE', { currency: 'EUR' }).format(element.price)}<sup>đ</sup></h2>
-                                      <p>{element.describe}</p>{" "}
-                                    </a>
-                                    <button
-                                      onClick={() => {
-                                        element.count = 1;
-                                        this.props.addToCart(element);
-                                      }}
-                                      type="button"
-                                      className="btn btn-default add-to-cart"
-                                    >
-                                      <i className="fa fa-shopping-cart" />Add
-                                      to cart
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                    <a
-                      className="left recommended-item-control"
-                      href="#recommended-item-carousel"
-                      data-slide="prev"
-                    >
-                      <i className="fa fa-angle-left" />
+                <ul className="preview-thumbnail nav nav-tabs">
+                  <li className="active">
+                    <a data-target="#pic-1" data-toggle="tab">
+                      <img src={this.props.mproductDetail.img} />
                     </a>
-                    <a
-                      className="right recommended-item-control"
-                      href="#recommended-item-carousel"
-                      data-slide="next"
-                    >
-                      <i className="fa fa-angle-right" />
+                  </li>
+                  <li>
+                    <a data-target="#pic-2" data-toggle="tab">
+                      <img src={this.props.mproductDetail.img} />
                     </a>
-                  </div>
-                </div>
+                  </li>
+                  <li>
+                    <a data-target="#pic-3" data-toggle="tab">
+                      <img src={this.props.mproductDetail.img} />
+                    </a>
+                  </li>
+                  <li>
+                    <a data-target="#pic-4" data-toggle="tab">
+                      <img src={this.props.mproductDetail.img} />
+                    </a>
+                  </li>
+                  <li>
+                    <a data-target="#pic-5" data-toggle="tab">
+                      <img src={this.props.mproductDetail.img} />
+                    </a>
+                  </li>
+                </ul>
               </div>
+              <div className="details col-md-6">
+                <h3 className="product-title">
+                  {this.props.mproductDetail.name}
+                </h3>
+                <div className="rating">
+                  <div className="stars">
+                    <span className="fa fa-star checked" />
+                    <span className="fa fa-star checked" />
+                    <span className="fa fa-star checked" />
+                    <span className="fa fa-star" />
+                    <span className="fa fa-star" />
+                  </div>
+                  <span className="review-no">41 reviews</span>
+                </div>
+                <p className="product-description">
+                  {this.props.mproductDetail.describe}
+                </p>
+                <h4 className="price">
+                  Giá: <span>{this.props.mproductDetail.price}</span>
+                </h4>
+                <p
+                  className="count"
+                  style={{
+                    paddingRight: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}>
+                  Số Lượng:
+                </p>
+                <input
+                  style={{ width: "10%" }}
+                  type="number"
+                  onKeyPress={(event) => {
+                    if (!/[0-9]/.test(event.key)) {
+                      event.preventDefault();
+                    }
+                  }}
+                  min="0"
+                  max="500"
+                  onChange={(e) => this.setState({ quantity: e.target.value })}
+                  value={this.state.quantity}
+                />
+                <h5 className="sizes mt-3">
+                  Số người xem:
+                  <span
+                    className="size"
+                    data-toggle="tooltip"
+                    title="small"
+                    style={{ fontSize: "12px", color: "#ff9f1a" }}>
+                    {this.props.mproductDetail.view_counts} viewers
+                  </span>
+                </h5>
+                <h5 className="colors">
+                  Giảm giá:
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      color: "#ff9f1a",
+                      marginLeft: "10px",
+                    }}>
+                    {this.props.mproductDetail.sales}
+                  </span>
+                </h5>
+                <h5 className="colors">
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      color: "#ff9f1a",
+                      marginLeft: "10px",
+                    }}>
+                    <button
+                      onClick={() => this.submitOrder()}
+                      type="button"
+                      class="btn btn-success">
+                      <i className="fa fa-shopping-cart" />
+                      Thêm vào giỏ hàng
+                    </button>
+                  </span>
+                </h5>
+              </div>
+              {xhtml}
             </div>
           </div>
         </div>
-
-      </section>
+      </div>
     );
   }
 }

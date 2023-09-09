@@ -44,8 +44,7 @@ class ContentHome extends Component {
               return (
                 <li
                   className="active"
-                  onClick={() => this.props.setPage(element)}
-                >
+                  onClick={() => this.props.setPage(element)}>
                   <Link to="/">{element}</Link>
                 </li>
               );
@@ -78,7 +77,7 @@ class ContentHome extends Component {
       <section>
         <div className="container">
           <div className="row content-home">
-            <div className="col-sm-3">
+            <div className="col-sm-3 mt-2">
               <div className="left-sidebar">
                 <h2>Thể loại</h2>
                 <div className="panel-group category-products" id="accordian">
@@ -86,12 +85,10 @@ class ContentHome extends Component {
                     <div
                       className="panel-heading"
                       onClick={(e) => {
-                       
                         this.resetCheck();
-                        this.props.setTitle("ALL BOOK")
-                        this.props.branchClick('', e._id)
-                      }}
-                    >
+                        this.props.setTitle("ALL BOOK");
+                        this.props.branchClick("", e._id);
+                      }}>
                       <h4 className="panel-title item-custom">
                         <a>Tất cả</a>
                       </h4>
@@ -108,8 +105,7 @@ class ContentHome extends Component {
                           this.props.setIDBranch(element._id);
                           this.props.branchClick("category", element._id);
                         }}
-                        className="panel panel-default"
-                      >
+                        className="panel panel-default">
                         <div className="panel-heading">
                           <h4 className="panel-title item-custom">
                             <a key={index}>{element.name}</a>
@@ -129,8 +125,7 @@ class ContentHome extends Component {
                           this.props.setRangeType(null);
                           this.resetCheck();
                           this.setState({ check_1: true });
-                        }}
-                      >
+                        }}>
                         <input
                           type="radio"
                           name="optradio"
@@ -145,8 +140,7 @@ class ContentHome extends Component {
                           this.props.setRangeType({ low: 0, high: 50000 });
                           this.resetCheck();
                           this.setState({ check_2: true });
-                        }}
-                      >
+                        }}>
                         <input
                           type="radio"
                           name="optradio"
@@ -161,8 +155,7 @@ class ContentHome extends Component {
                           this.props.setRangeType({ low: 50000, high: 100000 });
                           this.resetCheck();
                           this.setState({ check_3: true });
-                        }}
-                      >
+                        }}>
                         <input
                           type="radio"
                           name="optradio"
@@ -180,8 +173,7 @@ class ContentHome extends Component {
                             low: 100000,
                             high: 150000,
                           });
-                        }}
-                      >
+                        }}>
                         <input
                           type="radio"
                           name="optradio"
@@ -199,8 +191,7 @@ class ContentHome extends Component {
                           });
                           this.resetCheck();
                           this.setState({ check_5: true });
-                        }}
-                      >
+                        }}>
                         <input
                           type="radio"
                           name="optradio"
@@ -236,6 +227,34 @@ class ContentHome extends Component {
           </div>
         </div>
       </section>
+      // <div className="layout-row">
+      //   <section className="layout-column sidebar">
+      //     <ul className="layout-column ml-0 pl-0 filter-list">
+      //       <span className="section-title">Status</span>
+      //       <li className="sidebar-item">
+      //         <a>Lọc</a>
+      //       </li>
+      //       <li className="sidebar-item">
+      //         <a>Lọc</a>
+      //       </li>
+      //       <li className="sidebar-item">
+      //         <a>Lọc</a>
+      //       </li>
+      //     </ul>
+      //     <ul className="layout-column ml-0 pl-0 filter-list">
+      //       <span className="section-title">Status</span>
+      //       <li className="sidebar-item">
+      //         <a>Lọc</a>
+      //       </li>
+      //       <li className="sidebar-item">
+      //         <a>Lọc</a>
+      //       </li>
+      //       <li className="sidebar-item">
+      //         <a>Lọc</a>
+      //       </li>
+      //     </ul>
+      //   </section>
+      // </div>
     );
   }
 }
