@@ -6,24 +6,24 @@ class HeaderMiddle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "Account"
+      email: "Account",
     };
   }
   componentWillMount() {
     if (storeConfig.getUser() !== null) {
       this.setState({
-        email: storeConfig.getUser().email
+        email: storeConfig.getUser().email,
       });
     }
   }
   componentWillReceiveProps(nextProps) {
     if (!nextProps.islogin) {
       this.setState({
-        email: "Account"
+        email: "Account",
       });
     } else {
       this.setState({
-        email: storeConfig.getUser().email
+        email: storeConfig.getUser().email,
       });
     }
   }
@@ -36,10 +36,10 @@ class HeaderMiddle extends Component {
             window.location.reload();
             this.props.logout();
             this.props.history.push("/");
-          }}
-        >
+          }}>
           <a>
-            <i className="fa fa-lock" />Đăng xuất
+            <i className="fa fa-lock" style={{ color: "white" }} />
+            Đăng xuất
           </a>
         </li>
       );
@@ -47,7 +47,8 @@ class HeaderMiddle extends Component {
       return (
         <li>
           <Link to="/login_register">
-            <i className="fa fa-lock" />Đăng nhập
+            <i className="fa fa-lock" />
+            Đăng nhập
           </Link>
         </li>
       );
@@ -57,25 +58,24 @@ class HeaderMiddle extends Component {
     if (this.state.email === "Account") {
       return;
     } else {
-
       this.props.history.push("/profile/" + this.state.email);
     }
   };
   hoverlogin = () => {
     if (this.props.islogin) {
       return (
-        <ul className='sub-menu'>
-
+        <ul className="sub-menu">
           <li onClick={() => this.handleProfile()}>
-            <Link to={"/"}  >Hồ Sơ</Link>
+            <Link to={"/"}>Hồ Sơ</Link>
           </li>
 
-          <li><Link to='/purchase_history' >Đơn Hàng</Link></li>
-
+          <li>
+            <Link to="/purchase_history">Đơn Hàng</Link>
+          </li>
         </ul>
       );
     }
-  }
+  };
   render() {
     return (
       <div className="header-middle">
@@ -84,16 +84,36 @@ class HeaderMiddle extends Component {
             <div className="col-sm-4">
               <div className="logo pull-left">
                 <a href="/">
-                  <img src="/assets/images/home/logo1.gif" alt="" />
+                  <h2
+                    style={{
+                      textTransform: "uppercase",
+                      color: "white",
+                      textDecoration: "none",
+                    }}
+                    className="logo-hover">
+                    BookShop
+                  </h2>
                 </a>
               </div>
-
             </div>
+            {/* <div className="col-sm-4">
+              <ul
+                style={{
+                  color: "white",
+                  justifyContent: "center",
+                  display: "flex",
+                  alignItems: "center"
+                }}>
+                <li>Giới thiệu</li>
+                <li>Liên lạc</li>
+                <li>Bản đồ</li>
+              </ul>
+            </div> */}
             <div className="col-sm-8">
               <div className="shop-menu pull-right">
                 <ul className="nav navbar-nav collapse navbar-collapse">
-                  <li className='dropdown'>
-                    <a className='Setting-item'>
+                  <li className="dropdown">
+                    <a className="Setting-item">
                       <i className="fa fa-user dropbtn"></i>
                     </a>
                     {this.hoverlogin()}
