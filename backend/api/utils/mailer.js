@@ -1,36 +1,39 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
-const transporter = nodemailer.createTransport(
-   {
+
+// Create a reusable transporter using a separate configuration object
+const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'vongocthien0510@gmail.com',
-      pass: process.env.APP_PASSWORD_GOOGLE_SECRET
+        user: 'phanthanhhieuu@gmail.com',
+        pass: process.env.APP_PASSWORD_GOOGLE_SECRET
     }
-   }
-)
+});
 
+// Function to send an email
 exports.sendEmail = async (email, token) => {
-    let mailOptions = {
-        from: 'vongocthien0510@gmail.com', // sender address
-        to: email, // list of receivers
-        subject: 'Account Verification Token', // Subject line
-        text: 'Hello my friend',
-        html: '<b>verify your account</b>'
-            + ' <br/>'
-            + '<span>Please verify your account by clicking the link</span>'
-            + '<br/>'
-            + '<span>http://localhost:3000/confirm/' + token +  '</span>'
-    };
-    try{
+    try {
+        process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+        let mailOptions = {
+            from: 'phanthanhhieuu@gmail.com',
+            to: email,
+            subject: 'Account Verification Token',
+            text: 'Hello my friend',
+            html: `<b>Verify your account</b><br />
+                   <span>Please verify your account by clicking the link:</span><br />
+                   <a href="http://localhost:3000/confirm/${token}">Verify Now</a>`
+        };
+
         let send = await transporter.sendMail(mailOptions);
+        console.log('Email sent:', send.response);
+
+        return true; // Indicate that the email was sent successfully
+    } catch (err) {
+        console.error('Error sending email:', err);
+        return false; // Indicate that the email sending failed
     }
-    catch(err){
-        console.log(err);
-        return false;
-    }
-    return true;
-}
+};
+
 
 exports.sendEmailForgotPassword = async (email, token) => {
     let mailOptions = {

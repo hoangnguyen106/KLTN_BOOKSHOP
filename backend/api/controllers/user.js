@@ -36,12 +36,16 @@ exports.register = async (req, res) => {
         return;
     }
     const token = randomstring.generate();
+    console.log('token',token);
     let sendEmail = await nodemailer.sendEmail(email, token);
+    console.log('email',email);
+    console.log('sendEmail',sendEmail);
     if (!sendEmail) {
         res.status(500).json({ msg: 'Send email fail' });
         return;
     }   
     password = bcrypt.hashSync(password, 10);
+    console.log('password',password);
     const newUser = new user({
         email: email,
         firstName: firstName,
