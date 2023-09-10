@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const ProductItem = ({ urlImg, price, name, id, book }) => (
+const ProductItem = ({ urlImg, price, name, id, book, addToCart }) => (
   <div className="col-sm-4">
     {/* <div className="product-image-wrapper">
       <div className="single-products">
@@ -65,12 +65,11 @@ const ProductItem = ({ urlImg, price, name, id, book }) => (
       <div className="col-12 d-flex">
         <div className="col-6"></div>
         <div className="col-6 ">
-          {" "}
-          <a
-            href="#"
-            className="btn btn-dark w-100 p-3 rounded-0 text-warning justify-content-end">
-            ADD TO CART
-          </a>
+          <Link to={"/product/" + id}>
+            <a className="btn btn-dark w-100 p-3 rounded-0 text-warning justify-content-end">
+              Xem chi tiết
+            </a>
+          </Link>
         </div>
       </div>
     </div>
