@@ -10,6 +10,7 @@ import CartContainer from "./cart.container";
 import VerifyPaymentContainer from "./verify.payment.container";
 import HistoryPurchase from "./history.purchase.container";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap";
 const App = () => (
   <Router>
     <Switch>

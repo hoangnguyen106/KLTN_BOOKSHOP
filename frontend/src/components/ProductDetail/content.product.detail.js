@@ -259,20 +259,26 @@ class ContentProductDetail extends Component {
                   </span>
                 </h5>
                 <h5 className="colors">
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      color: "#ff9f1a",
-                      marginLeft: "10px",
-                    }}>
-                    <button
-                      onClick={() => this.submitOrder()}
-                      type="button"
-                      class="btn btn-success">
-                      <i className="fa fa-shopping-cart" />
-                      Thêm vào giỏ hàng
-                    </button>
-                  </span>
+                  <div style={{marginTop: '14%'}}>
+                    <span
+                      style={{
+                        fontSize: "12px",
+                        color: "#ff9f1a",
+                        marginLeft: "10px",
+                      }}>
+                      <button
+                        onClick={() => this.submitOrder()}
+                        type="button"
+                        class="btn btn-success"
+                        style={{
+                          fontSize: '18px'
+                        }}
+                        >
+                        <i className="fa fa-shopping-cart" />
+                        Thêm vào giỏ hàng
+                      </button>
+                    </span>
+                  </div>
                 </h5>
               </div>
               {xhtml}
