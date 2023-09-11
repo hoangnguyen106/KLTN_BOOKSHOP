@@ -7,8 +7,9 @@ import AuthorContainer from "./author.container";
 import PublisherContainer from "./publisher.container";
 import UserContainer from "./user.container";
 import LoginContainer from "./login.container";
-import StatisticalContainer from './statistical.container'
-import BillContainer from './bill.container'
+import StatisticalContainer from "./statistical.container";
+import BillContainer from "./bill.container";
+
 class App extends Component {
   render() {
     return (
