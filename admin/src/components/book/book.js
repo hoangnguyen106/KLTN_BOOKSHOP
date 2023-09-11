@@ -10,7 +10,7 @@ class Book extends Component {
       book: null,
       file: null,
       imagePreviewUrl: null,
-      curr: "add",
+      curr: "Thêm mới",
       category: "Thể Loại",
       publisher: "Nhà Xuất Bản",
       author: "Tác Giả",
@@ -277,7 +277,7 @@ class Book extends Component {
     );
   };
   renderBtnSubmit = () => {
-    if (this.state.curr === "add") {
+    if (this.state.curr === "Thêm mới") {
       return (
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
@@ -338,7 +338,7 @@ class Book extends Component {
       name: "",
       file: null,
       imagePreviewUrl: null,
-      curr: "add",
+      curr: "Thêm mới",
       category: "category",
       publisher: "publisher",
       author: "author",
@@ -449,7 +449,10 @@ class Book extends Component {
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <Modal show={this.state.showPopup} handleClose={this.hideModal}>
+            <Modal
+              show={this.state.showPopup}
+              handleClose={this.hideModal}
+              title={this.state.curr}>
               <div className="form" id="from-book">
                 <div
                   className="form-validate form-horizontal"
@@ -667,7 +670,7 @@ class Book extends Component {
                             <a
                               onClick={() =>
                                 this.setState({
-                                  curr: "update",
+                                  curr: "Cập nhật",
                                   name: element.name,
                                   release_date: element.release_date.slice(
                                     0,
