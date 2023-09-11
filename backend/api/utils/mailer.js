@@ -5,7 +5,7 @@ require('dotenv').config();
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'phanthanhhieuu@gmail.com',
+        user: 'phanhieunhom4@gmail.com',
         pass: process.env.APP_PASSWORD_GOOGLE_SECRET
     }
 });
@@ -17,11 +17,12 @@ exports.sendEmail = async (email, token) => {
         let mailOptions = {
             from: 'phanthanhhieuu@gmail.com',
             to: email,
-            subject: 'Account Verification Token',
+            subject: 'Mã xác minh tài khoản',
             text: 'Hello my friend',
-            html: `<b>Verify your account</b><br />
-                   <span>Please verify your account by clicking the link:</span><br />
-                   <a href="http://localhost:3000/confirm/${token}">Verify Now</a>`
+            html: `<b>
+            Xác thực tài khoản của bạn</b><br />
+                   <span>Vui lòng xác minh tài khoản của bạn bằng cách nhấp vào liên kết:</span><br />
+                   <a href="http://localhost:3000/confirm/${token}">Xác minh ngay bây giờ</a>`
         };
 
         let send = await transporter.sendMail(mailOptions);

@@ -36,6 +36,7 @@ class Book extends Component {
 
   hideModal = () => {
     this.setState({ showPopup: false });
+    this.reset();
   };
 
   componentWillMount() {
@@ -79,7 +80,8 @@ class Book extends Component {
               return (
                 <li
                   className="active"
-                  onClick={() => this.props.setPage(element)}>
+                  onClick={() => this.props.setPage(element)}
+                >
                   <a>{element}</a>
                 </li>
               );
@@ -292,7 +294,8 @@ class Book extends Component {
                 }
               }}
               className="btn-custom"
-              type="submit">
+              type="submit"
+            >
               Thêm
             </button>
             <button className="btn-custom" disabled type="button">
@@ -321,7 +324,8 @@ class Book extends Component {
                   icon: "success",
                 });
               }}
-              type="button">
+              type="button"
+            >
               Cập nhật
             </button>
             <button className="btn-custom" onClick={() => this.reset()}>
@@ -364,7 +368,8 @@ class Book extends Component {
                 category: element.name,
                 id_category: element._id,
               })
-            }>
+            }
+          >
             <a>{element.name}</a>
           </li>
         );
@@ -380,7 +385,8 @@ class Book extends Component {
           <li
             onClick={() =>
               this.setState({ author: element.name, id_author: element._id })
-            }>
+            }
+          >
             <a>{element.name}</a>
           </li>
         );
@@ -399,7 +405,8 @@ class Book extends Component {
                 publisher: element.name,
                 id_publisher: element._id,
               })
-            }>
+            }
+          >
             <a>{element.name}</a>
           </li>
         );
@@ -452,13 +459,15 @@ class Book extends Component {
             <Modal
               show={this.state.showPopup}
               handleClose={this.hideModal}
-              title={this.state.curr}>
+              title={this.state.curr}
+            >
               <div className="form" id="from-book">
                 <div
                   className="form-validate form-horizontal"
                   id="feedback_form"
                   method="get"
-                  action="">
+                  action=""
+                >
                   <div className="form-group ">
                     <label for="cname" className="control-label col-lg-2">
                       Tên sách <span className="required">*</span>
@@ -549,7 +558,8 @@ class Book extends Component {
                         style={{ width: "200px" }}
                         type="button"
                         className="btn btn-default dropdown-toggle"
-                        data-toggle="dropdown">
+                        data-toggle="dropdown"
+                      >
                         {this.state.category} <span className="caret" />
                       </button>
                       <ul className="dropdown-menu" role="menu">
@@ -566,7 +576,8 @@ class Book extends Component {
                         style={{ width: "200px" }}
                         type="button"
                         className="btn btn-default dropdown-toggle"
-                        data-toggle="dropdown">
+                        data-toggle="dropdown"
+                      >
                         {this.state.author} <span className="caret" />
                       </button>
                       <ul className="dropdown-menu" role="menu">
@@ -583,7 +594,8 @@ class Book extends Component {
                         type="button"
                         className="btn btn-default dropdown-toggle"
                         data-toggle="dropdown"
-                        style={{ width: "200px" }}>
+                        style={{ width: "200px" }}
+                      >
                         {this.state.publisher} <span className="caret" />
                       </button>
                       <ul className="dropdown-menu" role="menu">
@@ -695,7 +707,8 @@ class Book extends Component {
                                   showPopup: true,
                                 })
                               }
-                              className="btn btn-success">
+                              className="btn btn-success"
+                            >
                               <i className="icon_check_alt2" />
                             </a>
                             <a
@@ -707,7 +720,8 @@ class Book extends Component {
                                   icon: "success",
                                 });
                               }}
-                              className="btn btn-danger">
+                              className="btn btn-danger"
+                            >
                               <i className="icon_close_alt2" />
                             </a>
                           </div>
