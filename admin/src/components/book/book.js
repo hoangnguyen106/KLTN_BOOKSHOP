@@ -36,6 +36,7 @@ class Book extends Component {
 
   hideModal = () => {
     this.setState({ showPopup: false });
+    this.reset();
   };
 
   componentWillMount() {
@@ -283,21 +284,26 @@ class Book extends Component {
           <div className="col-lg-offset-2 col-lg-10">
             <button
               onClick={() => {
-                if (this.submitAddBook()) {
-                  swal({
-                    title: "Thông Báo",
-                    text: "Thêm Mới Thành công!",
-                    icon: "success",
-                  });
-                }
+                this.submitAddBook();
+                swal({
+                  title: "Thông Báo",
+                  text: "Thêm Mới Thành công!",
+                  icon: "success",
+                });
+                this.setState({
+                  showPopup: false,
+                });
               }}
               className="btn-custom"
               type="submit">
               Thêm
             </button>
-            <button className="btn-custom" disabled type="button">
+            {/* <button
+              className="btn-custom"
+              style={{ background: "gray" }}
+              disabled>
               Cập nhật
-            </button>
+            </button> */}
             <button className="btn-custom" onClick={() => this.reset()}>
               Làm mới
             </button>
@@ -308,9 +314,13 @@ class Book extends Component {
       return (
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
-            <button className="btn-custom" disabled type="submit">
+            {/* <button
+              className="btn-custom"
+              style={{ background: "gray", overflow: "hidden" }}
+              disabled
+              type="submit">
               Thêm mới
-            </button>
+            </button> */}
             <button
               className="btn-custom"
               onClick={() => {
@@ -319,6 +329,9 @@ class Book extends Component {
                   title: "Thông Báo",
                   text: "Cập nhật Thành công!",
                   icon: "success",
+                });
+                this.setState({
+                  showPopup: false,
                 });
               }}
               type="button">
@@ -336,6 +349,7 @@ class Book extends Component {
     this.setState({
       noti: "",
       name: "",
+      release_date: "",
       file: null,
       imagePreviewUrl: null,
       curr: "add",
