@@ -4,16 +4,16 @@ class Home extends Component {
     super();
     this.state = {
       sum: 1000,
-      productNumber:null,
+      productNumber: null,
     };
   }
   tinh(count) {
     return (count / this.state.sum) * 100 + "%";
   }
-  // componentWillReceiveProps(nextProps) {    
+  // componentWillReceiveProps(nextProps) {
   //   this.setState({
   //       toatalProduct: this.toatalProducts(nextProps.dataByTotal),
-  //   });   
+  //   });
   // }
   // toatalProducts = bills => {
   //   let total = 0;
@@ -40,19 +40,16 @@ class Home extends Component {
                     <a href="index.html">Trang Chủ</a>
                   </li>
                   <li>
-                    <i className="fa fa-laptop" />Tổng Quan
+                    <i className="fa fa-laptop" />
+                    Tổng Quan
                   </li>
                 </ol>
               </div>
             </div>
-            
-            
-            
 
             <div className="row">
               <div className="col-lg-9 col-md-12">
                 <div className="panel panel-default">
-                  
                   <div className="panel-body">
                     <table className="table bootstrap-datatable countries">
                       <thead>
@@ -61,57 +58,50 @@ class Home extends Component {
                           <th>Tên Sản Phẩm</th>
                           <th>Giá Tiền</th>
                           <th>Số Lượng Đã Bán</th>
-                          <th>Hiệu Xuất</th>
+                          <th>Hiệu Suất</th>
                         </tr>
                       </thead>
                       <tbody>
                         {this.props.top_product.map((element, index) => {
-                          return(
+                          return (
                             <tr>
-                            <td>
-                              <div className='home-image'>
-                                <img
-                                  src={element.img}
-                                  
-                                />
-                              </div>
-                              
-                            </td>
-                            <td>{element.name}</td>
-                            <td>{new Intl.NumberFormat('de-DE', {currency: 'EUR' }).format(element.price)}<sup>đ</sup></td>
-                            <td>{element.count}</td>
-                            <td>
-                              <div className="progress thin">
-                                <div
-                                  className="progress-bar progress-bar-info progress-bar-striped"
-                                  role="progressbar"
-                                  aria-valuenow="0"
-                                  aria-valuemin="0"
-                                  aria-valuemax="100"
-                                  style={{ width: this.tinh(element.count) }}
-                                />
-                              </div>
-                              <span className="sr-only"></span>
-                            </td>
-                          </tr>
-                          ) 
+                              <td>
+                                <div className="home-image">
+                                  <img src={element.img} />
+                                </div>
+                              </td>
+                              <td>{element.name}</td>
+                              <td>
+                                {new Intl.NumberFormat("de-DE", {
+                                  currency: "EUR",
+                                }).format(element.price)}
+                                <sup>đ</sup>
+                              </td>
+                              <td>{element.count}</td>
+                              <td>
+                                <div className="progress thin">
+                                  <div
+                                    className="progress-bar progress-bar-info progress-bar-striped"
+                                    role="progressbar"
+                                    aria-valuenow="0"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    style={{ width: this.tinh(element.count) }}
+                                  />
+                                </div>
+                                <span className="sr-only"></span>
+                              </td>
+                            </tr>
+                          );
                         })}
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-
-              
-            
             </div>
-
-         
             <br />
-   
-
           </section>
-          
         </section>
       </div>
     );
