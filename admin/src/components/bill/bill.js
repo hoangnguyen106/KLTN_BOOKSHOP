@@ -9,7 +9,7 @@ class Bill extends Component {
       status: '99'
     };
   }
-
+  
   componentWillMount() {
     let tmp = [];
     for (let i = 1; i <= this.props.totalpage; i++) {
@@ -26,6 +26,41 @@ class Bill extends Component {
       this.setState({ pagination: tmp });
     }
   }
+  
+  // renderPagination() {
+  //   if (this.state.pagination.length === 0) {
+  //     return null;
+  //   } else {
+  //     return (
+  //       <ul className="pagination pagination-custom col-md-6 offset-md-3">
+  //         <li onClick={() => this.props.backPage()}>
+  //           <a>&laquo;</a>
+  //         </li>
+  //         {this.state.pagination.map((element, index) => {
+  //           if (this.props.page === element) {
+  //             return (
+  //               <li
+  //                 className="active"
+  //                 onClick={() => this.props.setPage(element)}
+  //               >
+  //                 <a>{element}</a>
+  //               </li>
+  //             );
+  //           } else {
+  //             return (
+  //               <li onClick={() => this.props.setPage(element)}>
+  //                 <a>{element}</a>
+  //               </li>
+  //             );
+  //           }
+  //         })}
+  //         <li onClick={() => this.props.nextPage()}>
+  //           <a>&raquo;</a>
+  //         </li>
+  //       </ul>
+  //     );
+  //   }
+  // }
   renderPagination() {
     if (this.state.pagination.length === 0) {
       return null;
@@ -40,14 +75,26 @@ class Bill extends Component {
               return (
                 <li
                   className="active"
-                  onClick={() => this.props.setPage(element)}
+                  onClick={() => {
+                    this.props.setPage(element);
+    const selectedStatus = this.state.status;
+    this.props.getBill(selectedStatus, element);
+                   
+                  }}
                 >
                   <a>{element}</a>
                 </li>
               );
             } else {
               return (
-                <li onClick={() => this.props.setPage(element)}>
+                <li
+                  onClick={() => {
+                    this.props.setPage(element);
+                    const selectedStatus = this.state.status; 
+                    this.props.getBill(selectedStatus, element); 
+                   
+                  }}
+                >
                   <a>{element}</a>
                 </li>
               );
@@ -60,6 +107,7 @@ class Bill extends Component {
       );
     }
   }
+  
   showdetail(){
     
   }
@@ -91,13 +139,18 @@ class Bill extends Component {
                 <span style={{ marginLeft: "50px", marginRight: "30px" }}>
                   Tình Trạng
                 </span>
-                <select onChange={e => this.props.getBill(e.target.value)}>
-                  
-                  <option value="99">Đang Chờ Xử Lý</option>
-                  <option value="0">Đang Giao Hàng</option>
-                  <option value="1">Đã Giao Hàng</option>
-
-                </select>
+                <select
+            value={this.state.status} 
+            onChange={e => {
+              const selectedStatus = e.target.value;
+              this.setState({ status: selectedStatus }); 
+              this.props.getBill(selectedStatus); 
+            }}
+          >
+            <option value="99">Đang Chờ Xử Lý</option>
+            <option value="0">Đang Giao Hàng</option>
+            <option value="1">Đã Giao Hàng</option>
+          </select>
               </header>
               <table className="table table-striped table-advance table-hover">
                 <tbody>

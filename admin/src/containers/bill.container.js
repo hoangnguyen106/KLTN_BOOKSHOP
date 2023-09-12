@@ -34,10 +34,12 @@ class BillContainer extends Component {
          }
           isupdate={this.props.isupdate}
           page={this.props.page}
+         
           totalpage={this.props.totalpage}
           bill={this.props.bill}
-          backPage={() => this.props.bookActions.billBackPage()}
-          nextPage={() => this.props.bookActions.billNextPage()}
+          updateStatus={()=>this.props.bookActions.updateStatus()}
+          backPage={() => this.props.bookActions.backPage()}
+          nextPage={() => this.props.bookActions.nextPage()}
           setPage={page => this.props.bookActions.billSetPage(page)}
           getBill={(status => this.props.bookActions.getBill(status))}
         />

@@ -293,8 +293,8 @@ export const backPage = () => (dispatch, getState) => {
 }
 
 export const nextPage = () => (dispatch, getState) => {
-    let page = getState().bookReducers.author.page
-    let totalpage = getState().bookReducers.author.totalpage
+    let page = getState().bookReducers.book.page
+    let totalpage = getState().bookReducers.book.totalpage
     if(page < totalpage) {
         dispatch(setPage(parseInt(page) + 1))
     }
@@ -336,6 +336,7 @@ export const publisherBackPage = () => (dispatch, getState) => {
 
 export const publisherNextPage = () => (dispatch, getState) => {
     let page = getState().bookReducers.publisher.page
+    console.log('',page);
     let totalpage = getState().bookReducers.publisher.totalpage
     if(page < totalpage) {
         dispatch(publisherSetPage(parseInt(page) + 1))
@@ -343,6 +344,7 @@ export const publisherNextPage = () => (dispatch, getState) => {
 }
 export const billBackPage = () => (dispatch, getState) => {
     let page = getState().bookReducers.bill.page
+    console.log('getState().bookReducers.bill.page',getState().bookReducers.bill.page);
     if(page > 1) {
         dispatch(billSetPage(parseInt(page) - 1))
     }
@@ -350,6 +352,7 @@ export const billBackPage = () => (dispatch, getState) => {
 
 export const billNextPage = () => (dispatch, getState) => {
     let page = getState().bookReducers.bill.page
+    console.log('getState().bookReducers.bill.page',page);
     let totalpage = getState().bookReducers.bill.totalpage
     if(page < totalpage) {
         dispatch(billSetPage(parseInt(page) + 1))
@@ -423,17 +426,23 @@ export const billSetTotalPage = (totalpage) => ({
     type: bookTypes.BILL_SET_TOTAL_PAGE,
     totalpage
 })
+export const updateStatus = (status) => ({
+      type: bookTypes.UPDATE_STATUS,
+     status,
+  });
 export const getBill = (status) => async(dispatch, getState) => {
-    let link = "http://localhost:3030/bill/status/99"
+    
+    let link = "http://localhost:3030/bill/status/99/"
     if(status === "0") {
-        link = "http://localhost:3030/bill/status/0"
+        link = "http://localhost:3030/bill/status/0/"
     }
     if(status === "1") {
-        link = "http://localhost:3030/bill/status/1"
+        link = "http://localhost:3030/bill/status/1/"
     }
     let res = null
     try {
-       res =  await axios.get(link)
+       res =  await axios.get(link + getState().bookReducers.bill.page)
+       console.log('ressssssssssss',getState().bookReducers.bill.page);
     }
     catch(err) {
         return

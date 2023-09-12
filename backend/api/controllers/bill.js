@@ -299,6 +299,7 @@ exports.getBillNoVerify = async (req, res) => {
   }
   let totalPage = parseInt((count - 1) / 9 + 1);
   let { page } = req.params;
+  console.log(page);
   if (parseInt(page) < 1 || parseInt(page) > totalPage) {
     res.status(200).json({ data: [], msg: "Invalid page", totalPage });
     return;
