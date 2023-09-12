@@ -54,17 +54,17 @@ const ProductItem = ({ urlImg, price, name, id, book, addToCart }) => (
   //   </div>
   // </div>
   <div className="col-4">
-    <div className="product-card mb-3">
+    <div className="product-card mb-3" style={{ height: "97%" }}>
       {/* <div className="wishlist-icon position-absolute">
         <Link to={"/product/" + id}>
           <img src={urlImg} alt="" />
         </Link>
       </div> */}
-      <div className="product-image">
+      <div className="product-image" style={{ height: "63%" }}>
         <img
           src={urlImg}
           className="img-fluid"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "fill" }}
           alt="product image"
         />
       </div>
